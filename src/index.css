@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -19,4 +21,29 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+@theme {
+  /* gray 스케일 */
+  --color-gray-0: var(--gray-0);
+  --color-gray-10: var(--gray-10);
+  --color-gray-20: var(--gray-20);
+  --color-gray-30: var(--gray-30);
+  --color-gray-40: var(--gray-40);
+  --color-gray-50: var(--gray-50);
+  --color-gray-60: var(--gray-60);
+  --color-gray-70: var(--gray-70);
+  --color-gray-80: var(--gray-80);
+
+  /* main */
+  --color-main: var(--main);
+  --color-main-soft: var(--main-soft);
+  --color-main-accent: var(--main-accent);
+  --color-main-muted: var(--main-muted);
+
+  /* flame */
+  --color-flame-0: var(--flame-0);
+  --color-flame-30: var(--flame-30);
+  --color-flame-60: var(--flame-60);
+  --color-flame-100: var(--flame-100);
 }
