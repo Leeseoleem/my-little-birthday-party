@@ -9,7 +9,9 @@ interface CommonButtonProps {
 const CommonButton = ({ label, onClick, isDisabled }: CommonButtonProps) => {
   const buttonClass = clsx(
     "flex max-w-90 h-12 sm:h-14 md:h-15 justify-center items-center px-6 rounded-xl",
-    isDisabled ? "bg-main-soft cursor-not-allowed" : "bg-main cursor-pointer"
+    isDisabled
+      ? "bg-main-disabled cursor-not-allowed"
+      : "bg-main hover:bg-main-hover active:bg-main-active cursor-pointer"
   );
   return (
     <button
