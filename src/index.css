@@ -1,27 +1,5 @@
 @import "tailwindcss";
-
-@font-face {
-  font-family: "Pretendard";
-  src: url("/src/assets/fonts/PretendardVariable.woff2") format("woff2");
-  font-weight: 45 920;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Ridibatang";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff")
-    format("woff");
-  font-weight: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MissedSimsim";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2511-1@1.0/Griun_Simsimche-Rg.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-display: swap;
-}
+@import "./styles/tokens.fonts.css";
 
 @theme {
   /* gray 스케일 */
@@ -56,6 +34,15 @@
   --font-letter-base: var(--font-base);
   --font-letter-night: "Ridibatang", serif;
   --font-letter-system: var(--font-system);
+
+  /* Font weights */
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Tracking (자간) */
+  --tracking-normal: -0.01em;
+  --tracking-tight: -0.025em;
 }
 
 :root {
