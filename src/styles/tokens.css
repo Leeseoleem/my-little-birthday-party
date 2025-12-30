@@ -1,0 +1,30 @@
+:root {
+  /* =========================
+     Gray (9-step, white 포함)
+     ========================= */
+  --gray-0: #ffffff; /* white (base background) */
+  --gray-10: #faf7f2; /* app background */
+  --gray-20: #f3efe8; /* sub background */
+  --gray-30: #e8e2da; /* border */
+  --gray-40: #d8d3cc; /* disabled */
+  --gray-50: #a6a099; /* placeholder */
+  --gray-60: #6f6f6f; /* sub text */
+  --gray-70: #4e4e4e; /* body text */
+  --gray-80: #2b2b2b; /* title / strong text */
+
+  /* =========================
+     Main (brand)
+     ========================= */
+  --main: #ff8a00; /* 브랜드 메인 */
+  --main-soft: #fbe2df; /* hover / subtle bg */
+  --main-accent: #e88982; /* active / 강조 */
+  --main-muted: #fff1c1; /* 배경, 카드 포인트 */
+
+  /* =========================
+     Flame (effect / animation)
+     ========================= */
+  --flame-0: #ffd79a; /* 잔광, 불 꺼진 직후 */
+  --flame-30: #ffb74d; /* 약한 불빛 */
+  --flame-60: #ff9f1c; /* 기본 불꽃 */
+  --flame-100: #ff9f1c; /* 가장 뜨거운 불꽃 */
+}

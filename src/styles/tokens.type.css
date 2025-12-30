@@ -1,0 +1,40 @@
+@theme inline {
+  /* sizes */
+  --size-title-01: 48px;
+  --size-title-02: 32px;
+  --size-title-03: 24px;
+  --size-sub-title: 18px;
+  --size-body: 16px;
+  --size-small: 14px;
+  --size-caption: 12px;
+  --size-caption-02: 8px;
+}
+
+@theme inline {
+  /* line heights */
+  --lh-title-01: 52px;
+  --lh-title-02: 36px;
+  --lh-title-03: 32px;
+  --lh-sub-title: 26px;
+  --lh-body: 24px;
+  --lh-small: 20px;
+  --lh-caption: 16px;
+  --lh-caption-02: 12px;
+
+  /* letter line heights */
+  --letter-lh: 30px;
+  --letter-lh-mobile: 18px;
+}
+
+@theme inline {
+  /* Font weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+}
+
+@theme inline {
+  /* Tracking (자간) */
+  --tracking-normal: -0.01em;
+  --tracking-tight: -0.025em;
+}
