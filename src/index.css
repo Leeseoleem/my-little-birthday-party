@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./styles/tokens.fonts.css";
+@import "./styles/tokens.type.css";
 
 @theme {
   /* gray 스케일 */
@@ -24,25 +25,6 @@
   --color-flame-30: var(--flame-30);
   --color-flame-60: var(--flame-60);
   --color-flame-100: var(--flame-100);
-
-  /* 폰트 설정 */
-  --font-base: "Pretendard", system-ui, "Apple SD Gothic Neo", "Noto Sans KR",
-    serif, sans-serif;
-  --font-system: "MissedSimsim", system-ui, "Apple SD Gothic Neo",
-    "Noto Sans KR", serif, sans-serif;
-  /* Letter */
-  --font-letter-base: var(--font-base);
-  --font-letter-night: "Ridibatang", serif;
-  --font-letter-system: var(--font-system);
-
-  /* Font weights */
-  --weight-regular: 400;
-  --weight-semibold: 600;
-  --weight-bold: 700;
-
-  /* Tracking (자간) */
-  --tracking-normal: -0.01em;
-  --tracking-tight: -0.025em;
 }
 
 :root {
