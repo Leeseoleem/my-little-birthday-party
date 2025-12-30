@@ -17,9 +17,9 @@
 
   /* Main (brand) */
   --color-main: #f58f8a;
-  --color-main-soft: #fbe2df;
-  --color-main-accent: #e88982;
-  --color-main-muted: #f7c6cc;
+  --color-main-disabled: #ffd5d0;
+  --color-main-hover: #f08a90;
+  --color-main-active: #ec7c84;
 
   /* Flame (effect / animation) */
   --color-flame-0: #ffd79a;
