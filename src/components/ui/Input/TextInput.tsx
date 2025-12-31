@@ -1,0 +1,87 @@
+import { useRef } from "react";
+import { motion, useAnimationControls } from "framer-motion";
+import { useImeComposition } from "../../../hooks/useImeComposition";
+
+interface TextInputProps {
+  maxLength?: number;
+  placeholder?: string;
+  value: string;
+  onChange: (newValue: string) => void;
+}
+
+const TextInput = ({
+  maxLength = 50,
+  placeholder,
+  value,
+  onChange,
+}: TextInputProps) => {
+  const { onCompositionStart, onCompositionEnd, isComposingRef } =
+    useImeComposition();
+
+  // 사용자 입력에 따른 애니메이션 컨트롤러 설정
+  const controls = useAnimationControls();
+
+  // 피드백 연속 호출 방지용
+  const feedbackLockRef = useRef(false);
+
+  const triggerLimitFeedback = async () => {
+    if (feedbackLockRef.current) return;
+    feedbackLockRef.current = true;
+
+    controls.stop();
+    await controls.start({
+      x: [0, -6, 6, -4, 4, 0],
+      transition: { duration: 0.18 },
+    });
+
+    if ("vibrate" in navigator) {
+      navigator.vibrate(25);
+    }
+
+    setTimeout(() => {
+      feedbackLockRef.current = false;
+    }, 200);
+  };
+
+  return (
+    <motion.input
+      animate={controls}
+      type="text"
+      placeholder={placeholder || "텍스트를 입력하세요"}
+      className="h-12 border-2 rounded-lg px-4 bg-gray-10 border-gray-40 focus:border-gray-60 focus:outline-none text-small text-gray-80 placeholder-gray-60"
+      value={value}
+      onChange={(e) => {
+        const rawValue = e.currentTarget.value;
+        // 최대 길이 이상 넘어가는 경우를 방지
+        if (rawValue.length > maxLength) {
+          triggerLimitFeedback();
+          return;
+        }
+
+        onChange(rawValue);
+      }}
+      onCompositionStart={onCompositionStart}
+      onCompositionEnd={onCompositionEnd}
+      onKeyDown={(e) => {
+        // IME 조합 중에는 아무것도 하지 않음
+        if (isComposingRef.current) {
+          return;
+        }
+
+        // 특수 키(Backspace, Delete, Arrow 등)는 허용
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+        const isPrintableKey = e.key.length === 1;
+        if (!isPrintableKey) return;
+
+        // 길이 제한에 도달했을 때만 피드백 (preventDefault 제거)
+        if (value.length >= maxLength) {
+          e.preventDefault();
+          triggerLimitFeedback();
+        }
+      }}
+    />
+  );
+};
+
+export default TextInput;
