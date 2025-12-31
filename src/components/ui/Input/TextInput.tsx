@@ -1,7 +1,6 @@
-import { useRef } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { useImeComposition } from "../../../hooks/useImeComposition";
-
+import { useLimitFeedback } from "../../../hooks/useLimitFeedback";
 interface TextInputProps {
   maxLength?: number;
   placeholder?: string;
@@ -15,33 +14,10 @@ const TextInput = ({
   value,
   onChange,
 }: TextInputProps) => {
+  const { controls, triggerLimitFeedback } = useLimitFeedback();
+
   const { onCompositionStart, onCompositionEnd, isComposingRef } =
     useImeComposition();
-
-  // 사용자 입력에 따른 애니메이션 컨트롤러 설정
-  const controls = useAnimationControls();
-
-  // 피드백 연속 호출 방지용
-  const feedbackLockRef = useRef(false);
-
-  const triggerLimitFeedback = async () => {
-    if (feedbackLockRef.current) return;
-    feedbackLockRef.current = true;
-
-    controls.stop();
-    await controls.start({
-      x: [0, -6, 6, -4, 4, 0],
-      transition: { duration: 0.18 },
-    });
-
-    if ("vibrate" in navigator) {
-      navigator.vibrate(25);
-    }
-
-    setTimeout(() => {
-      feedbackLockRef.current = false;
-    }, 200);
-  };
 
   return (
     <motion.input
