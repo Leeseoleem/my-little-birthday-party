@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import FieldLabel from "./FieldLabel";
 
 const meta: Meta<typeof FieldLabel> = {
-  title: "Components/UI/From/FieldLabel",
+  title: "Components/UI/Form/FieldLabel",
   component: FieldLabel,
   tags: ["autodocs"],
 };
