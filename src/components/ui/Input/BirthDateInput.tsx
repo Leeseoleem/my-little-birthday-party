@@ -68,36 +68,51 @@ const BirthDateInput = ({
   }, [digitsState, onChange, onComplete]);
 
   return (
-    <div className="flex flex-row gap-4 items-center">
-      {digitsState.map((digit, idx) => (
-        <DigitInput
-          key={idx}
-          id={`${id}-${idx}`}
-          ref={(inputEl) => {
-            inputRefs.current[idx] = inputEl;
-          }}
-          value={digit}
-          onChange={(newValue) => {
-            setDigitAt(idx, newValue);
-          }}
-          isInvalid={isInvalid} // 전체 에러 상태 전달
-          onFilled={() => {
-            // 마지막 인덱스일 경우 블러 처리
-            if (idx === 3) {
-              blurAt(idx);
-              return;
-            }
-            // 다음 칸으로 포커스 넘김
-            focusAt(idx + 1);
-          }}
-          onBackspaceOnEmpty={() => {
-            if (idx > 0) {
-              focusAt(idx - 1);
-            }
-          }}
-        />
-      ))}
-    </div>
+    <>
+      {/* Label 연결용 숨겨진 input - FormField의 htmlFor와 연결되며 포커스 시 첫 번째 칸으로 이동 */}
+      <input
+        id={id}
+        type="text"
+        className="sr-only" // 스크린 리더 전용, 시각적으로 숨김
+        value={value}
+        readOnly
+        onFocus={() => focusAt(0)}
+        aria-hidden="true"
+        tabIndex={-1} // 탭 순서에서 제외
+      />
+
+      {/* 실제 입력 칸들을 그룹으로 묶음 */}
+      <div className="flex flex-row gap-4 items-center" role="group">
+        {digitsState.map((digit, idx) => (
+          <DigitInput
+            key={idx}
+            id={`${id}-digit-${idx}`} // 내부 고유 id
+            ref={(inputEl) => {
+              inputRefs.current[idx] = inputEl;
+            }}
+            value={digit}
+            onChange={(newValue) => {
+              setDigitAt(idx, newValue);
+            }}
+            isInvalid={isInvalid} // 전체 에러 상태 전달
+            onFilled={() => {
+              // 마지막 인덱스일 경우 블러 처리
+              if (idx === 3) {
+                blurAt(idx);
+                return;
+              }
+              // 다음 칸으로 포커스 넘김
+              focusAt(idx + 1);
+            }}
+            onBackspaceOnEmpty={() => {
+              if (idx > 0) {
+                focusAt(idx - 1);
+              }
+            }}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
