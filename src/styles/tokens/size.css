@@ -1,0 +1,16 @@
+@theme {
+  --spacing-15: 3.75rem;
+  --spacing-90: 22.5rem;
+}
+
+@utility h-15 {
+  height: var(--spacing-15);
+}
+
+@utility max-w-90 {
+  max-width: var(--spacing-90);
+}
+
+@utility w-15 {
+  width: var(--spacing-15);
+}

@@ -2,6 +2,7 @@
 @import "./styles/tokens/font.css";
 @import "./styles/tokens/type.css";
 @import "./styles/components/typography.css";
+@import "./styles/tokens/size.css";
 @import "./styles/tokens/shadow.css";
 
 @theme {
