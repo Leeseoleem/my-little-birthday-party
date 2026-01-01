@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useImeComposition } from "../../../hooks/useImeComposition";
 import { useLimitFeedback } from "../../../hooks/useLimitFeedback";
-interface TextInputProps {
+export interface TextInputProps {
   id?: string;
   maxLength?: number;
   placeholder?: string;
