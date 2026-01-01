@@ -16,13 +16,14 @@ interface DigitInputProp {
 
 const DigitInput = forwardRef<HTMLInputElement, DigitInputProp>(
   (
-    { value, onChange, isInvalid = false, onFilled, onBackspaceOnEmpty },
+    { id, value, onChange, isInvalid = false, onFilled, onBackspaceOnEmpty },
     ref
   ) => {
     const { controls, triggerLimitFeedback } = useLimitFeedback();
 
     return (
       <motion.input
+        id={id}
         ref={ref}
         className={clsx(
           "w-15 h-15 text-center border-2 rounded-lg focus:outline-none text-small text-gray-80 placeholder-gray-60",
