@@ -58,13 +58,21 @@ const BirthDateInput = ({
     });
   };
 
+  // 마지막으로 처리한 값(문자열)을 기억용 ref
+  const prevValueRef = useRef<string>("");
+
   useEffect(() => {
     const isComplete = digitsState.every((d) => d.length === 1);
-    if (isComplete) {
-      const completedValue = digitsState.join("");
-      onChange(completedValue); // 여기서만 문자열 생성
-      onComplete?.(completedValue);
-    }
+    if (!isComplete) return;
+
+    const completedValue = digitsState.join("");
+
+    // 동일 값이면 중복 호출 방지
+    if (completedValue === prevValueRef.current) return;
+
+    prevValueRef.current = completedValue;
+    onChange(completedValue);
+    onComplete?.(completedValue);
   }, [digitsState, onChange, onComplete]);
 
   return (
