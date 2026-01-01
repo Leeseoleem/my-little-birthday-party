@@ -53,7 +53,7 @@ const TextInput = ({
         const isPrintableKey = e.key.length === 1;
         if (!isPrintableKey) return;
 
-        // 길이 제한에 도달했을 때만 피드백 (preventDefault 제거)
+        // 길이 제한에 도달했을 때만 피드백
         if (value.length >= maxLength) {
           e.preventDefault();
           triggerLimitFeedback();
