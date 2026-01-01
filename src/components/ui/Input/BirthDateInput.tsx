@@ -81,7 +81,7 @@ const BirthDateInput = ({
       <input
         id={id}
         type="text"
-        className="sr-only" // 스크린 리더 전용, 시각적으로 숨김
+        className="sr-only" // 시각적으로 숨김, 레이블 연결용
         value={value}
         readOnly
         onFocus={() => focusAt(0)}
