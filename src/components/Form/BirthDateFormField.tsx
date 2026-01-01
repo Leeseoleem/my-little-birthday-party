@@ -1,6 +1,6 @@
 import BirthDateInput, {
   type BirthDateInputProps,
-} from "../Input/BirthDateInput";
+} from "../ui/Input/BirthDateInput";
 import FormField from "./FormField";
 
 interface BirthDateFormFieldProps {

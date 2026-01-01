@@ -1,4 +1,4 @@
-import TextInput, { type TextInputProps } from "../Input/TextInput";
+import TextInput, { type TextInputProps } from "../ui/Input/TextInput";
 import FormField from "./FormField";
 
 interface TextFormFieldProps {
