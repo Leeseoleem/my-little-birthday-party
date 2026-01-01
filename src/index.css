@@ -1,31 +1,34 @@
 @import "tailwindcss";
-@import "./styles/tokens.fonts.css";
-@import "./styles/tokens.type.css";
-@import "./styles/components.typography.css";
+@import "./styles/tokens/font.css";
+@import "./styles/tokens/type.css";
+@import "./styles/components/typography.css";
+@import "./styles/tokens/size.css";
+@import "./styles/tokens/shadow.css";
 
 @theme {
-  /* gray 스케일 */
-  --color-gray-0: var(--gray-0);
-  --color-gray-10: var(--gray-10);
-  --color-gray-20: var(--gray-20);
-  --color-gray-30: var(--gray-30);
-  --color-gray-40: var(--gray-40);
-  --color-gray-50: var(--gray-50);
-  --color-gray-60: var(--gray-60);
-  --color-gray-70: var(--gray-70);
-  --color-gray-80: var(--gray-80);
+  /* Gray (9-step, white 포함) */
+  --color-gray-0: #ffffff;
+  --color-gray-5: #fafaf8;
+  --color-gray-10: #faf7f2;
+  --color-gray-20: #f3efe8;
+  --color-gray-30: #e8e2da;
+  --color-gray-40: #d8d3cc;
+  --color-gray-50: #a6a099;
+  --color-gray-60: #6f6f6f;
+  --color-gray-70: #4e4e4e;
+  --color-gray-80: #2b2b2b;
 
-  /* main */
-  --color-main: var(--main);
-  --color-main-soft: var(--main-soft);
-  --color-main-accent: var(--main-accent);
-  --color-main-muted: var(--main-muted);
+  /* Main (brand) */
+  --color-main: #f58f8a;
+  --color-main-disabled: #ffd5d0;
+  --color-main-hover: #f08a90;
+  --color-main-active: #ec7c84;
 
-  /* flame */
-  --color-flame-0: var(--flame-0);
-  --color-flame-30: var(--flame-30);
-  --color-flame-60: var(--flame-60);
-  --color-flame-100: var(--flame-100);
+  /* Flame (effect / animation) */
+  --color-flame-0: #ffd79a;
+  --color-flame-30: #ffb74d;
+  --color-flame-60: #ff9f1c;
+  --color-flame-100: #fff1b3;
 }
 
 :root {

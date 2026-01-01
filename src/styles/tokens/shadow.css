@@ -1,0 +1,35 @@
+:root {
+  /* 버튼 그림자 */
+  --shadow-button: 0 6px 18px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+
+  /* 카드 기본 그림자 */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  /* 편지 전용 그림자 */
+  --shadow-letter: 0px 6px 20px -2px rgba(0, 0, 0, 0.08);
+
+  /* 그림 분리용 그림자 */
+  --shadow-floating: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+@layer utilities {
+  /* 버튼 그림자 */
+  .shadow-button {
+    box-shadow: var(--shadow-button);
+  }
+
+  /* 카드 기본 그림자 */
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* 편지 전용 그림자 */
+  .shadow-letter {
+    box-shadow: var(--shadow-letter);
+  }
+
+  /* 그림 분리용 그림자 */
+  .shadow-floating {
+    box-shadow: var(--shadow-floating);
+  }
+}

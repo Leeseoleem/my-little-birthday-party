@@ -1,16 +1,22 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from "@storybook/react-vite";
+import tailwindcss from "@tailwindcss/vite";
 
 const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
-  "addons": [
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: [
     "@chromatic-com/storybook",
     "@storybook/addon-vitest",
     "@storybook/addon-a11y",
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
   ],
-  "framework": "@storybook/react-vite"
+  framework: "@storybook/react-vite",
+
+  async viteFinal(config) {
+    // Tailwind Vite 플러그인 추가
+    config.plugins = config.plugins || [];
+    config.plugins.push(tailwindcss());
+
+    return config;
+  },
 };
 export default config;

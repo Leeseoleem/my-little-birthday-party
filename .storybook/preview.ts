@@ -1,7 +1,17 @@
+import React from "react";
+import { TanStackRouterDecorator } from "../src/storybook/TanStackRouterDecorator";
 import type { Preview } from "@storybook/react-vite";
 import "../src/index.css";
 
 const preview: Preview = {
+  decorators: [
+    (Story) =>
+      React.createElement(
+        TanStackRouterDecorator,
+        null,
+        React.createElement(Story)
+      ),
+  ],
   parameters: {
     controls: {
       matchers: {

@@ -15,10 +15,10 @@
   /* =========================
      Main (brand)
      ========================= */
-  --main: #ff8a00; /* 브랜드 메인 */
-  --main-soft: #fbe2df; /* hover / subtle bg */
-  --main-accent: #e88982; /* active / 강조 */
-  --main-muted: #fff1c1; /* 배경, 카드 포인트 */
+  --main: #f58f8a; /* 브랜드 메인 */
+  --main-disabled: #ffd5d0; /* hover / subtle bg */
+  --main-hover: #f08a90; /* active / 강조 */
+  --main-active: #ec7c84; /* 배경, 카드 포인트 */
 
   /* =========================
      Flame (effect / animation)
