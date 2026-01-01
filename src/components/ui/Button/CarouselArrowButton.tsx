@@ -17,6 +17,7 @@ const CarouselArrowButton = ({
       type="button"
       onClick={onClick}
       disabled={isDisabled}
+      aria-label={direction === "left" ? "이전" : "다음"}
       className={clsx(
         "flex justify-center items-center rounded-full w-9 h-9",
         direction === "left" ? "pr-1" : "pl-1",
