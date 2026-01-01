@@ -18,6 +18,6 @@ type Story = StoryObj<typeof meta>;
 export const Main: Story = {
   args: {
     ariaLabel: "메일",
-    icon: <Mail color="#ffffff" />,
+    Icon: Mail,
   },
 };

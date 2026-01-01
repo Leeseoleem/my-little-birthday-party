@@ -1,14 +1,14 @@
-import type { ReactElement } from "react";
+import type { IconType } from "react-icons";
 
 interface ShareButtonItemProps {
+  Icon: IconType;
   onClick: () => void;
-  icon: ReactElement;
   ariaLabel: string;
 }
 
 export const ShareButtonItem = ({
   onClick,
-  icon,
+  Icon,
   ariaLabel,
 }: ShareButtonItemProps) => {
   return (
@@ -18,7 +18,7 @@ export const ShareButtonItem = ({
       onClick={onClick}
       aria-label={ariaLabel}
     >
-      {icon}
+      <Icon size={24} color="#ffffff" aria-hidden="true" />
     </button>
   );
 };
