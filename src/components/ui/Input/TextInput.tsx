@@ -27,7 +27,7 @@ const TextInput = ({
       id={id}
       type="text"
       placeholder={placeholder || "텍스트를 입력하세요"}
-      className="h-12 border-2 rounded-lg px-4 bg-gray-10 border-gray-40 focus:border-gray-60 focus:outline-none text-small text-gray-80 placeholder-gray-60"
+      className="w-full max-w-90 h-12 border-2 rounded-lg px-4 bg-gray-10 border-gray-40 focus:border-gray-60 focus:outline-none text-small text-gray-80 placeholder-gray-60"
       value={value}
       onChange={(e) => {
         const rawValue = e.currentTarget.value;
