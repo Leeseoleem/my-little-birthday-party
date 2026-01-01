@@ -7,8 +7,8 @@ export const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <div className="min-h-dvh bg-gray-10 px-[clamp(16px,8vw,100px)]">
-      <div className="w-full max-w-[960px] lg:max-w-[1024px]">
+    <div className="flex min-h-dvh justify-center bg-gray-5">
+      <div className="w-full max-w-[960px] lg:max-w-[1024px] bg-gray-10">
         <Outlet />
       </div>
       <TanStackRouterDevtools position="bottom-right" />
