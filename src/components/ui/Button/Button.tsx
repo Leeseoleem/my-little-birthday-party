@@ -8,7 +8,7 @@ interface CommonButtonProps {
 
 const CommonButton = ({ label, onClick, isDisabled }: CommonButtonProps) => {
   const buttonClass = clsx(
-    "flex max-w-90 h-12 sm:h-14 md:h-15 justify-center items-center px-6 rounded-xl shadow-button",
+    "flex max-max-w-[360px] h-12 sm:h-14 md:h-[60px] justify-center items-center px-6 rounded-xl shadow-button",
     isDisabled
       ? "bg-main-disabled cursor-not-allowed"
       : "bg-main hover:bg-main-hover active:bg-main-active cursor-pointer"

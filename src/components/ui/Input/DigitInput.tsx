@@ -25,7 +25,7 @@ const DigitInput = forwardRef<HTMLInputElement, DigitInputProp>(
       <motion.input
         ref={ref}
         className={clsx(
-          "w-15 h-15 text-center border-2 rounded-lg focus:outline-none text-small text-gray-80 placeholder-gray-60",
+          "w-[60px] h-[60px] text-center border-2 rounded-lg focus:outline-none text-small text-gray-80 placeholder-gray-60",
           isInvalid
             ? "border-main focus:border-main-active bg-main-disabled"
             : "border-gray-40 focus:border-gray-60 bg-gray-10"
