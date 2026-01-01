@@ -27,9 +27,9 @@ const CarouselArrowButton = ({
       )}
     >
       {direction === "left" ? (
-        <ChevronLeft size={20} color="#ffffff" />
+        <ChevronLeft size={20} className="text-gray-0" />
       ) : (
-        <ChevronRight size={20} color="#ffffff" />
+        <ChevronRight size={20} className="text-gray-0" />
       )}
     </button>
   );
