@@ -29,6 +29,7 @@ const TextInput = ({
       placeholder={placeholder || "텍스트를 입력하세요"}
       className="w-full max-w-90 h-12 border-2 rounded-lg px-4 bg-gray-10 border-gray-40 focus:border-gray-60 focus:outline-none text-small text-gray-80 placeholder-gray-60"
       value={value}
+      maxLength={maxLength}
       onChange={(e) => {
         const rawValue = e.currentTarget.value;
         // 최대 길이 이상 넘어가는 경우를 방지
