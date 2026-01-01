@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import DigitInput from "./DigitInput";
 
 interface BirthDateInputProps {
+  id: string; // FormField가 내려주는 필드 id
   value: string; // "MMDD" 형태, 예: "0101" 또는 ""
   onChange: (value: string) => void;
   isInvalid?: boolean;
@@ -17,6 +18,7 @@ const toDigits = (v: string) => [
 ];
 
 const BirthDateInput = ({
+  id,
   value,
   onChange,
   isInvalid = false,
@@ -70,6 +72,7 @@ const BirthDateInput = ({
       {digitsState.map((digit, idx) => (
         <DigitInput
           key={idx}
+          id={`${id}-${idx}`}
           ref={(inputEl) => {
             inputRefs.current[idx] = inputEl;
           }}

@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import { useLimitFeedback } from "../../../hooks/useLimitFeedback";
 
 interface DigitInputProp {
+  id?: string; // FormField가 내려주는 id를 받음
   value: string;
   onChange: (newValue: string) => void;
   isInvalid?: boolean;
