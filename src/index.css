@@ -6,6 +6,7 @@
 @theme {
   /* Gray (9-step, white 포함) */
   --color-gray-0: #ffffff;
+  --color-gray-5: #fafaf8;
   --color-gray-10: #faf7f2;
   --color-gray-20: #f3efe8;
   --color-gray-30: #e8e2da;
