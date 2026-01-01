@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useImeComposition } from "../../../hooks/useImeComposition";
 import { useLimitFeedback } from "../../../hooks/useLimitFeedback";
 interface TextInputProps {
+  id?: string;
   maxLength?: number;
   placeholder?: string;
   value: string;
@@ -9,6 +10,7 @@ interface TextInputProps {
 }
 
 const TextInput = ({
+  id,
   maxLength = 50,
   placeholder,
   value,
@@ -22,6 +24,7 @@ const TextInput = ({
   return (
     <motion.input
       animate={controls}
+      id={id}
       type="text"
       placeholder={placeholder || "텍스트를 입력하세요"}
       className="h-12 border-2 rounded-lg px-4 bg-gray-10 border-gray-40 focus:border-gray-60 focus:outline-none text-small text-gray-80 placeholder-gray-60"
