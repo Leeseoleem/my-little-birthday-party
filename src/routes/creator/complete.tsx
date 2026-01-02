@@ -3,16 +3,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import BottomActionSlot from "../../components/layout/BottomActionSlot";
 import CommonLinkButton from "../../components/ui/Button/CommonLinkButton";
 
-export const Route = createFileRoute("/creator/")({
-  component: CreatorLandingPage,
+export const Route = createFileRoute("/creator/complete")({
+  component: CreatorCompletePage,
 });
 
-function CreatorLandingPage() {
+function CreatorCompletePage() {
   return (
     <div className="flex flex-1 flex-col justify-center">
-      <p>C1. 랜딩 / 시작하기</p>
+      <p>링크 생성 완료</p>
       <BottomActionSlot>
-        <CommonLinkButton label="C2. 수신자 정보 입력으로" to="/creator/info" />
+        <CommonLinkButton label="처음으로" to="/creator" />
       </BottomActionSlot>
     </div>
   );
