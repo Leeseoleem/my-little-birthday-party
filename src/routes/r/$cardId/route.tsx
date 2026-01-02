@@ -30,7 +30,7 @@ function ReceiverLayout() {
             src/features/audio/core + receiver + creator */}
       <header className="w-full" />
       {/* Main: 수신자 연출 화면이 많아 레이아웃에서 패딩을 강제하지 않습니다 */}
-      <main className="flex-1 w-full">
+      <main className="flex flex-1 w-full">
         <Outlet />
       </main>
       {/* Footer: 풀폭(패딩 없음) - 필요 없으면 비워둠 */}
