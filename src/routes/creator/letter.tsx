@@ -4,6 +4,12 @@ import BottomActionSlot from "../../components/layout/BottomActionSlot";
 import CommonLinkButton from "../../components/ui/Button/CommonLinkButton";
 
 export const Route = createFileRoute("/creator/letter")({
+  staticData: {
+    creatorHeader: {
+      value: 0.4,
+      fallbackTo: "/creator/info",
+    },
+  },
   component: CreatorLetterPage,
 });
 

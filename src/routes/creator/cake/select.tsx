@@ -4,6 +4,12 @@ import BottomActionSlot from "../../../components/layout/BottomActionSlot";
 import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
 
 export const Route = createFileRoute("/creator/cake/select")({
+  staticData: {
+    creatorHeader: {
+      value: 0.6,
+      fallbackTo: "/creator/letter",
+    },
+  },
   component: CreatorCakeSelectPage,
 });
 
