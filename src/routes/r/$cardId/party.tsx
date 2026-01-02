@@ -3,19 +3,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import BottomActionSlot from "../../../components/layout/BottomActionSlot";
 import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
 
-export const Route = createFileRoute("/r/$cardId/")({
-  component: ReceiverEntryGatePage,
+export const Route = createFileRoute("/r/$cardId/party")({
+  component: ReceiverPartyPage,
 });
 
-function ReceiverEntryGatePage() {
+function ReceiverPartyPage() {
   return (
     <div className="flex flex-1 flex-col justify-center">
-      <p>진입 분기 컨트롤러(PIN / event / party 라우팅 결정)</p>
+      <p>최종 파티 화면(캐릭터/케이크/편지 상호작용)</p>
       <BottomActionSlot>
-        <CommonLinkButton
-          label="2. 케이크 등장 + 촛불 끄기 인터랙션으로"
-          to="/r/$cardId/event"
-        />
+        <CommonLinkButton label="처음으로" to="/r/$cardId" />
       </BottomActionSlot>
     </div>
   );
