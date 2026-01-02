@@ -15,7 +15,7 @@ function CreatorLayout() {
       </header>
 
       {/* Main: 여기만 패딩 적용 */}
-      <main className="flex-1 px-4 py-6">
+      <main className="flex flex-1 flex-col px-4 md:px-12 lg:px-25">
         <Outlet />
       </main>
 
