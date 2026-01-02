@@ -1,60 +1,61 @@
-import { createFileRoute } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  redirect,
+  useNavigate,
+  Link,
+} from "@tanstack/react-router";
 
-import { useState } from "react";
-
-import AppHeader from "../components/ui/Header/AppHeader";
-import { BackButton } from "../components/ui/Header/BackButton";
-import PageTitle from "../components/ui/PageTitle";
-import TextInput from "../components/ui/Input/TextInput";
-import CommonButton from "../components/ui/Button/Button";
-import BirthDateInput from "../components/ui/Input/BirthDateInput";
-import FormField from "../components/Form/FormField";
+const TEST_CARD_ID = "dev-card";
 
 export const Route = createFileRoute("/")({
-  component: HomePage,
+  beforeLoad: () => {
+    if (import.meta.env.DEV) return;
+    // 배포 환경에서는 "/" 로 접근 시 항상 "/creator"로 이동
+    throw redirect({ to: "/creator" });
+  },
+  component: DevHub,
 });
 
-function HomePage() {
-  const [inputValue, setInputValue] = useState("");
-  const [birthValue, setBirthValue] = useState("");
+function DevHub() {
+  const navigate = useNavigate();
+
+  const goReceiver = () => {
+    // 수신자 진입점: /r/$cardId (index)
+    navigate({
+      to: "/r/$cardId",
+      params: { cardId: TEST_CARD_ID },
+    });
+  };
   return (
-    <div className="flex flex-col">
-      <AppHeader
-        left={<BackButton fallbackTo="/" />}
-        progress={{
-          value: 0.6,
-        }}
-      />
-      <PageTitle
-        title="홈페이지"
-        subTitle="이제, 이 초대장이 누구에게 갈지 알려주세요"
-      />
-
-      <FormField
-        id="name"
-        label={{
-          label: "이름",
-          description: "이름은 입력해주세요",
-        }}
-      >
-        {({ id }) => (
-          <TextInput id={id} value={inputValue} onChange={setInputValue} />
-        )}
-      </FormField>
-
-      <FormField
-        id="birth"
-        label={{
-          label: "생일",
-          description: "생일을 입력해주세요",
-        }}
-      >
-        {({ id }) => (
-          <BirthDateInput id={id} value={birthValue} onChange={setBirthValue} />
-        )}
-      </FormField>
-
-      <CommonButton label="하이" />
+    <div>
+      {/* 제작자 시작 */}
+      <section className="space-y-2">
+        <Link
+          to="/creator"
+          className="inline-block rounded-lg border border-gray-20 px-4 py-2 text-body text-gray-80"
+        >
+          /creator (C1)
+        </Link>
+      </section>
+      {/* 수신자 차단 확인 */}
+      <section className="space-y-2">
+        <Link
+          to="/r"
+          className="inline-block rounded-lg border border-gray-20 px-4 py-2 text-body text-gray-80"
+        >
+          /r (차단 확인)
+        </Link>
+      </section>
+      {/* 수신자 이벤트 시작 */}
+      <section className="space-y-2">
+        <button
+          type="button"
+          onClick={goReceiver}
+          className="h-12 rounded-lg bg-gray-90 px-4 text-body text-gray-80"
+        >
+          /r/{`{cardId}`}
+        </button>
+      </section>
     </div>
   );
 }
