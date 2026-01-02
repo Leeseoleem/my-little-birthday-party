@@ -1,6 +1,9 @@
 @theme {
   --spacing-15: 3.75rem;
   --spacing-90: 22.5rem;
+
+  /* layout width */
+  --layout-240: 60rem; /* 960px */
 }
 
 @utility h-15 {
@@ -13,4 +16,12 @@
 
 @utility w-15 {
   width: var(--spacing-15);
+}
+
+@utility max-w-240 {
+  max-width: var(--layout-240);
+}
+
+@utility w-240 {
+  width: var(--layout-240);
 }
