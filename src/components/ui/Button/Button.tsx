@@ -1,18 +1,23 @@
 import clsx from "clsx";
+import {
+  BUTTON_BASE_CLASS,
+  BUTTON_DISABLED_CLASS,
+  BUTTON_ENABLED_CLASS,
+  BUTTON_LABEL_CLASS,
+} from "./button.styles";
 
 interface CommonButtonProps {
   label: string;
   onClick?: () => void;
-  isDisabled?: boolean; // Added optional disabled prop
+  isDisabled?: boolean;
 }
 
 const CommonButton = ({ label, onClick, isDisabled }: CommonButtonProps) => {
   const buttonClass = clsx(
-    "flex w-full max-w-90 h-12 sm:h-14 md:h-15 justify-center items-center px-6 rounded-xl shadow-button",
-    isDisabled
-      ? "bg-main-disabled cursor-not-allowed"
-      : "bg-main hover:bg-main-hover active:bg-main-active cursor-pointer"
+    BUTTON_BASE_CLASS,
+    isDisabled ? BUTTON_DISABLED_CLASS : BUTTON_ENABLED_CLASS
   );
+
   return (
     <button
       type="button"
@@ -20,7 +25,7 @@ const CommonButton = ({ label, onClick, isDisabled }: CommonButtonProps) => {
       disabled={isDisabled}
       className={buttonClass}
     >
-      <p className="text-body text-gray-0">{label}</p>
+      <p className={BUTTON_LABEL_CLASS}>{label}</p>
     </button>
   );
 };
