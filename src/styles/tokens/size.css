@@ -1,27 +1,6 @@
 @theme {
   --spacing-15: 3.75rem;
+  --spacing-25: 6.25rem;
   --spacing-90: 22.5rem;
-
-  /* layout width */
-  --layout-240: 60rem; /* 960px */
-}
-
-@utility h-15 {
-  height: var(--spacing-15);
-}
-
-@utility max-w-90 {
-  max-width: var(--spacing-90);
-}
-
-@utility w-15 {
-  width: var(--spacing-15);
-}
-
-@utility max-w-240 {
-  max-width: var(--layout-240);
-}
-
-@utility w-240 {
-  width: var(--layout-240);
+  --spacing-240: 60rem;
 }
