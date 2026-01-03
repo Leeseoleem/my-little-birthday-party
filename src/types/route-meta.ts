@@ -4,3 +4,7 @@ export interface CreatorHeaderMeta {
   value: number; // 0 ~ 1
   fallbackTo: LinkProps["to"];
 }
+
+export interface CreatorLayoutMeta {
+  isFullBleed: boolean;
+}
