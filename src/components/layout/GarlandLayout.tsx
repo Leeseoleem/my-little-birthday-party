@@ -10,7 +10,7 @@ const GARLAND_SIZE =
 const GARLAND_BG_SIZE =
   "bg-size-[clamp(240px,65vw,340px)_auto] sm:bg-size-[380px_auto] md:bg-size-[460px_auto] lg:bg-size-[520px_auto] xl:bg-size-[600px_auto]";
 const GARLAND_BASE =
-  "absolute inset-y-0 bg-[url('/images/party-garland.png')] bg-no-repeat";
+  "absolute inset-y-0 bg-[url('/assets/decor/party-garland.png')] bg-no-repeat";
 
 export default function GarlandLayout({ children }: GarlandLayoutProps) {
   return (
