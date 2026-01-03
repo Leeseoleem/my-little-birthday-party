@@ -3,7 +3,7 @@ import BirthDateInput, {
 } from "../ui/Input/BirthDateInput";
 import FormField from "./FormField";
 
-interface BirthDateFormFieldProps {
+export interface BirthDateFormFieldProps {
   name: string;
   label: string;
   description?: string;

@@ -1,7 +1,7 @@
 import TextInput, { type TextInputProps } from "../ui/Input/TextInput";
 import FormField from "./FormField";
 
-interface TextFormFieldProps {
+export interface TextFormFieldProps {
   name: string;
   label: string;
   description?: string;
