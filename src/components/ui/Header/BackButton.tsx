@@ -1,9 +1,9 @@
 import { useCanGoBack, useNavigate } from "@tanstack/react-router";
-
+import type { LinkProps } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 
 interface BackButtonProps {
-  fallbackTo: string; // 오류시 실제로 넘어갈 페이지
+  fallbackTo?: LinkProps["to"]; // 오류시 실제로 넘어갈 페이지
   onClickBack?: () => void;
 }
 
@@ -24,6 +24,8 @@ export const BackButton = ({ fallbackTo, onClickBack }: BackButtonProps) => {
       window.history.back();
       return;
     }
+
+    if (!fallbackTo) return;
 
     navigate({ to: fallbackTo });
   };
