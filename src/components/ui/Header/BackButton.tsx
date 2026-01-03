@@ -1,5 +1,5 @@
 import { useCanGoBack, useNavigate } from "@tanstack/react-router";
-import type { LinkProps } from "storybook/internal/router";
+import type { LinkProps } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
 
 interface BackButtonProps {
