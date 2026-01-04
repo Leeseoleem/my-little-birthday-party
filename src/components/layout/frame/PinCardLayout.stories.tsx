@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import PinCardLayout from "./PinCardLayout";
-import TextFormField from "../form/TextFormField";
+import TextFormField from "../../form/TextFormField";
 
 const meta: Meta<typeof PinCardLayout> = {
   title: "Components/Layout/PinCardLayout",

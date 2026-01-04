@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import PageTitle, { type PageTitleProps } from "../ui/PageTitle";
+import PageTitle, { type PageTitleProps } from "../../ui/PageTitle";
 
 interface PinCardLayoutProps {
   titleProps: PageTitleProps;

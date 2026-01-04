@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import CommonButton, { type CommonButtonProps } from "../ui/Button/Button";
+import CommonButton, { type CommonButtonProps } from "../../ui/Button/Button";
 
 export type TextSegment = {
   text: string;

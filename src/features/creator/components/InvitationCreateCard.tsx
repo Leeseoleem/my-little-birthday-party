@@ -1,4 +1,4 @@
-import PinCardLayout from "../../../components/layout/PinCardLayout";
+import PinCardLayout from "../../../components/layout/frame/PinCardLayout";
 
 import {
   TextFormField,
