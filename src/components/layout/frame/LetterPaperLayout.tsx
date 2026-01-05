@@ -15,25 +15,27 @@ export default function LetterPaperLayout({
 }: LetterPaperLayoutProps) {
   const preset = LETTER_PAPER_PRESET[type];
   return (
-    <section className={clsx("mx-auto w-[240px] md:w-[360px] lg:w-[480px]")}>
-      <div className="relative">
-        {/* 편지지 이미지 */}
+    <section className="flex-1 flex min-h-0 overflow-hidden justify-center items-center py-8">
+      <div className="relative h-full w-auto">
         <img
           src={preset.imageSrc}
           alt={`${preset.label} letter paper`}
-          className="block w-full h-auto select-none"
+          className="block max-h-full w-auto object-contain drop-shadow-md drop-shadow-black/30"
           draggable={false}
         />
-        {/* 텍스트 영역 */}
         <div
           className={clsx(
-            "absolute inset-0",
-            "px-[24px] py-[48px]",
-            "md:px-[42px] md:py-[84px]",
-            "lg:px-[60px] lg:py-[120px]"
+            "absolute inset-0 flex flex-col items-start justify-start",
+            "px-[32px] pt-[80px] pb-[40px]",
+            "md:px-[48px] md:pt-[100px] md:pb-[50px]",
+            "lg:px-[60px] lg:pt-[120px] lg:pb-[60px]"
           )}
+          style={{
+            maxHeight: "fit-content",
+            height: "auto",
+            aspectRatio: "600/850", // 편지지 이미지의 실제 비율
+          }}
         >
-          {/* 내용 */}
           {children}
         </div>
       </div>
