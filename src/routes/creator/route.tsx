@@ -18,13 +18,13 @@ function CreatorLayout() {
   const LayoutMeta = leaf.staticData?.creatorLayout;
 
   const layoutClass = clsx(
-    "flex flex-1 flex-col",
+    "flex flex-1 flex-col min-h-0",
     !LayoutMeta && "px-4 md:px-12 xl:px-25"
   );
 
   return (
     // /creator 구간 공통 레이아웃 (헤더/컨테이너/배경 등)
-    <div className="min-h-dvh flex flex-col">
+    <div className="h-dvh flex flex-col">
       {/* Header: 풀폭(패딩 없음) */}
       <header className="w-full">
         {headerMeta && (
