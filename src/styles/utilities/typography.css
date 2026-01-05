@@ -83,19 +83,13 @@
   letter-spacing: var(--tracking-normal);
 
   /* 모바일 (기본) */
-  font-size: var(--size-caption);
+  font-size: var(--size-small);
   line-height: var(--letter-lh-bs);
 
   /* 태블릿 (md: 768px) */
   @media (min-width: 768px) {
     font-size: var(--size-small);
-    line-height: var(--letter-lh-md);
-  }
-
-  /* 데스크톱 (lg: 1024px) */
-  @media (min-width: 1024px) {
-    font-size: var(--size-sub-title);
-    line-height: var(--letter-lh-lg);
+    line-height: var(--letter-lh);
   }
 }
 
@@ -110,13 +104,7 @@
   /* 태블릿 (md: 768px) */
   @media (min-width: 768px) {
     font-size: var(--size-small);
-    line-height: var(--letter-lh-md);
-  }
-
-  /* 데스크톱 (lg: 1024px) */
-  @media (min-width: 1024px) {
-    font-size: var(--size-sub-title);
-    line-height: var(--letter-lh-lg);
+    line-height: var(--letter-lh);
   }
 }
 
@@ -131,12 +119,6 @@
   /* 태블릿 (md: 768px) */
   @media (min-width: 768px) {
     font-size: var(--size-small);
-    line-height: var(--letter-lh-md);
-  }
-
-  /* 데스크톱 (lg: 1024px) */
-  @media (min-width: 1024px) {
-    font-size: var(--size-sub-title);
-    line-height: var(--letter-lh-lg);
+    line-height: var(--letter-lh);
   }
 }
