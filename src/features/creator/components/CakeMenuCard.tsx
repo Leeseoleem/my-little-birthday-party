@@ -11,7 +11,7 @@ interface CakeMenuCardProps {
 const CakeMenuCard = ({ menuContent, buttonProps }: CakeMenuCardProps) => {
   return (
     <MenuBoardLayout>
-      <div className="flex flex-col items-center gap-8 md:gap-12 lg:gap-15">
+      <div className="flex flex-col items-center gap-8">
         <MenuHeader />
         <MenuContent {...menuContent} />
         <CommonLinkButton label="선택하기" {...buttonProps} />
@@ -43,7 +43,7 @@ export const MenuContent = ({ title, description }: MenuContentProps) => {
       <p className="text-display-03 md:text-display-02 lg:text-display-01 text-center text-main">
         {title}
       </p>
-      <p className="text-center text-small lg:text-body lg:font-medium text-gray-60">
+      <p className="text-center text-small break-keep lg:text-body lg:font-medium text-gray-60">
         {description}
       </p>
     </div>
