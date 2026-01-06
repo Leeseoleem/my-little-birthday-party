@@ -60,6 +60,28 @@
   letter-spacing: var(--tracking-normal);
 }
 
+/* ----- Accent 폰트 스타일 ----- */
+@utility text-accent {
+  font-family: var(--font-accent);
+  letter-spacing: 0.1em;
+
+  /* 모바일 (기본) */
+  font-size: var(--size-sub-title);
+  line-height: var(--lh-sub-title);
+
+  /* 태블릿 (md: 768px) */
+  @media (min-width: 768px) {
+    font-size: var(--size-title-03);
+    line-height: var(--lh-title-03);
+  }
+
+  /* 데스크탑 (lg: 1024px) */
+  @media (min-width: 1024px) {
+    font-size: var(--size-title-02);
+    line-height: var(--lh-title-02);
+  }
+}
+
 /* ----- Letter 폰트 스타일 ----- */
 /* base 스타일 */
 @utility text-letter-default {
