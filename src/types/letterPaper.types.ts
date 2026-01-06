@@ -1,3 +1,5 @@
+import type { CarouselItem } from "../components/layout/frame/CarouselLayout";
+
 export type LetterPaperType = "default" | "simple" | "night";
 
 export const LETTER_PAPER_PRESET: Record<
@@ -14,3 +16,13 @@ export const LETTER_PAPER_PRESET: Record<
   },
   night: { label: "Night", imageSrc: "/assets/letter-papers/letter-night.png" },
 };
+
+export const LETTER_PAPER_ITEMS: CarouselItem[] = (
+  Object.entries(LETTER_PAPER_PRESET) as [
+    LetterPaperType,
+    { label: string; imageSrc: string }
+  ][]
+).map(([type, preset]) => ({
+  type, // "default" | "simple" | "night"
+  imageSrc: preset.imageSrc,
+}));
