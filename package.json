@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4",
+    "@floating-ui/react": "^0.27.16",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-router": "^1.143.11",
     "clsx": "^2.1.1",
