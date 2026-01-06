@@ -10,6 +10,9 @@
 
   /* 그림 분리용 그림자 */
   --shadow-floating: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* 말풍선 용 그림자 */
+  --shadow-bubble: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 @layer utilities {
@@ -31,5 +34,10 @@
   /* 그림 분리용 그림자 */
   .shadow-floating {
     box-shadow: var(--shadow-floating);
+  }
+
+  /* 말풍선 용 그림자 */
+  .shadow-bubble {
+    box-shadow: var(--shadow-bubble);
   }
 }
