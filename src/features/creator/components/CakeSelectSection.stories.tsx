@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import CakeSelectSection from "./CakeSelectSection";
-import type { CakeType } from "../types/cake.types";
+import type { CakeType } from "../../types/cake.types";
 
 const meta: Meta<typeof CakeSelectSection> = {
   title: "Features/Creator/CakeSelectSection",

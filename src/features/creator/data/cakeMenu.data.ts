@@ -1,4 +1,4 @@
-import type { CakeMenuItem } from "../types/cake.types";
+import type { CakeMenuItem } from "../../types/cake.types";
 
 export const CAKE_MENU: CakeMenuItem[] = [
   {
