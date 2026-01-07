@@ -24,7 +24,7 @@ function CreatorLayout() {
 
   return (
     // /creator 구간 공통 레이아웃 (헤더/컨테이너/배경 등)
-    <div className="h-dvh flex flex-col">
+    <div className="h-dvh flex flex-col overflow-hidden">
       {/* Header: 풀폭(패딩 없음) */}
       <header className="w-full">
         {headerMeta && (
