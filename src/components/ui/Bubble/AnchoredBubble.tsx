@@ -8,7 +8,8 @@ import {
   type Placement,
 } from "@floating-ui/react";
 import clsx from "clsx";
-import TextBubble, { type BubbleTailPosition } from "./TextBubble";
+import TextBubble from "./TextBubble";
+import type { BubbleTailPosition } from "./bubble.types";
 
 type AnchoredBubbleProps = {
   trigger: React.ReactNode; // 앵커 요소(캐릭터)
