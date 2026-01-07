@@ -17,7 +17,7 @@ export default function InvitationCardFrame({
           bg-no-repeat
           bg-center
           bg-size-[100%_100%]
-          flex flex-col justify-center items-start pb-6 pt-9 px-6 md:px-12 lg:px-15 gap-6"
+          flex flex-col justify-center items-start pb-6 pt-9 px-8 md:px-12 lg:px-15 gap-6"
     >
       <InvitationHeader />
       <div className="w-full h-[1.5px] bg-gray-50" />
