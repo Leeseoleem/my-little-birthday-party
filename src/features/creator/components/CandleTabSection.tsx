@@ -45,19 +45,13 @@ export default function CandleTabSection({ pages }: { pages: CandleTabPages }) {
           ))}
         </Tabs.List>
         <Tabs.Content value="long" className="py-8 outline-none bg-gray-0">
-          <div className="flex flex-row justify-around gap-6 overflow-x-auto overscroll-x-contain">
-            {pages.long}
-          </div>
+          {pages.long}
         </Tabs.Content>
         <Tabs.Content value="short" className="py-8 outline-none bg-gray-0">
-          <div className="flex flex-row justify-around gap-6 overflow-x-auto overscroll-x-contain">
-            {pages.short}
-          </div>
+          {pages.short}
         </Tabs.Content>
         <Tabs.Content value="special" className="py-8 outline-none bg-gray-0">
-          <div className="flex flex-row justify-around gap-6 overflow-x-auto overscroll-x-contain">
-            {pages.special}
-          </div>
+          {pages.special}
         </Tabs.Content>
       </Tabs.Root>
     </section>
