@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
-import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
-import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
+import type { CakeType } from "../../../features/types/cake.types";
+
+import PageTitle from "../../../components/ui/PageTitle";
+import CakeSelectSection from "../../../features/creator/components/CakeSelectSection";
 
 export const Route = createFileRoute("/creator/cake/select")({
   staticData: {
@@ -14,15 +17,22 @@ export const Route = createFileRoute("/creator/cake/select")({
 });
 
 function CreatorCakeSelectPage() {
+  const [cakeType, setCakeType] = useState<CakeType>("party");
   return (
-    <div className="flex flex-1 flex-col justify-center">
-      <p>케이크 선택</p>
-      <BottomActionSlot>
-        <CommonLinkButton
-          label="5. 케이크 제작으로"
-          to={"/creator/cake/build"}
+    <div className="flex flex-col h-full pt-4">
+      <PageTitle
+        title="케이크 선택하기"
+        subTitle="마음에 드는 케이크를 골라주세요"
+      />
+      <div className="flex flex-1 max-h-full overflow-hidden">
+        <CakeSelectSection
+          type={cakeType}
+          onTypeChange={(type) => setCakeType(type as CakeType)}
+          buttonProps={{
+            to: "/creator/cake/build",
+          }}
         />
-      </BottomActionSlot>
+      </div>
     </div>
   );
 }
