@@ -28,7 +28,7 @@ export default function InvitationCardFrame({
       />
       <div className="w-full h-[1.5px] bg-gray-50" />
       {/* 하단 영역 */}
-      <div className="flex flex-col w-full">{children}</div>
+      <div className="flex flex-col w-full gap-6">{children}</div>
     </div>
   );
 }
