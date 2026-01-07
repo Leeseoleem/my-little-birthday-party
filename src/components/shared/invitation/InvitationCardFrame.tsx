@@ -1,15 +1,15 @@
-import type { ReactNode } from "react";
+import React from "react";
 import InvitationHeader from "./InvitationHeader";
 import InvitationInfo, { type InvitationInfoProps } from "./InvitationInfo";
 
 export interface InvitationCardFrameProps {
   info: InvitationInfoProps;
-  bottomSlot: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function InvitationCardFrame({
   info,
-  bottomSlot,
+  children,
 }: InvitationCardFrameProps) {
   return (
     <div
@@ -28,7 +28,7 @@ export default function InvitationCardFrame({
       />
       <div className="w-full h-[1.5px] bg-gray-50" />
       {/* 하단 영역 */}
-      <div className="flex flex-col w-full">{bottomSlot}</div>
+      <div className="flex flex-col w-full">{children}</div>
     </div>
   );
 }
