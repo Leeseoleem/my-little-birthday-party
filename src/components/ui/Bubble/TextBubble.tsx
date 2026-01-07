@@ -12,11 +12,11 @@ const TextBubble = ({ message, tail = "left-bottom" }: TextBubbleProps) => {
   return (
     <div
       className={clsx(
-        "flex p-6 min-h-15 max-w-[300px] bg-gray-0 items-center shadow-bubble rounded-sm",
+        "flex p-6 min-h-15 min-w-0 max-w-[300px] bg-gray-0 items-center shadow-bubble rounded-sm",
         tailClass
       )}
     >
-      <p className="text-sub-title text-gray-80 break-keep">{message}</p>
+      <p className="text-sub-title text-gray-80 break-word">{message}</p>
     </div>
   );
 };
