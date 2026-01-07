@@ -2,7 +2,7 @@ import clsx from "clsx";
 import {
   LETTER_PAPER_PRESET,
   type LetterPaperType,
-} from "../../../types/letterPaper.types";
+} from "../../../features/types/letterPaper.types";
 
 interface LetterPaperLayoutProps {
   type: LetterPaperType;

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 
 import LetterPaperLayout from "../../../components/layout/frame/LetterPaperLayout";
-import type { LetterPaperType } from "../../../types/letterPaper.types";
+import type { LetterPaperType } from "../../types/letterPaper.types";
 
 import { useLimitFeedback } from "../../../hooks/useLimitFeedback";
 import { useImeComposition } from "../../../hooks/useImeComposition";

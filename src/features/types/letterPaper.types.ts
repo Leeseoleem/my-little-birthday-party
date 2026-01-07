@@ -1,4 +1,4 @@
-import type { CarouselItem } from "../components/layout/frame/CarouselLayout";
+import type { CarouselItem } from "../../components/layout/frame/CarouselLayout";
 
 export type LetterPaperType = "default" | "simple" | "night";
 
