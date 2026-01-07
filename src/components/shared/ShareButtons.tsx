@@ -2,10 +2,10 @@ import { ShareButtonItem } from "./ShareButtonItem";
 import { IoMdMail } from "react-icons/io";
 import { RiKakaoTalkFill, RiLinkM } from "react-icons/ri";
 
-interface ShareButtonsProps {
-  url: string;
-  title?: string;
-  description?: string;
+export interface ShareButtonsProps {
+  onShareKakao: () => void | Promise<void>;
+  onShareMail: () => void | Promise<void>;
+  onCopyLink: () => void | Promise<void>;
 }
 
 const ARIA = {
@@ -14,37 +14,27 @@ const ARIA = {
   copy: "링크 복사하기",
 } as const;
 
-const ShareButtons = ({ url, title, description }: ShareButtonsProps) => {
-  const handleShareKakao = () => {
-    // TODO: Kakao SDK 연동
-    console.log("share kakao", { url, title, description });
-  };
-
-  const handleShareMail = () => {
-    // TODO: mailto 링크 생성
-    console.log("share mail", { url, title, description });
-  };
-
-  const handleCopyLink = async () => {
-    // TODO: navigator.clipboard.writeText(url)
-    console.log("copy link", url);
-  };
+const ShareButtons = ({
+  onShareKakao,
+  onShareMail,
+  onCopyLink,
+}: ShareButtonsProps) => {
   return (
     <div className="flex flex-row gap-6">
       <ShareButtonItem
         ariaLabel={ARIA.kakao}
         Icon={RiKakaoTalkFill}
-        onClick={handleShareKakao}
+        onClick={onShareKakao}
       />
       <ShareButtonItem
         ariaLabel={ARIA.mail}
         Icon={IoMdMail}
-        onClick={handleShareMail}
+        onClick={onShareMail}
       />
       <ShareButtonItem
         ariaLabel={ARIA.copy}
         Icon={RiLinkM}
-        onClick={handleCopyLink}
+        onClick={onCopyLink}
       />
     </div>
   );
