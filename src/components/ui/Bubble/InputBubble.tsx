@@ -40,7 +40,6 @@ const InputBubble = ({
       className={clsx(inputContainerStyle, inputTextStyle, tailClass)}
       placeholder={placeholder}
       maxLength={maxLength}
-      aria-multiline
       value={value}
       onChange={(e) => {
         const rawValue = e.currentTarget.value;
