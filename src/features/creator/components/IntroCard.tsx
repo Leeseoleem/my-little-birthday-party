@@ -7,12 +7,14 @@ const IntroCard = () => {
           bg-no-repeat
           bg-center
           bg-size-[100%_100%]
+          z-50
+          drop-shadow-floating
           flex flex-col justify-center items-center py-15 px-6 md:px-8 xl:px-9 gap-8 md:gap-12 lg:gap-15"
     >
       <img
         src="/assets/brand/title-logo.png"
         alt="나의 작은 생일 파티"
-        className="h-[250px] md:h-[300px] lg:h-[350px] mx-auto"
+        className="h-[300px] md:h-[400px] lg:h-[500px] mx-auto"
       />
       <div className="flex w-full justify-center items-center">
         <CommonLinkButton label="시작하기" to="/creator/info" />
