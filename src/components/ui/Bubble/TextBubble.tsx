@@ -16,7 +16,7 @@ const TextBubble = ({ message, tail = "left-bottom" }: TextBubbleProps) => {
         tailClass
       )}
     >
-      <p className="text-sub-title text-gray-80 break-word">{message}</p>
+      <p className="text-sub-title text-gray-80 wrap-break-word">{message}</p>
     </div>
   );
 };

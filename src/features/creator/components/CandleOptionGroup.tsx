@@ -57,7 +57,7 @@ export function CandleOptionGroup({
               src={opt.imageSrc}
               alt={opt.label}
               draggable={false}
-              className="block max-h-full max-x-full object-contain select-none"
+              className="block max-h-full max-w-full object-contain select-none"
             />
           </div>
         </RadioGroup.Item>
