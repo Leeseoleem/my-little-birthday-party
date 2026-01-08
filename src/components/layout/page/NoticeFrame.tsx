@@ -21,7 +21,7 @@ export default function NoticeFrame({
   const textClass = clsx(
     "text-gray-60",
     style === "normal" && "text-caption",
-    style === "display" && "text-letter-system-mobile"
+    style === "display" && "text-letter-default-responsive"
   );
   return (
     <div className="flex flex-col w-full justify-center items-center gap-2">
