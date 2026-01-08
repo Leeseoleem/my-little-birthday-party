@@ -14,7 +14,7 @@ export default function BottomActionSlot({
     <div
       className={clsx(
         "mt-auto flex justify-center",
-        hasBottomPadding === true && " pb-6"
+        hasBottomPadding && "pb-6"
       )}
     >
       {children}
