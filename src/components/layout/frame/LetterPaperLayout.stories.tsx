@@ -4,7 +4,7 @@ import LetterPaperLayout from "./LetterPaperLayout";
 const meta: Meta<typeof LetterPaperLayout> = {
   title: "Components/Layout/LetterPaperLayout",
   component: LetterPaperLayout,
-  tags: ["autoDocs"],
+  tags: ["autodocs"],
 };
 
 export default meta;

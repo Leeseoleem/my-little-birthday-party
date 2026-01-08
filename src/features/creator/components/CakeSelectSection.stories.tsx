@@ -15,6 +15,7 @@ const meta: Meta<typeof CakeSelectSection> = {
 };
 export default meta;
 type Story = StoryObj<typeof CakeSelectSection>;
+
 export const Default: Story = {
   render: (args) => {
     const [cakeType, setCakeType] = useState<CakeType>("party");
