@@ -27,7 +27,7 @@ function CreatorCakeSelectPage() {
       <div className="flex flex-1 max-h-full overflow-hidden">
         <CakeSelectSection
           type={cakeType}
-          onTypeChange={(type) => setCakeType(type as CakeType)}
+          onTypeChange={(type) => setCakeType(type)}
           buttonProps={{
             to: "/creator/cake/build",
           }}

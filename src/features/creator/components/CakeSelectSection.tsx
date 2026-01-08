@@ -1,6 +1,5 @@
 import CarouselLayout, {
   type CarouselItem,
-  type CarouselItemType,
 } from "../../../components/layout/frame/CarouselLayout";
 
 import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
@@ -11,15 +10,9 @@ import { CAKE_MENU } from "../data/cakeMenu.data";
 
 import type { CommonLinkButtonProps } from "../../../components/ui/Button/CommonLinkButton";
 
-// 케이크 메뉴 데이터를 CarouselItem 형태로 변환
-const cakeItems: CarouselItem[] = CAKE_MENU.map((cake) => ({
-  type: cake.type,
-  imageSrc: cake.imageSrc,
-}));
-
 type CakeSelectProps = {
   type: CakeType; // 현재 선택된 케이크
-  onTypeChange: (next: CarouselItemType) => void;
+  onTypeChange: (next: CakeType) => void;
   buttonProps: Omit<CommonLinkButtonProps, "label">;
 };
 
@@ -28,6 +21,12 @@ export default function CakeSelectSection({
   onTypeChange,
   buttonProps,
 }: CakeSelectProps) {
+  // 케이크 메뉴 데이터를 CarouselItem 형태로 변환
+  const items: CarouselItem<CakeType>[] = CAKE_MENU.map((cake) => ({
+    type: cake.type,
+    imageSrc: cake.imageSrc,
+  }));
+
   const menuTitle =
     CAKE_MENU.find((cake) => cake.type === type)?.menuName || "";
   const menuDescription =
@@ -35,8 +34,8 @@ export default function CakeSelectSection({
   return (
     <div className="flex flex-1 flex-col items-center">
       <div className="overflow-hidden mx-auto">
-        <CarouselLayout
-          items={cakeItems}
+        <CarouselLayout<CakeType>
+          items={items}
           type={type}
           onTypeChange={onTypeChange}
           enableWheel={false}

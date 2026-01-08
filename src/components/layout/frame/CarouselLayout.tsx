@@ -8,30 +8,29 @@ import CarouselArrowButton from "../../ui/Button/CarouselArrowButton";
 export type CarouselItemType = number | string;
 
 // Carousel에 표시할 아이템 타입 정의
-export type CarouselItem = {
-  type: CarouselItemType; // 고유 식별자
-  imageSrc: string; // 표시할 이미지 경로
+export type CarouselItem<T extends CarouselItemType = CarouselItemType> = {
+  type: T;
+  imageSrc: string;
 };
 
-interface CarouselLayoutProps {
-  items: CarouselItem[];
-
-  type: CarouselItemType; // 현재 선택된 아이템
-  onTypeChange: (type: CarouselItemType) => void; // 아이템 변경 콜백
-
-  // 사용 가능
-  enableWheel?: boolean; // 휠 제스처 사용 여부
-  enableAutoplay?: boolean; // 자동 스크롤 사용 여부
-  autoplayStopOnInteraction?: boolean; // 상호작용 시 자동 스크롤 중지 여부
+interface CarouselLayoutProps<T extends CarouselItemType = CarouselItemType> {
+  items: CarouselItem<T>[];
+  type: T;
+  onTypeChange: (type: T) => void;
+  enableWheel?: boolean;
+  enableAutoplay?: boolean;
+  autoplayStopOnInteraction?: boolean;
 }
 
-export default function CarouselLayout({
+export default function CarouselLayout<
+  T extends CarouselItemType = CarouselItemType
+>({
   items,
   type,
   onTypeChange,
   enableAutoplay = false,
   autoplayStopOnInteraction = true,
-}: CarouselLayoutProps) {
+}: CarouselLayoutProps<T>) {
   // Embla 기본 설정
   const emblaOptions = useMemo(
     () => ({
