@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
-import BottomActionSlot from "../../components/layout/BottomActionSlot";
+import ProfileBubble from "../../features/creator/components/ProfileBubble";
+import BottomActionSlot from "../../components/layout/frame/BottomActionSlot";
 import CommonLinkButton from "../../components/ui/Button/CommonLinkButton";
 
 export const Route = createFileRoute("/creator/guests")({
@@ -14,9 +16,12 @@ export const Route = createFileRoute("/creator/guests")({
 });
 
 function CreatorGuestSelectPage() {
+  const [guestName, setGuestName] = useState("");
   return (
     <div className="flex flex-1 flex-col justify-center">
       <p>캐릭터 선택</p>
+
+      <ProfileBubble value={guestName} onChange={setGuestName} />
       <BottomActionSlot>
         <CommonLinkButton label="6. 링크 생성 완료로" to="/creator/complete" />
       </BottomActionSlot>

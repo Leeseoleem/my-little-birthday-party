@@ -1,9 +1,9 @@
 @import "tailwindcss";
 @import "./styles/tokens/font.css";
 @import "./styles/tokens/type.css";
-@import "./styles/components/typography.css";
 @import "./styles/tokens/size.css";
 @import "./styles/tokens/shadow.css";
+@import "./styles/utilities/typography.css";
 
 @theme {
   /* Gray (9-step, white 포함) */

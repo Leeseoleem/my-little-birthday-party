@@ -6,7 +6,7 @@ import {
   BUTTON_LABEL_CLASS,
 } from "./button.styles";
 
-interface CommonButtonProps {
+export interface CommonButtonProps {
   label: string;
   onClick?: () => void;
   isDisabled?: boolean;

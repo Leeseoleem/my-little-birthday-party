@@ -7,7 +7,7 @@ import {
   BUTTON_LABEL_CLASS,
 } from "./button.styles";
 
-type CommonLinkButtonProps = {
+export type CommonLinkButtonProps = {
   label: string;
   isDisabled?: boolean;
 } & Omit<LinkProps, "children" | "className">;

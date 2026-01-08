@@ -1,4 +1,5 @@
 import { Outlet, createFileRoute, useMatches } from "@tanstack/react-router";
+import clsx from "clsx";
 import AppHeader from "../../components/ui/Header/AppHeader";
 import { BackButton } from "../../components/ui/Header/BackButton";
 
@@ -11,23 +12,31 @@ function CreatorLayout() {
   const matches = useMatches();
 
   const leaf = matches[matches.length - 1];
-  const meta = leaf.staticData?.creatorHeader;
+  // 헤더 메타 데이터를 설치한 라우트
+  const headerMeta = leaf.staticData?.creatorHeader;
+  // 레이아웃 메타 데이터를 설치한 라우트
+  const LayoutMeta = leaf.staticData?.creatorLayout;
+
+  const layoutClass = clsx(
+    "flex flex-1 flex-col min-h-0",
+    !LayoutMeta && "px-4 md:px-12 xl:px-25"
+  );
 
   return (
     // /creator 구간 공통 레이아웃 (헤더/컨테이너/배경 등)
-    <div className="min-h-dvh flex flex-col">
+    <div className="h-dvh flex flex-col overflow-hidden">
       {/* Header: 풀폭(패딩 없음) */}
       <header className="w-full">
-        {meta && (
+        {headerMeta && (
           <AppHeader
-            progress={{ value: meta.value }}
-            left={<BackButton fallbackTo={meta.fallbackTo} />}
+            progress={{ value: headerMeta.value }}
+            left={<BackButton fallbackTo={headerMeta.fallbackTo} />}
           />
         )}
       </header>
 
       {/* Main: 여기만 패딩 적용 */}
-      <main className="flex flex-1 flex-col px-4 md:px-12 lg:px-25">
+      <main className={layoutClass}>
         <Outlet />
       </main>
 

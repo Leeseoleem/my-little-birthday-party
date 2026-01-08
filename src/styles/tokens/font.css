@@ -23,12 +23,23 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Juache";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff")
+    format("woff");
+  font-weight: normal;
+  font-display: swap;
+}
+
 @theme {
   /* ================= Base ================= */
   --font-base: "Pretendard", system-ui, "Apple SD Gothic Neo", "Noto Sans KR",
     serif, sans-serif;
   --font-system: "MissedSimsim", system-ui, "Apple SD Gothic Neo",
     "Noto Sans KR", serif, sans-serif;
+  --font-accent: "Juache", system-ui, "Apple SD Gothic Neo", "Noto Sans KR",
+    serif, sans-serif;
+
   /* ================= Letter ================= */
   --font-letter-base: var(--font-base);
   --font-letter-night: "Ridibatang", serif;

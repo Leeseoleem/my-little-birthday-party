@@ -32,7 +32,7 @@ function DevHub() {
       <section className="space-y-2">
         <Link
           to="/creator"
-          className="inline-block rounded-lg border border-gray-20 px-4 py-2 text-body text-gray-80"
+          className="inline-block rounded-xl border border-gray-20 px-4 py-2 text-body text-gray-80"
         >
           /creator (C1)
         </Link>
@@ -41,7 +41,7 @@ function DevHub() {
       <section className="space-y-2">
         <Link
           to="/r"
-          className="inline-block rounded-lg border border-gray-20 px-4 py-2 text-body text-gray-80"
+          className="inline-block rounded-xl border border-gray-20 px-4 py-2 text-body text-gray-80"
         >
           /r (차단 확인)
         </Link>
@@ -51,7 +51,7 @@ function DevHub() {
         <button
           type="button"
           onClick={goReceiver}
-          className="h-12 rounded-lg bg-gray-90 px-4 text-body text-gray-80"
+          className="h-12 rounded-xl bg-gray-90 px-4 text-body text-gray-80"
         >
           /r/{`{cardId}`}
         </button>
