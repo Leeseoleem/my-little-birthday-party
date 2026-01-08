@@ -31,8 +31,6 @@ export default function LetterPaperLayout({
             "lg:px-[60px] lg:pt-[120px] lg:pb-[60px]"
           )}
           style={{
-            maxHeight: "fit-content",
-            height: "auto",
             aspectRatio: "600/850", // 편지지 이미지의 실제 비율
           }}
         >
