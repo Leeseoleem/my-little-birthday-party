@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
+import CreatorLetterEditor from "../../features/creator/components/CreatorLetterEditor";
 import {
   type LetterPaperType,
   LETTER_PAPER_ITEMS,
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/creator/letter")({
 });
 
 function CreatorLetterPage() {
+  const [value, setValue] = useState("");
   const [paperType, setPaperType] = useState<LetterPaperType>("default");
 
   return (
@@ -34,9 +36,10 @@ function CreatorLetterPage() {
         <CarouselLayout
           items={LETTER_PAPER_ITEMS}
           type={paperType}
-          onTypeChange={(type) => setPaperType(type as LetterPaperType)}  enabl
+          onTypeChange={(type) => setPaperType(type as LetterPaperType)}
         />
       </div> */}
+      <CreatorLetterEditor type="default" value={value} onChange={setValue} />
       <BottomActionSlot>
         <CommonLinkButton
           label="4. 케이크 선택으로"
