@@ -5,17 +5,17 @@ export const CHARACTER_PRESET: Record<
   { label: string; src: string; alt: string }
 > = {
   raccoon: {
-    label: "Raccoon",
+    label: "라쿤",
     src: "/assets/characters/raccoon-profile.png",
     alt: "라쿤 프로필 이미지",
   },
   hedgehog: {
-    label: "Hedgehog",
+    label: "고슴도치",
     src: "/assets/characters/hedgehog-profile.png",
     alt: "고슴도치 프로필 이미지",
   },
   cat: {
-    label: "Cat",
+    label: "고양이",
     src: "/assets/characters/cat-profile.png",
     alt: "고양이 프로필 이미지",
   },
