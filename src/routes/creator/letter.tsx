@@ -34,8 +34,7 @@ function CreatorLetterPage() {
         <CarouselLayout
           items={LETTER_PAPER_ITEMS}
           type={paperType}
-          onTypeChange={(type) => setPaperType(type as LetterPaperType)}
-          enableWheel
+          onTypeChange={(type) => setPaperType(type as LetterPaperType)}  enabl
         />
       </div> */}
       <BottomActionSlot>

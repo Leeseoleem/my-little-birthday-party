@@ -38,7 +38,6 @@ export default function CakeSelectSection({
           items={items}
           type={type}
           onTypeChange={onTypeChange}
-          enableWheel={false}
         />
       </div>
       <BottomActionSlot hasBottomPadding={false}>

@@ -17,7 +17,6 @@ interface CarouselLayoutProps<T extends CarouselItemType = CarouselItemType> {
   items: CarouselItem<T>[];
   type: T;
   onTypeChange: (type: T) => void;
-  enableWheel?: boolean;
   enableAutoplay?: boolean;
   autoplayStopOnInteraction?: boolean;
 }
