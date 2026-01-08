@@ -30,7 +30,7 @@ const InvitationCreateCard = ({
     <PinCardLayout
       titleProps={{
         title: "초대 카드",
-        subTitle: "이제, 이 초대장이 누구에게 갈지 알려주세요",
+        subTitle: "이 초대장이 누구에게 갈지 알려주세요",
       }}
     >
       <TextFormField
