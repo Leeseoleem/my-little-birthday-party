@@ -126,7 +126,7 @@ export default function CarouselLayout<
   const onNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
-    <section className="flex-1 flex h-full min-w-0 items-center justify-center gap-4 py-4">
+    <section className="flex h-full items-center justify-center gap-4 py-4">
       <div className="shrink-0">
         <CarouselArrowButton
           direction="left"
@@ -134,17 +134,17 @@ export default function CarouselLayout<
           isDisabled={!emblaApi}
         />
       </div>
-      <div className="relative flex flex-1 items-center h-full">
+      <div className="relative flex items-center h-full">
         <div className="flex-1 h-full">
-          <div ref={emblaRef} className="overflow-hidden mx-auto h-full ">
+          <div ref={emblaRef} className="overflow-hidden mx-auto h-full">
             <div className="flex h-full touch-pan-y touch-pinch-zoom will-change-transform">
               {items.map((item) => (
-                <div key={String(item.type)} className="flex-[0_0_70%] min-w-0">
+                <div key={String(item.type)} className="flex-[0_0_70%]">
                   <div className="flex h-full px-2 py-4 items-center justify-center">
                     <img
                       src={item.imageSrc}
                       alt={`${String(item.type)}`}
-                      className="block max-h-full w-auto object-contain drop-shadow-md drop-shadow-black/30 pointer-events-none select-none"
+                      className="block min-h-0 max-h-[600px] w-auto object-contain drop-shadow-md drop-shadow-black/30 pointer-events-none select-none"
                       draggable={false}
                     />
                   </div>
