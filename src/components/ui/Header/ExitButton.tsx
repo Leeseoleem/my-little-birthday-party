@@ -2,13 +2,15 @@ import { ArrowLeft } from "lucide-react";
 import clsx from "clsx";
 import { buttonBg } from "./button.styles";
 
+export interface ExitButtonProps {
+  onClick: () => void;
+  label?: string;
+}
+
 export const ExitButton = ({
   onClick,
   label = "메인으로",
-}: {
-  onClick: () => void;
-  label?: string;
-}) => {
+}: ExitButtonProps) => {
   return (
     <button
       aria-label={label}

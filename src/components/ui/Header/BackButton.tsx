@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { ChevronLeft } from "lucide-react";
 import { buttonContainer, buttonBg } from "./button.styles";
 
-interface BackButtonProps {
+export interface BackButtonProps {
   fallbackTo?: LinkProps["to"]; // 오류시 실제로 넘어갈 페이지
   onClickBack?: () => void;
 }

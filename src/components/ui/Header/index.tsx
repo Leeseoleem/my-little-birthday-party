@@ -3,3 +3,7 @@ export { default as AppHeader } from "./AppHeader";
 export { BackButton } from "./BackButton";
 export { CloseButton } from "./CloseButton";
 export { ExitButton } from "./ExitButton";
+
+export type { BackButtonProps } from "./BackButton";
+export type { CloseButtonProps } from "./CloseButton";
+export type { ExitButtonProps } from "./ExitButton";

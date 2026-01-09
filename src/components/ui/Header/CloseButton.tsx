@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { X } from "lucide-react";
 import { buttonContainer, buttonBg } from "./button.styles";
 
-interface CloseButtonProps {
+export interface CloseButtonProps {
   ariaLabel?: string;
   onClose?: () => void; // 필요하면 외부에서 추가 동작 가능
 }
