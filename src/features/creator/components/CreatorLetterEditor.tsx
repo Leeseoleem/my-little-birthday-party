@@ -18,7 +18,7 @@ import { useImeComposition } from "../../../hooks/useImeComposition";
  *   읽기 전용 뷰 컴포넌트(ReceiverLetterContent)를 별도로 구현할 예정
  */
 
-interface CreatorLetterEditorProps {
+export interface CreatorLetterEditorProps {
   type: LetterPaperType;
   value: string;
   onChange: (v: string) => void;
