@@ -39,16 +39,11 @@ function CreatorLayout() {
     // /creator 구간 공통 레이아웃 (헤더/컨테이너/배경 등)
     <div className="h-dvh flex flex-col overflow-hidden">
       {/* Header: 풀폭(패딩 없음) */}
-      <header className="w-full">
-        {headerMeta && (
-          <header className="w-full">
-            {renderHeader({
-              meta: headerMeta,
-              onExitToMain: handleExitToMain,
-            })}
-          </header>
-        )}
-      </header>
+      {headerMeta && (
+        <header className="sticky top-0 z-50 w-full border-b border-gray-20">
+          {renderHeader({ meta: headerMeta, onExitToMain: handleExitToMain })}
+        </header>
+      )}
 
       {/* Main: 여기만 패딩 적용 */}
       <main className={layoutClass}>
