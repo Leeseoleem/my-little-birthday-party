@@ -14,6 +14,7 @@ export default function InvitationCardFrame({
   return (
     <div
       className="bg-[url('/assets/textures/paper-crumpled-white.png')]
+          z-10
           bg-no-repeat
           bg-center
           bg-size-[100%_100%]
