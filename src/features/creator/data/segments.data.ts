@@ -1,4 +1,4 @@
-import type { TextSegment } from "../../../components/layout/page/NoticeFrame";
+import type { TextSegment } from "../../../components/layout/page/NoticeFrame.types";
 
 export const segments: TextSegment[] = [
   { text: "시작하기를 누르면 " },
