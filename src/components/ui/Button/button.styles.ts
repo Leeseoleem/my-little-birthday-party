@@ -1,6 +1,6 @@
 // 버튼 공통 레이아웃/크기/그림자
 export const BUTTON_BASE_CLASS =
-  "flex w-full max-w-90 h-12 md:h-14 lg:h-15 justify-center items-center px-6 rounded-xl shadow-button";
+  "flex flex-1 max-w-90 h-12 md:h-14 lg:h-15 justify-center items-center px-6 rounded-xl shadow-button";
 
 // 상태별 배경/인터랙션
 export const BUTTON_ENABLED_CLASS =
