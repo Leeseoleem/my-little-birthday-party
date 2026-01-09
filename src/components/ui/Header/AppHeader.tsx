@@ -26,7 +26,7 @@ export default function AppHeader({
   container = true,
 }: AppHeaderProps) {
   return (
-    <header className="w-full backdrop-blur-md">
+    <header className="w-full bg-gray-10/80 border-b border-gray-20 backdrop-blur-md">
       <div className={container ? "mx-auto w-full max-w-[1024px]" : "w-full"}>
         <div className="w-full px-4">
           <div className="flex h-14 items-center justify-between">
