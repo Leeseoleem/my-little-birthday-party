@@ -24,7 +24,7 @@ export default function WriteSection({
           buttonProps={{
             isDisabled: isDisabled,
             label: "작성 완료하기",
-            to: "/creator/cake/build",
+            to: "/creator/cake/select",
           }}
         />
       </BottomActionSlot>
