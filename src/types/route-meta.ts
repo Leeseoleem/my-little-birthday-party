@@ -1,7 +1,6 @@
 import type {
   CloseButtonProps,
   BackButtonProps,
-  ExitButtonProps,
 } from "../components/ui/Header";
 
 /** Creator 헤더 종류 */
@@ -32,7 +31,7 @@ export interface CreatorBackHeaderMeta extends CreatorHeaderBase {
 /** 3) progress + exit(메인으로/닫기) 헤더: C3~C6 */
 export interface CreatorProgressExitHeaderMeta extends CreatorHeaderBase {
   kind: "progress-exit";
-  headerProps: ExitButtonProps;
+  value: number;
 
   /**
    * exit 동작 정책
