@@ -1,19 +1,10 @@
 import clsx from "clsx";
-import CommonButton, { type CommonButtonProps } from "../../ui/Button/Button";
-
-export type TextSegment = {
-  text: string;
-  href?: string;
-  target?: "_blank" | "_self";
-};
-
-interface NoticeFrameProps {
-  style?: "normal" | "display";
-  segments: TextSegment[];
-  buttonProps: CommonButtonProps;
-}
+import type { NoticeFrameProps } from "./NoticeFrame.types";
+import CommonButton from "../../ui/Button/Button";
+import CommonLinkButton from "../../ui/Button/CommonLinkButton";
 
 export default function NoticeFrame({
+  type = "default",
   style = "normal",
   segments,
   buttonProps,
@@ -46,7 +37,13 @@ export default function NoticeFrame({
           return <span key={idx}>{seg.text}</span>;
         })}
       </p>
-      <CommonButton {...buttonProps} />
+      <div className="flex w-full justify-center">
+        {type === "default" ? (
+          <CommonButton {...buttonProps} />
+        ) : (
+          <CommonLinkButton {...buttonProps} />
+        )}
+      </div>
     </div>
   );
 }
