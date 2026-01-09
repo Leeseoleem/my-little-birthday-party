@@ -1,4 +1,6 @@
+import clsx from "clsx";
 import { X } from "lucide-react";
+import { buttonContainer, buttonBg } from "./button.styles";
 
 interface CloseButtonProps {
   ariaLabel?: string;
@@ -19,9 +21,9 @@ export function CloseButton({ ariaLabel = "닫기", onClose }: CloseButtonProps)
       type="button"
       onClick={handleClose}
       aria-label={ariaLabel}
-      className="cursor-pointer"
+      className={clsx(buttonContainer, buttonBg)}
     >
-      <X className="text-gray-60" />
+      <X className="text-gray-60" size={20} />
     </button>
   );
 }
