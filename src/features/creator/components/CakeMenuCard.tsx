@@ -14,7 +14,9 @@ const CakeMenuCard = ({ menuContent, buttonProps }: CakeMenuCardProps) => {
       <div className="flex flex-col items-center gap-8">
         <MenuHeader />
         <MenuContent {...menuContent} />
-        <CommonLinkButton label="선택하기" {...buttonProps} />
+        <div className="flex w-full justify-center">
+          <CommonLinkButton label="선택하기" {...buttonProps} />
+        </div>
       </div>
     </MenuBoardLayout>
   );
