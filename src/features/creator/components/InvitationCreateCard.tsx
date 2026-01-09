@@ -1,25 +1,13 @@
 import PinCardLayout from "../../../components/layout/frame/PinCardLayout";
 
-import {
-  TextFormField,
-  BirthDateFormField,
-  type TextFormFieldProps,
-  type BirthDateFormFieldProps,
-} from "../../../components/form";
+import { TextFormField, BirthDateFormField } from "../../../components/form";
+import type { TextInputProps } from "../../../components/ui/Input/TextInput";
+import type { BirthDateInputProps } from "../../../components/ui/Input/BirthDateInput";
 
-type NameFieldInputProps = Omit<
-  TextFormFieldProps,
-  "label" | "description" | "name"
->;
-
-type BirthDateFieldInputProps = Omit<
-  BirthDateFormFieldProps,
-  "label" | "description" | "name"
->;
-
+type NameFieldInputProps = Omit<TextInputProps, "id">;
 interface InvitationCreateCardProps {
   nameField: NameFieldInputProps;
-  birthDateField: BirthDateFieldInputProps;
+  birthDateField: BirthDateInputProps;
 }
 
 const InvitationCreateCard = ({
@@ -37,13 +25,13 @@ const InvitationCreateCard = ({
         name="receiverName"
         label="받는 사람"
         description="초대할 분의 이름이나 별명을 적어주세요"
-        {...nameField}
+        input={nameField}
       />
       <BirthDateFormField
         name="birthDate"
         label="생일"
         description="이 생일은 초대장을 여는 데 사용돼요"
-        {...birthDateField}
+        input={birthDateField}
       />
     </PinCardLayout>
   );
