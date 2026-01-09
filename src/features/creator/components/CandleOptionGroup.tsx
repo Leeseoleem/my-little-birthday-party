@@ -9,7 +9,7 @@ export type CandleOption = {
 
 interface CandleOptionGroupProps {
   options: CandleOption[];
-  value: string;
+  value: string | null;
   onChange: (next: string) => void;
   isDisabled?: boolean;
 }
@@ -27,8 +27,8 @@ export function CandleOptionGroup({
       onValueChange={onChange}
       disabled={isDisabled}
       className={clsx(
-        "flex flex-row items-stretch justify-around gap-6",
-        "w-full"
+        "flex flex-row items-stretch justify-around gap-2",
+        "w-full px-4"
       )}
     >
       {options.map((opt) => (
@@ -39,8 +39,8 @@ export function CandleOptionGroup({
             // 아이템 기본 레이아웃
             "relative overflow-hidden rounded-lg bg-gray-10",
             // 아이템 크기
-            "w-[160px] md:w-[220px] lg:w-[350px]",
-            "h-[160px] md:h-[220px] lg:h-[350px]",
+            "h-[clamp(100px,25vw,160px)] md:h-[220px] lg:h-[250px]",
+            "w-[clamp(100px,25vw,160px)] md:w-[220px] lg:w-[250px]",
             "flex flex-col items-center justify-center",
             // 선택 상태
             "data-[state=checked]:bg-main-disabled data-[state=checked]:border-4 data-[state=checked]:border-main",
