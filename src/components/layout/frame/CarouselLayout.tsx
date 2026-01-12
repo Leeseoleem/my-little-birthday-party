@@ -135,16 +135,16 @@ export default function CarouselLayout<
         />
       </div>
       <div className="relative flex items-center h-full">
-        <div className="flex-1 h-full">
+        <div className="flex-1 h-full w-fit">
           <div ref={emblaRef} className="overflow-hidden mx-auto h-full">
             <div className="flex h-full touch-pan-y touch-pinch-zoom will-change-transform">
               {items.map((item) => (
-                <div key={String(item.type)} className="flex-[0_0_70%]">
+                <div key={String(item.type)} className="flex-[0_0_50%]">
                   <div className="flex h-full px-2 py-4 items-center justify-center">
                     <img
                       src={item.imageSrc}
                       alt={`${String(item.type)}`}
-                      className="block h-full min-h-0 max-h-[600px] w-auto object-contain drop-shadow-md drop-shadow-black/30 pointer-events-none select-none"
+                      className="block h-full min-h-0 max-h-[400px] x-auto object-contain drop-shadow-md drop-shadow-black/30 pointer-events-none select-none"
                       draggable={false}
                     />
                   </div>
