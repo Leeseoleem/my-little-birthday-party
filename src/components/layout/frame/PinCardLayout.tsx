@@ -14,9 +14,9 @@ export default function PinCardLayout({
     <section
       className="
     flex flex-col w-full max-w-150 gap-9 md:gap-12 lg:gap-15
-    px-6 py-8
-    md:px-8 md:py-14
-    lg:px-10 lg:py-20
+    px-6 pt-8 pb-8
+    md:px-8 md:pt-10
+    lg:px-10 lg:pt-12
     rounded-xl shadow-card bg-gray-0"
     >
       <PageTitle {...titleProps} />
