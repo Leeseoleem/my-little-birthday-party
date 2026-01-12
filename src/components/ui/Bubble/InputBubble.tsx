@@ -23,9 +23,9 @@ const InputBubble = ({
 }: InputBubbleProps) => {
   // 공통 스타일 정의
   const inputContainerStyle =
-    "flex w-full p-4 md:p-5 lg:p-6 h-[72px] md:h-[92px] lg:h-[100px] bg-gray-0 focus:outline-none rounded-sm shadow-bubble";
+    "flex w-full p-4 mdh:p-5 lgh:p-6 h-[72px] mdh:h-[92px] lgh:h-[100px] bg-gray-0 focus:outline-none rounded-sm shadow-bubble";
   const inputTextStyle =
-    "text-small md:text-body lg:text-sub-title text-gray-80 break-keep placeholder:text-gray-60 resize-none";
+    "text-small mdh:text-body lgh:text-sub-title text-gray-80 break-keep placeholder:text-gray-60 resize-none";
 
   // IME 조합 및 길이 제한 훅 사용
   const { controls, triggerLimitFeedback } = useLimitFeedback();

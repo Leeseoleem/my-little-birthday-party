@@ -34,7 +34,7 @@ export default function CandleTabSection({ pages }: { pages: CandleTabPages }) {
               className={clsx(
                 "flex flex-1 w-full justify-center items-end py-3 rounded-t-3xl",
                 "bg-gray-20",
-                "text-gray-60 text-small md:text-body lg:text-sub-title font-medium",
+                "text-gray-60 text-small mdh:text-body lgh:text-sub-title font-medium",
                 "data-[state=active]:text-gray-80 data-[state=active]:font-bold",
                 "data-[state=active]:bg-gray-0",
                 "outline-none focus-visible:ring-2 focus-visible:ring-gray-40"

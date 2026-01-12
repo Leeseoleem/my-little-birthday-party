@@ -17,7 +17,7 @@ const CHARACTER_ORDER: CharacterType[] = ["raccoon", "cat", "hedgehog"];
 
 export function GuestDialogueSection({ dialogues }: GuestDialogueSectionProps) {
   return (
-    <section className="flex-1 flex flex-col gap-6 md:gap-10 lg:gap-15 justify-center">
+    <section className="flex-1 flex flex-col gap-6 mdh:gap-10 lgh:gap-15 justify-center">
       {CHARACTER_ORDER.map((type) => {
         const dialogue = dialogues[type];
 

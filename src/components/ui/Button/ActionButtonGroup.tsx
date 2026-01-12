@@ -16,7 +16,7 @@ const ActionButtonGroup = ({
   return (
     <div className="flex flex-row w-full gap-4 justify-center">
       <button onClick={onClickText} className="cursor-pointer">
-        <p className="text-caption md:text-small lg:text-body font-medium md:font-medium lg:font-medium text-gray-60">
+        <p className="text-caption mdh:text-small lgh:text-body font-medium mdh:font-medium lgh:font-medium text-gray-60">
           {textLabel}
         </p>
       </button>

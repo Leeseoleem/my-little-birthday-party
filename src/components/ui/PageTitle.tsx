@@ -5,11 +5,11 @@ export interface PageTitleProps {
 
 const PageTitle = ({ title, subTitle }: PageTitleProps) => {
   return (
-    <div className="flex flex-col items-start gap-1 md:gap-1.5 lg:gap-2">
-      <h1 className="text-display-03 md:text-display-02 lg:text-display-01 text-main">
+    <div className="flex flex-col items-start gap-1 mdh:gap-1.5 lgh:gap-2">
+      <h1 className="text-display-03 mdh:text-display-02 lgh:text-display-01 text-main">
         {title}
       </h1>
-      <p className="text-small md:text-body lg:text-sub-title md:font-medium lg:font-medium text-gray-60">
+      <p className="text-small mdh:text-body lgh:text-sub-title mdh:font-medium lgh:font-medium text-gray-60">
         {subTitle}
       </p>
     </div>

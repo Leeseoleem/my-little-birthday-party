@@ -13,10 +13,10 @@ export default function PinCardLayout({
   return (
     <section
       className="
-    flex flex-col w-full max-w-150 gap-9 md:gap-12 lg:gap-15
+    flex flex-col w-full max-w-150 gap-9 mdh:gap-12 lgh:gap-15
     px-6 pt-8 pb-8
-    md:px-8 md:pt-10
-    lg:px-10 lg:pt-12
+    mdh:px-8 mdh:pt-10
+    lgh:px-10 lgh:pt-12
     rounded-xl shadow-card bg-gray-0"
     >
       <PageTitle {...titleProps} />

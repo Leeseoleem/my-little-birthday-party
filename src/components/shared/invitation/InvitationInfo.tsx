@@ -7,7 +7,7 @@ const InvitationInfo = ({
   inviteeName,
   inviteeBirthDate,
 }: InvitationInfoProps) => {
-  const textClass = `text-small font-semibold md:text-body text-gray-70`;
+  const textClass = `text-small font-semibold mdh:text-body text-gray-70`;
   return (
     <div className="space-y-1">
       <div className="flex">
