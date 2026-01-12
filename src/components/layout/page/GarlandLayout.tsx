@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import clsx from "clsx";
 
 interface GarlandLayoutProps {
+  hasHeader?: boolean;
   children: ReactNode;
 }
 
@@ -12,26 +13,37 @@ const GARLAND_BG_SIZE =
 const GARLAND_BASE =
   "absolute inset-y-0 bg-[url('/assets/decor/party-garland.png')] bg-no-repeat";
 
-export default function GarlandLayout({ children }: GarlandLayoutProps) {
+export default function GarlandLayout({
+  hasHeader = false,
+  children,
+}: GarlandLayoutProps) {
   return (
-    <div className="relative min-h-dvh overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 z-0">
+    <div className="relative min-h-dvh">
+      <div className="pointer-events-none fixed inset-0 z-0">
+        {/* viewport에 fixed로 붙어있지만, 내부에서 '가운데 1024px 기준선'을 강제 생성 */}
         <div
           className={clsx(
-            GARLAND_BASE,
-            "left-0 bg-top-left",
-            GARLAND_SIZE,
-            GARLAND_BG_SIZE
+            "absolute left-1/2 h-full w-full max-w-[900px] -translate-x-1/2",
+            hasHeader ? "top-14" : "top-0"
           )}
-        />
-        <div
-          className={clsx(
-            GARLAND_BASE,
-            "right-0 bg-top-right",
-            GARLAND_SIZE,
-            GARLAND_BG_SIZE
-          )}
-        />
+        >
+          <div
+            className={clsx(
+              GARLAND_BASE,
+              "left-0 bg-top-left",
+              GARLAND_SIZE,
+              GARLAND_BG_SIZE
+            )}
+          />
+          <div
+            className={clsx(
+              GARLAND_BASE,
+              "right-0 bg-top-right",
+              GARLAND_SIZE,
+              GARLAND_BG_SIZE
+            )}
+          />
+        </div>
       </div>
 
       <div className="relative z-10 h-full">{children}</div>

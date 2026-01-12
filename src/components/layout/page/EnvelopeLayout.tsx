@@ -5,7 +5,7 @@ export default function EnvelopeLayout() {
     <div
       className={clsx(
         // 항상 가장 뒤
-        "absolute inset-x-0 bottom-0 z-0",
+        "fixed inset-x-0 bottom-0 z-0",
         // 봉투 아래 절반을 자르기 위한 클리핑
         "overflow-hidden",
         // 오브제이므로 인터랙션 차단
@@ -23,7 +23,7 @@ export default function EnvelopeLayout() {
           // 가운데 정렬
           "relative left-1/2 -translate-x-1/2",
           // width 기준 + 비율 유지
-          "w-full max-w-[800px] h-auto",
+          "w-full max-w-[800px] h-fit",
           // 세로 절반만 보이게
           "translate-y-1/3"
         )}
