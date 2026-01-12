@@ -33,7 +33,7 @@ export default function CakeSelectSection({
     CAKE_MENU.find((cake) => cake.type === type)?.description || "";
   return (
     <div className="flex flex-1 flex-col items-center">
-      <div className="overflow-hidden mx-auto">
+      <div className="overflow-hidden h-full">
         <CarouselLayout<CakeType>
           items={items}
           type={type}
