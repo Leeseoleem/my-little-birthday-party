@@ -144,7 +144,7 @@ export default function CarouselLayout<
                     <img
                       src={item.imageSrc}
                       alt={`${String(item.type)}`}
-                      className="block h-full min-h-0 max-h-[400px] x-auto object-contain drop-shadow-md drop-shadow-black/30 pointer-events-none select-none"
+                      className="block h-full min-h-[200px] max-h-[400px] x-auto object-contain drop-shadow-md drop-shadow-black/30 pointer-events-none select-none"
                       draggable={false}
                     />
                   </div>
