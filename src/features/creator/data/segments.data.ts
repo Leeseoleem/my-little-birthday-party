@@ -1,7 +1,7 @@
 import type { TextSegment } from "../../../components/layout/page/NoticeFrame.types";
 
 export const segments: TextSegment[] = [
-  { text: "시작하기를 누르면 " },
+  { text: "시작하기와 함께 " },
   {
     text: "이용약관",
     href: "https://example.com/privacy",
@@ -13,5 +13,5 @@ export const segments: TextSegment[] = [
     href: "https://example.com/privacy",
     target: "_blank",
   },
-  { text: "에 동의하는 것으로 간주됩니다." },
+  { text: "에 동의하게 됩니다." },
 ];
