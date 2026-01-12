@@ -7,7 +7,7 @@ export interface MenuBoardLayoutProps {
 export default function MenuBoardLayout({ children }: MenuBoardLayoutProps) {
   return (
     <section
-      className="relative flex pb-6 pt-9 md:pt-12 lg:pt-15 px-6 md:px-12 lg:px-25 w-full max-w-[600px] overflow-hidden"
+      className="relative flex pb-6 pt-9 px-6 md:px-12 lg:px-18 w-full max-w-[600px] overflow-hidden"
       style={{
         backgroundImage: "url('/assets/textures/receipt.png')",
         backgroundSize: "cover",
