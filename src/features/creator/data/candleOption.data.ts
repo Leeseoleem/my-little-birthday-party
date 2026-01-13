@@ -40,7 +40,7 @@ export const SPECIAL_CANDLE_OPTIONS: CandleOption[] = [
   {
     id: "special-01",
     label: "별 모양 초",
-    imageSrc: "/assets/candles/special/candle-special-star.png",
+    imageSrc: "/assets/candles/special/candle-point-star.png",
   },
   {
     id: "special-02",
