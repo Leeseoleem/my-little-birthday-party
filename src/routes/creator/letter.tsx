@@ -53,7 +53,7 @@ function CreatorLetterPage() {
         <SelectSection
           type={paperType}
           onTypeChange={(t) => setPaperType(t as LetterPaperType)}
-          onClick={() => setMode("write")}
+          onItemClick={() => setMode("write")}
         />
       )}
       {mode === "write" && (
@@ -63,6 +63,7 @@ function CreatorLetterPage() {
             value: letterText,
             onChange: setLetterText,
           }}
+          isDisabled={letterText.length < 5}
           onClickText={() => setMode("select")}
         />
       )}
