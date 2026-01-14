@@ -11,7 +11,7 @@ interface CakeMenuCardProps {
 const CakeMenuCard = ({ menuContent, buttonProps }: CakeMenuCardProps) => {
   return (
     <MenuBoardLayout>
-      <div className="flex flex-col items-center gap-8">
+      <div className="flex flex-col items-center gap-4">
         <MenuHeader />
         <MenuContent {...menuContent} />
         <div className="flex w-full justify-center">
@@ -27,7 +27,7 @@ export default CakeMenuCard;
 // ---------------------------- Menu Header & Content ---------------------------
 export const MenuHeader = () => {
   return (
-    <div className="flex flex-col gap-4 mdh:gap-5 justify-center items-center">
+    <div className="flex flex-col gap-4 justify-center items-center">
       <p className="text-accent-bs text-gray-50">MENU</p>
       <div className="h-[1px] bg-gray-50 w-full min-w-[250px]" />
     </div>
