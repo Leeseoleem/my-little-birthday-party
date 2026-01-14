@@ -8,326 +8,327 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as CreatorRouteRouteImport } from './routes/creator/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as RIndexRouteImport } from './routes/r/index'
-import { Route as CreatorIndexRouteImport } from './routes/creator/index'
-import { Route as CreatorLetterRouteImport } from './routes/creator/letter'
-import { Route as CreatorInfoRouteImport } from './routes/creator/info'
-import { Route as CreatorGuestsRouteImport } from './routes/creator/guests'
-import { Route as CreatorCompleteRouteImport } from './routes/creator/complete'
-import { Route as RCardIdRouteRouteImport } from './routes/r/$cardId/route'
-import { Route as RCardIdIndexRouteImport } from './routes/r/$cardId/index'
-import { Route as RCardIdPartyRouteImport } from './routes/r/$cardId/party'
-import { Route as RCardIdLetterRouteImport } from './routes/r/$cardId/letter'
-import { Route as RCardIdEventRouteImport } from './routes/r/$cardId/event'
-import { Route as CreatorCakeSelectRouteImport } from './routes/creator/cake/select'
-import { Route as CreatorCakeBuildRouteImport } from './routes/creator/cake/build'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as CreatorRouteRouteImport } from "./routes/creator/route";
+import { Route as IndexRouteImport } from "./routes/index";
+import { Route as RIndexRouteImport } from "./routes/r/index";
+import { Route as CreatorIndexRouteImport } from "./routes/creator/index";
+import { Route as CreatorLetterRouteImport } from "./routes/creator/letter";
+import { Route as CreatorInfoRouteImport } from "./routes/creator/info";
+import { Route as CreatorGuestsRouteImport } from "./routes/creator/guests";
+import { Route as CreatorCompleteRouteImport } from "./routes/creator/complete";
+import { Route as RCardIdRouteRouteImport } from "./routes/r/$cardId/route";
+import { Route as RCardIdIndexRouteImport } from "./routes/r/$cardId/index";
+import { Route as RCardIdPartyRouteImport } from "./routes/r/$cardId/party";
+import { Route as RCardIdLetterRouteImport } from "./routes/r/$cardId/letter";
+import { Route as RCardIdEventRouteImport } from "./routes/r/$cardId/event";
+import { Route as CreatorCakeSelectRouteImport } from "./routes/creator/cake/select";
+import { Route as CreatorCakeBuildCakeTypeRouteImport } from "./routes/creator/cake/build.$cakeType";
 
 const CreatorRouteRoute = CreatorRouteRouteImport.update({
-  id: '/creator',
-  path: '/creator',
+  id: "/creator",
+  path: "/creator",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const RIndexRoute = RIndexRouteImport.update({
-  id: '/r/',
-  path: '/r/',
+  id: "/r/",
+  path: "/r/",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const CreatorIndexRoute = CreatorIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => CreatorRouteRoute,
-} as any)
+} as any);
 const CreatorLetterRoute = CreatorLetterRouteImport.update({
-  id: '/letter',
-  path: '/letter',
+  id: "/letter",
+  path: "/letter",
   getParentRoute: () => CreatorRouteRoute,
-} as any)
+} as any);
 const CreatorInfoRoute = CreatorInfoRouteImport.update({
-  id: '/info',
-  path: '/info',
+  id: "/info",
+  path: "/info",
   getParentRoute: () => CreatorRouteRoute,
-} as any)
+} as any);
 const CreatorGuestsRoute = CreatorGuestsRouteImport.update({
-  id: '/guests',
-  path: '/guests',
+  id: "/guests",
+  path: "/guests",
   getParentRoute: () => CreatorRouteRoute,
-} as any)
+} as any);
 const CreatorCompleteRoute = CreatorCompleteRouteImport.update({
-  id: '/complete',
-  path: '/complete',
+  id: "/complete",
+  path: "/complete",
   getParentRoute: () => CreatorRouteRoute,
-} as any)
+} as any);
 const RCardIdRouteRoute = RCardIdRouteRouteImport.update({
-  id: '/r/$cardId',
-  path: '/r/$cardId',
+  id: "/r/$cardId",
+  path: "/r/$cardId",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const RCardIdIndexRoute = RCardIdIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => RCardIdRouteRoute,
-} as any)
+} as any);
 const RCardIdPartyRoute = RCardIdPartyRouteImport.update({
-  id: '/party',
-  path: '/party',
+  id: "/party",
+  path: "/party",
   getParentRoute: () => RCardIdRouteRoute,
-} as any)
+} as any);
 const RCardIdLetterRoute = RCardIdLetterRouteImport.update({
-  id: '/letter',
-  path: '/letter',
+  id: "/letter",
+  path: "/letter",
   getParentRoute: () => RCardIdRouteRoute,
-} as any)
+} as any);
 const RCardIdEventRoute = RCardIdEventRouteImport.update({
-  id: '/event',
-  path: '/event',
+  id: "/event",
+  path: "/event",
   getParentRoute: () => RCardIdRouteRoute,
-} as any)
+} as any);
 const CreatorCakeSelectRoute = CreatorCakeSelectRouteImport.update({
-  id: '/cake/select',
-  path: '/cake/select',
+  id: "/cake/select",
+  path: "/cake/select",
   getParentRoute: () => CreatorRouteRoute,
-} as any)
-const CreatorCakeBuildRoute = CreatorCakeBuildRouteImport.update({
-  id: '/cake/build',
-  path: '/cake/build',
-  getParentRoute: () => CreatorRouteRoute,
-} as any)
+} as any);
+const CreatorCakeBuildCakeTypeRoute =
+  CreatorCakeBuildCakeTypeRouteImport.update({
+    id: "/cake/build/$cakeType",
+    path: "/cake/build/$cakeType",
+    getParentRoute: () => CreatorRouteRoute,
+  } as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/creator': typeof CreatorRouteRouteWithChildren
-  '/r/$cardId': typeof RCardIdRouteRouteWithChildren
-  '/creator/complete': typeof CreatorCompleteRoute
-  '/creator/guests': typeof CreatorGuestsRoute
-  '/creator/info': typeof CreatorInfoRoute
-  '/creator/letter': typeof CreatorLetterRoute
-  '/creator/': typeof CreatorIndexRoute
-  '/r': typeof RIndexRoute
-  '/creator/cake/build': typeof CreatorCakeBuildRoute
-  '/creator/cake/select': typeof CreatorCakeSelectRoute
-  '/r/$cardId/event': typeof RCardIdEventRoute
-  '/r/$cardId/letter': typeof RCardIdLetterRoute
-  '/r/$cardId/party': typeof RCardIdPartyRoute
-  '/r/$cardId/': typeof RCardIdIndexRoute
+  "/": typeof IndexRoute;
+  "/creator": typeof CreatorRouteRouteWithChildren;
+  "/r/$cardId": typeof RCardIdRouteRouteWithChildren;
+  "/creator/complete": typeof CreatorCompleteRoute;
+  "/creator/guests": typeof CreatorGuestsRoute;
+  "/creator/info": typeof CreatorInfoRoute;
+  "/creator/letter": typeof CreatorLetterRoute;
+  "/creator/": typeof CreatorIndexRoute;
+  "/r": typeof RIndexRoute;
+  "/creator/cake/select": typeof CreatorCakeSelectRoute;
+  "/r/$cardId/event": typeof RCardIdEventRoute;
+  "/r/$cardId/letter": typeof RCardIdLetterRoute;
+  "/r/$cardId/party": typeof RCardIdPartyRoute;
+  "/r/$cardId/": typeof RCardIdIndexRoute;
+  "/creator/cake/build/$cakeType": typeof CreatorCakeBuildCakeTypeRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/creator/complete': typeof CreatorCompleteRoute
-  '/creator/guests': typeof CreatorGuestsRoute
-  '/creator/info': typeof CreatorInfoRoute
-  '/creator/letter': typeof CreatorLetterRoute
-  '/creator': typeof CreatorIndexRoute
-  '/r': typeof RIndexRoute
-  '/creator/cake/build': typeof CreatorCakeBuildRoute
-  '/creator/cake/select': typeof CreatorCakeSelectRoute
-  '/r/$cardId/event': typeof RCardIdEventRoute
-  '/r/$cardId/letter': typeof RCardIdLetterRoute
-  '/r/$cardId/party': typeof RCardIdPartyRoute
-  '/r/$cardId': typeof RCardIdIndexRoute
+  "/": typeof IndexRoute;
+  "/creator/complete": typeof CreatorCompleteRoute;
+  "/creator/guests": typeof CreatorGuestsRoute;
+  "/creator/info": typeof CreatorInfoRoute;
+  "/creator/letter": typeof CreatorLetterRoute;
+  "/creator": typeof CreatorIndexRoute;
+  "/r": typeof RIndexRoute;
+  "/creator/cake/select": typeof CreatorCakeSelectRoute;
+  "/r/$cardId/event": typeof RCardIdEventRoute;
+  "/r/$cardId/letter": typeof RCardIdLetterRoute;
+  "/r/$cardId/party": typeof RCardIdPartyRoute;
+  "/r/$cardId": typeof RCardIdIndexRoute;
+  "/creator/cake/build/$cakeType": typeof CreatorCakeBuildCakeTypeRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/creator': typeof CreatorRouteRouteWithChildren
-  '/r/$cardId': typeof RCardIdRouteRouteWithChildren
-  '/creator/complete': typeof CreatorCompleteRoute
-  '/creator/guests': typeof CreatorGuestsRoute
-  '/creator/info': typeof CreatorInfoRoute
-  '/creator/letter': typeof CreatorLetterRoute
-  '/creator/': typeof CreatorIndexRoute
-  '/r/': typeof RIndexRoute
-  '/creator/cake/build': typeof CreatorCakeBuildRoute
-  '/creator/cake/select': typeof CreatorCakeSelectRoute
-  '/r/$cardId/event': typeof RCardIdEventRoute
-  '/r/$cardId/letter': typeof RCardIdLetterRoute
-  '/r/$cardId/party': typeof RCardIdPartyRoute
-  '/r/$cardId/': typeof RCardIdIndexRoute
+  __root__: typeof rootRouteImport;
+  "/": typeof IndexRoute;
+  "/creator": typeof CreatorRouteRouteWithChildren;
+  "/r/$cardId": typeof RCardIdRouteRouteWithChildren;
+  "/creator/complete": typeof CreatorCompleteRoute;
+  "/creator/guests": typeof CreatorGuestsRoute;
+  "/creator/info": typeof CreatorInfoRoute;
+  "/creator/letter": typeof CreatorLetterRoute;
+  "/creator/": typeof CreatorIndexRoute;
+  "/r/": typeof RIndexRoute;
+  "/creator/cake/select": typeof CreatorCakeSelectRoute;
+  "/r/$cardId/event": typeof RCardIdEventRoute;
+  "/r/$cardId/letter": typeof RCardIdLetterRoute;
+  "/r/$cardId/party": typeof RCardIdPartyRoute;
+  "/r/$cardId/": typeof RCardIdIndexRoute;
+  "/creator/cake/build/$cakeType": typeof CreatorCakeBuildCakeTypeRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/creator'
-    | '/r/$cardId'
-    | '/creator/complete'
-    | '/creator/guests'
-    | '/creator/info'
-    | '/creator/letter'
-    | '/creator/'
-    | '/r'
-    | '/creator/cake/build'
-    | '/creator/cake/select'
-    | '/r/$cardId/event'
-    | '/r/$cardId/letter'
-    | '/r/$cardId/party'
-    | '/r/$cardId/'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/creator"
+    | "/r/$cardId"
+    | "/creator/complete"
+    | "/creator/guests"
+    | "/creator/info"
+    | "/creator/letter"
+    | "/creator/"
+    | "/r"
+    | "/creator/cake/select"
+    | "/r/$cardId/event"
+    | "/r/$cardId/letter"
+    | "/r/$cardId/party"
+    | "/r/$cardId/"
+    | "/creator/cake/build/$cakeType";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/creator/complete'
-    | '/creator/guests'
-    | '/creator/info'
-    | '/creator/letter'
-    | '/creator'
-    | '/r'
-    | '/creator/cake/build'
-    | '/creator/cake/select'
-    | '/r/$cardId/event'
-    | '/r/$cardId/letter'
-    | '/r/$cardId/party'
-    | '/r/$cardId'
+    | "/"
+    | "/creator/complete"
+    | "/creator/guests"
+    | "/creator/info"
+    | "/creator/letter"
+    | "/creator"
+    | "/r"
+    | "/creator/cake/select"
+    | "/r/$cardId/event"
+    | "/r/$cardId/letter"
+    | "/r/$cardId/party"
+    | "/r/$cardId"
+    | "/creator/cake/build/$cakeType";
   id:
-    | '__root__'
-    | '/'
-    | '/creator'
-    | '/r/$cardId'
-    | '/creator/complete'
-    | '/creator/guests'
-    | '/creator/info'
-    | '/creator/letter'
-    | '/creator/'
-    | '/r/'
-    | '/creator/cake/build'
-    | '/creator/cake/select'
-    | '/r/$cardId/event'
-    | '/r/$cardId/letter'
-    | '/r/$cardId/party'
-    | '/r/$cardId/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/creator"
+    | "/r/$cardId"
+    | "/creator/complete"
+    | "/creator/guests"
+    | "/creator/info"
+    | "/creator/letter"
+    | "/creator/"
+    | "/r/"
+    | "/creator/cake/select"
+    | "/r/$cardId/event"
+    | "/r/$cardId/letter"
+    | "/r/$cardId/party"
+    | "/r/$cardId/"
+    | "/creator/cake/build/$cakeType";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CreatorRouteRoute: typeof CreatorRouteRouteWithChildren
-  RCardIdRouteRoute: typeof RCardIdRouteRouteWithChildren
-  RIndexRoute: typeof RIndexRoute
+  IndexRoute: typeof IndexRoute;
+  CreatorRouteRoute: typeof CreatorRouteRouteWithChildren;
+  RCardIdRouteRoute: typeof RCardIdRouteRouteWithChildren;
+  RIndexRoute: typeof RIndexRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/creator': {
-      id: '/creator'
-      path: '/creator'
-      fullPath: '/creator'
-      preLoaderRoute: typeof CreatorRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/r/': {
-      id: '/r/'
-      path: '/r'
-      fullPath: '/r'
-      preLoaderRoute: typeof RIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/creator/': {
-      id: '/creator/'
-      path: '/'
-      fullPath: '/creator/'
-      preLoaderRoute: typeof CreatorIndexRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
-    '/creator/letter': {
-      id: '/creator/letter'
-      path: '/letter'
-      fullPath: '/creator/letter'
-      preLoaderRoute: typeof CreatorLetterRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
-    '/creator/info': {
-      id: '/creator/info'
-      path: '/info'
-      fullPath: '/creator/info'
-      preLoaderRoute: typeof CreatorInfoRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
-    '/creator/guests': {
-      id: '/creator/guests'
-      path: '/guests'
-      fullPath: '/creator/guests'
-      preLoaderRoute: typeof CreatorGuestsRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
-    '/creator/complete': {
-      id: '/creator/complete'
-      path: '/complete'
-      fullPath: '/creator/complete'
-      preLoaderRoute: typeof CreatorCompleteRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
-    '/r/$cardId': {
-      id: '/r/$cardId'
-      path: '/r/$cardId'
-      fullPath: '/r/$cardId'
-      preLoaderRoute: typeof RCardIdRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/r/$cardId/': {
-      id: '/r/$cardId/'
-      path: '/'
-      fullPath: '/r/$cardId/'
-      preLoaderRoute: typeof RCardIdIndexRouteImport
-      parentRoute: typeof RCardIdRouteRoute
-    }
-    '/r/$cardId/party': {
-      id: '/r/$cardId/party'
-      path: '/party'
-      fullPath: '/r/$cardId/party'
-      preLoaderRoute: typeof RCardIdPartyRouteImport
-      parentRoute: typeof RCardIdRouteRoute
-    }
-    '/r/$cardId/letter': {
-      id: '/r/$cardId/letter'
-      path: '/letter'
-      fullPath: '/r/$cardId/letter'
-      preLoaderRoute: typeof RCardIdLetterRouteImport
-      parentRoute: typeof RCardIdRouteRoute
-    }
-    '/r/$cardId/event': {
-      id: '/r/$cardId/event'
-      path: '/event'
-      fullPath: '/r/$cardId/event'
-      preLoaderRoute: typeof RCardIdEventRouteImport
-      parentRoute: typeof RCardIdRouteRoute
-    }
-    '/creator/cake/select': {
-      id: '/creator/cake/select'
-      path: '/cake/select'
-      fullPath: '/creator/cake/select'
-      preLoaderRoute: typeof CreatorCakeSelectRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
-    '/creator/cake/build': {
-      id: '/creator/cake/build'
-      path: '/cake/build'
-      fullPath: '/creator/cake/build'
-      preLoaderRoute: typeof CreatorCakeBuildRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
+    "/creator": {
+      id: "/creator";
+      path: "/creator";
+      fullPath: "/creator";
+      preLoaderRoute: typeof CreatorRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/r/": {
+      id: "/r/";
+      path: "/r";
+      fullPath: "/r";
+      preLoaderRoute: typeof RIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/creator/": {
+      id: "/creator/";
+      path: "/";
+      fullPath: "/creator/";
+      preLoaderRoute: typeof CreatorIndexRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
+    "/creator/letter": {
+      id: "/creator/letter";
+      path: "/letter";
+      fullPath: "/creator/letter";
+      preLoaderRoute: typeof CreatorLetterRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
+    "/creator/info": {
+      id: "/creator/info";
+      path: "/info";
+      fullPath: "/creator/info";
+      preLoaderRoute: typeof CreatorInfoRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
+    "/creator/guests": {
+      id: "/creator/guests";
+      path: "/guests";
+      fullPath: "/creator/guests";
+      preLoaderRoute: typeof CreatorGuestsRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
+    "/creator/complete": {
+      id: "/creator/complete";
+      path: "/complete";
+      fullPath: "/creator/complete";
+      preLoaderRoute: typeof CreatorCompleteRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
+    "/r/$cardId": {
+      id: "/r/$cardId";
+      path: "/r/$cardId";
+      fullPath: "/r/$cardId";
+      preLoaderRoute: typeof RCardIdRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/r/$cardId/": {
+      id: "/r/$cardId/";
+      path: "/";
+      fullPath: "/r/$cardId/";
+      preLoaderRoute: typeof RCardIdIndexRouteImport;
+      parentRoute: typeof RCardIdRouteRoute;
+    };
+    "/r/$cardId/party": {
+      id: "/r/$cardId/party";
+      path: "/party";
+      fullPath: "/r/$cardId/party";
+      preLoaderRoute: typeof RCardIdPartyRouteImport;
+      parentRoute: typeof RCardIdRouteRoute;
+    };
+    "/r/$cardId/letter": {
+      id: "/r/$cardId/letter";
+      path: "/letter";
+      fullPath: "/r/$cardId/letter";
+      preLoaderRoute: typeof RCardIdLetterRouteImport;
+      parentRoute: typeof RCardIdRouteRoute;
+    };
+    "/r/$cardId/event": {
+      id: "/r/$cardId/event";
+      path: "/event";
+      fullPath: "/r/$cardId/event";
+      preLoaderRoute: typeof RCardIdEventRouteImport;
+      parentRoute: typeof RCardIdRouteRoute;
+    };
+    "/creator/cake/select": {
+      id: "/creator/cake/select";
+      path: "/cake/select";
+      fullPath: "/creator/cake/select";
+      preLoaderRoute: typeof CreatorCakeSelectRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
+    "/creator/cake/build/$cakeType": {
+      id: "/creator/cake/build/$cakeType";
+      path: "/cake/build/$cakeType";
+      fullPath: "/creator/cake/build/$cakeType";
+      preLoaderRoute: typeof CreatorCakeBuildCakeTypeRouteImport;
+      parentRoute: typeof CreatorRouteRoute;
+    };
   }
 }
 
 interface CreatorRouteRouteChildren {
-  CreatorCompleteRoute: typeof CreatorCompleteRoute
-  CreatorGuestsRoute: typeof CreatorGuestsRoute
-  CreatorInfoRoute: typeof CreatorInfoRoute
-  CreatorLetterRoute: typeof CreatorLetterRoute
-  CreatorIndexRoute: typeof CreatorIndexRoute
-  CreatorCakeBuildRoute: typeof CreatorCakeBuildRoute
-  CreatorCakeSelectRoute: typeof CreatorCakeSelectRoute
+  CreatorCompleteRoute: typeof CreatorCompleteRoute;
+  CreatorGuestsRoute: typeof CreatorGuestsRoute;
+  CreatorInfoRoute: typeof CreatorInfoRoute;
+  CreatorLetterRoute: typeof CreatorLetterRoute;
+  CreatorIndexRoute: typeof CreatorIndexRoute;
+  CreatorCakeSelectRoute: typeof CreatorCakeSelectRoute;
+  CreatorCakeBuildCakeTypeRoute: typeof CreatorCakeBuildCakeTypeRoute;
 }
 
 const CreatorRouteRouteChildren: CreatorRouteRouteChildren = {
@@ -336,19 +337,19 @@ const CreatorRouteRouteChildren: CreatorRouteRouteChildren = {
   CreatorInfoRoute: CreatorInfoRoute,
   CreatorLetterRoute: CreatorLetterRoute,
   CreatorIndexRoute: CreatorIndexRoute,
-  CreatorCakeBuildRoute: CreatorCakeBuildRoute,
   CreatorCakeSelectRoute: CreatorCakeSelectRoute,
-}
+  CreatorCakeBuildCakeTypeRoute: CreatorCakeBuildCakeTypeRoute,
+};
 
 const CreatorRouteRouteWithChildren = CreatorRouteRoute._addFileChildren(
-  CreatorRouteRouteChildren,
-)
+  CreatorRouteRouteChildren
+);
 
 interface RCardIdRouteRouteChildren {
-  RCardIdEventRoute: typeof RCardIdEventRoute
-  RCardIdLetterRoute: typeof RCardIdLetterRoute
-  RCardIdPartyRoute: typeof RCardIdPartyRoute
-  RCardIdIndexRoute: typeof RCardIdIndexRoute
+  RCardIdEventRoute: typeof RCardIdEventRoute;
+  RCardIdLetterRoute: typeof RCardIdLetterRoute;
+  RCardIdPartyRoute: typeof RCardIdPartyRoute;
+  RCardIdIndexRoute: typeof RCardIdIndexRoute;
 }
 
 const RCardIdRouteRouteChildren: RCardIdRouteRouteChildren = {
@@ -356,18 +357,18 @@ const RCardIdRouteRouteChildren: RCardIdRouteRouteChildren = {
   RCardIdLetterRoute: RCardIdLetterRoute,
   RCardIdPartyRoute: RCardIdPartyRoute,
   RCardIdIndexRoute: RCardIdIndexRoute,
-}
+};
 
 const RCardIdRouteRouteWithChildren = RCardIdRouteRoute._addFileChildren(
-  RCardIdRouteRouteChildren,
-)
+  RCardIdRouteRouteChildren
+);
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreatorRouteRoute: CreatorRouteRouteWithChildren,
   RCardIdRouteRoute: RCardIdRouteRouteWithChildren,
   RIndexRoute: RIndexRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
