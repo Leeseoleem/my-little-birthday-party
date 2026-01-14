@@ -1,6 +1,7 @@
 import { useMemo, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import clsx from "clsx";
 import CarouselArrowButton from "../../ui/Button/CarouselArrowButton";
 
 export type CarouselItemType = number | string;
@@ -121,7 +122,7 @@ export default function CarouselLayout<
     selectedIndex !== undefined ? indexToType(selectedIndex) : undefined;
 
   return (
-    <section className="flex h-full items-center justify-center gap-4 py-4">
+    <section className="flex h-full min-h-0 items-center justify-center gap-4 py-4">
       <div className="shrink-0">
         <CarouselArrowButton
           direction="left"
@@ -130,37 +131,43 @@ export default function CarouselLayout<
         />
       </div>
 
-      <div className="relative flex items-center h-full">
-        <div className="flex-1 h-full w-fit">
+      <div className="relative flex items-center h-full min-h-0">
+        <div className="flex-1 h-full min-h-0">
           <div ref={emblaRef} className="overflow-hidden mx-auto h-full">
-            <div className="flex h-full touch-pan-y touch-pinch-zoom will-change-transform">
+            <div className="flex h-full min-h-0 touch-pan-y touch-pinch-zoom will-change-transform">
               {items.map((item) => {
                 const isSelected = selectedType === item.type;
 
                 return (
-                  <div key={String(item.type)} className="flex-[0_0_50%]">
-                    <div className="flex h-full px-2 py-4 items-center justify-center">
+                  <div
+                    key={String(item.type)}
+                    className="flex-[0_0_50%] max-h-full"
+                  >
+                    <div className="flex h-full min-h-0 px-2 items-center justify-center">
                       <button
                         type="button"
                         onClick={() => onItemClick?.(item)}
                         disabled={!isSelected || !onItemClick}
-                        className={[
-                          "block",
-                          // 선택된 슬라이드만 인터랙션 허용
+                        className={clsx(
+                          "h-full min-h-0",
                           isSelected && enableHoverScale
                             ? "pointer-events-auto"
-                            : "pointer-events-none",
-                          // 선택된 슬라이드에만 hover 확대 적용
-                          isSelected && enableHoverScale
-                            ? "transition-transform duration-200 ease-in-out hover:scale-105 active:scale-105 hover:-translate-y-1 active:-translate-y-1 hover:drop-shadow-xl active:drop-shadow-xl"
-                            : "",
-                        ].join(" ")}
+                            : "pointer-events-none"
+                        )}
                       >
                         <img
                           draggable={false}
                           src={item.imageSrc}
                           alt={`${String(item.type)}`}
-                          className="block h-full min-h-[200px] max-h-[500px] object-contain drop-shadow-md drop-shadow-black/30 select-none"
+                          className={clsx(
+                            "block object-contain bg-center select-none",
+                            // 최대 높이는 400px, 하지만 부모가 더 작으면 부모(100%)를 따름
+                            "max-h-[min(400px,100%)]",
+                            "drop-shadow-md drop-shadow-black/30",
+                            isSelected && enableHoverScale
+                              ? "transition-transform duration-200 ease-in-out hover:scale-105 active:scale-105 hover:-translate-y-1 active:-translate-y-1 hover:drop-shadow-xl active:drop-shadow-xl"
+                              : "pointer-events-none"
+                          )}
                         />
                       </button>
                     </div>

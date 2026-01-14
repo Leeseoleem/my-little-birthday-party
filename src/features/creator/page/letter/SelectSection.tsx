@@ -15,16 +15,14 @@ export default function SelectSection({
   onItemClick,
 }: SelectSectionProps) {
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-hidden">
-        <CarouselLayout
-          items={LETTER_PAPER_ITEMS}
-          type={type}
-          onTypeChange={onTypeChange}
-          enableHoverScale
-          onItemClick={onItemClick}
-        />
-      </div>
+    <div className="flex h-full x-full">
+      <CarouselLayout
+        items={LETTER_PAPER_ITEMS}
+        type={type}
+        onTypeChange={onTypeChange}
+        enableHoverScale
+        onItemClick={onItemClick}
+      />
     </div>
   );
 }
