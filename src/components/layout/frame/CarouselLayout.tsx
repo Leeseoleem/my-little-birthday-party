@@ -152,7 +152,7 @@ export default function CarouselLayout<
                             : "pointer-events-none",
                           // 선택된 슬라이드에만 hover 확대 적용
                           isSelected && enableHoverScale
-                            ? "transition-transform duration-200 hover:scale-110 active:scale-110"
+                            ? "transition-transform duration-200 ease-in-out hover:scale-105 active:scale-105 hover:-translate-y-1 active:-translate-y-1 hover:drop-shadow-xl active:drop-shadow-xl"
                             : "",
                         ].join(" ")}
                       >
