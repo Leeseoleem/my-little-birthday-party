@@ -13,22 +13,42 @@ export type CakeMenuItem = {
 };
 
 /**
- * 좌표 규칙 (중요)
- * - x, y는 모두 "원의 좌상단(left, top)" 기준 px
- * - 원 지름은 25px
- * - 기준 가로 폭은 900px
+ * 각 촛불 슬롯의 고유 식별자
+ * - 저장 / 교체 / 삭제 / 렌더의 기준이 됨
  */
+export type CandleSlotKey = string;
+
 export type CakeCandlePoint = {
-  x: number; // left 기준 px (0 ~ 900)
-  y: number; // top 기준 px
+  x: number; // 원의 left 기준 px (0 ~ 900)
+  y: number; // 원의 top 기준 px
 };
 
+/**
+ * 단일 슬롯 좌표 정의
+ * (좌표는 900px 기준, 촛불 bottom-anchor 기준)
+ */
+export type CakeCandleSlot = CakeCandlePoint & {
+  key: CandleSlotKey; // 예: "slot-1", "slot-2" ...
+  label?: string; // 디버깅/기획용(선택)
+};
+
+// 각 슬롯 별 z-index
+export const PARTY_Z_ORDER: Record<string, number> = {
+  "slot-3": 4,
+  "slot-4": 3,
+  "slot-1": 2,
+  "slot-2": 1,
+};
+
+/**
+ * 케이크별 촛불 레이아웃
+ */
 export type CakeCandleLayout =
   | {
-      kind: "multiple";
-      points: CakeCandlePoint[]; // 보통 4개
+      kind: "single";
+      slot: CakeCandleSlot;
     }
   | {
-      kind: "single";
-      point: CakeCandlePoint; // 2단 케이크
+      kind: "multiple";
+      slots: CakeCandleSlot[];
     };
