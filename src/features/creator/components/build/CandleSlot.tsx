@@ -26,6 +26,7 @@ export const CandleSlot = ({
       disabled={disabled}
       className={clsx(
         "absolute",
+        "z-30",
         // 크기는 무조건 고정 25px
         "box-border rounded-full",
         "border border-dashed",
@@ -42,6 +43,7 @@ export const CandleSlot = ({
         // 위치만 스케일 적용
         left: left * scale,
         top: top * scale,
+        transform: "translate(-50%, -50%)",
       }}
     />
   );
