@@ -1,13 +1,13 @@
 /* 반응형 + 환경 조건 variant 모음 */
 
-/* md + height: 768~1023 + min-height 700 */
+/* md (width >= 48rem) + min-height 700 */
 @custom-variant mdh {
   @media (width >= 48rem) and (height >= 700px) {
     @slot;
   }
 }
 
-/* lg + height: 1024+ + min-height 800 */
+/* lg (width >= 64rem) + min-height 800 */
 @custom-variant lgh {
   @media (width >= 64rem) and (height >= 800px) {
     @slot;
