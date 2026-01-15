@@ -48,13 +48,14 @@ function CreatorLetterPage() {
         title="편지 작성하기"
         subTitle="소중한 사람에게 전하고 싶은 말을 남겨주세요"
       />
-
       {mode === "select" && (
-        <SelectSection
-          type={paperType}
-          onTypeChange={(t) => setPaperType(t as LetterPaperType)}
-          onItemClick={() => setMode("write")}
-        />
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <SelectSection
+            type={paperType}
+            onTypeChange={(t) => setPaperType(t as LetterPaperType)}
+            onItemClick={() => setMode("write")}
+          />
+        </div>
       )}
       {mode === "write" && (
         <WriteSection
