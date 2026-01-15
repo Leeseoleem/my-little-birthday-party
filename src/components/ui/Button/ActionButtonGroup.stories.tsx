@@ -16,4 +16,4 @@ const meta: Meta<typeof ActionButtonGroup> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Disabled: Story = {};
+export const Default: Story = {};
