@@ -17,7 +17,7 @@ function CreatorLandingPage() {
   return (
     <GarlandLayout>
       <EnvelopeLayout />
-      <div className="flex flex-1 items-center justify-center min-h-dvh px-6">
+      <div className="flex h-full items-center justify-center px-6">
         <IntroCard />
       </div>
     </GarlandLayout>
