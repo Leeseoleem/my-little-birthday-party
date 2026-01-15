@@ -27,7 +27,6 @@ export const CandleSlot = ({
       className={clsx(
         "absolute",
         "z-30",
-        // 크기는 무조건 고정 25px
         "box-border rounded-full",
         "border border-dashed",
         "transition-colors duration-200 ease-out",
