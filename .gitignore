@@ -25,3 +25,6 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# TanStack Router temporary files
+.tanstack/tmp/
