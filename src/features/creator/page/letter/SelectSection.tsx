@@ -15,7 +15,7 @@ export default function SelectSection({
   onItemClick,
 }: SelectSectionProps) {
   return (
-    <div className="flex h-full x-full">
+    <div className="flex h-full w-full">
       <CarouselLayout
         items={LETTER_PAPER_ITEMS}
         type={type}
