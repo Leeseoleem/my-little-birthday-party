@@ -1,29 +1,59 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-import ProfileBubble from "../../features/creator/components/ProfileBubble";
+import { pageLayout } from "../../components/shared/styles/pageLayout";
+
+import PageTitle from "../../components/ui/PageTitle";
+import { GuestDialogueSection } from "../../features/creator/components/GuestDialogueSection";
 import BottomActionSlot from "../../components/layout/frame/BottomActionSlot";
 import CommonLinkButton from "../../components/ui/Button/CommonLinkButton";
 
 export const Route = createFileRoute("/creator/guests")({
   staticData: {
     creatorHeader: {
+      kind: "progress-exit",
       value: 1.0,
-      fallbackTo: "/creator/cake/build",
     },
   },
   component: CreatorGuestSelectPage,
 });
 
 function CreatorGuestSelectPage() {
-  const [guestName, setGuestName] = useState("");
-  return (
-    <div className="flex flex-1 flex-col justify-center">
-      <p>캐릭터 선택</p>
+  const DEFAULT_GUEST_LINES = {
+    raccoon: "어서와, 여긴 내가 만든 파티! 즐길 준비 됐지?",
+    cat: "냥! 생일엔 역시 케이크지!",
+    hedgehog: "축하합니다! 당신은 고슴도치의 행운을 받았습니다.",
+  };
 
-      <ProfileBubble value={guestName} onChange={setGuestName} />
+  const [raccoonLine, setRaccoonLine] = useState(DEFAULT_GUEST_LINES.raccoon);
+  const [catLine, setCatLine] = useState(DEFAULT_GUEST_LINES.cat);
+  const [hedgehogLine, setHedgehogLine] = useState(
+    DEFAULT_GUEST_LINES.hedgehog
+  );
+
+  const isDisabled =
+    !raccoonLine.trim() || !catLine.trim() || !hedgehogLine.trim();
+
+  return (
+    <div className={pageLayout}>
+      <PageTitle
+        title="파티를 마무리하기 전에"
+        subTitle="파티에 있는 친구들이 짧은 인사를 남길 수 있어요"
+      />
+      <GuestDialogueSection
+        dialogues={{
+          raccoon: { value: raccoonLine, onChange: setRaccoonLine },
+          cat: { value: catLine, onChange: setCatLine },
+          hedgehog: { value: hedgehogLine, onChange: setHedgehogLine },
+        }}
+      />
       <BottomActionSlot>
-        <CommonLinkButton label="6. 링크 생성 완료로" to="/creator/complete" />
+        <CommonLinkButton
+          isDisabled={isDisabled}
+          label="초대장 완성하기"
+          to="/creator/complete"
+          replace
+        />
       </BottomActionSlot>
     </div>
   );

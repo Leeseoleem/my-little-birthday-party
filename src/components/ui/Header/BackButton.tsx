@@ -1,8 +1,11 @@
 import { useCanGoBack, useNavigate } from "@tanstack/react-router";
 import type { LinkProps } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
 
-interface BackButtonProps {
+import clsx from "clsx";
+import { ChevronLeft } from "lucide-react";
+import { buttonContainer, buttonBg } from "./button.styles";
+
+export interface BackButtonProps {
   fallbackTo?: LinkProps["to"]; // 오류시 실제로 넘어갈 페이지
   onClickBack?: () => void;
 }
@@ -32,12 +35,12 @@ export const BackButton = ({ fallbackTo, onClickBack }: BackButtonProps) => {
 
   return (
     <button
-      className="cursor-pointer"
+      className={clsx(buttonContainer, buttonBg)}
       type="button"
       onClick={handleBack}
       aria-label="뒤로 가기"
     >
-      <ChevronLeft color="#2B2B2B" />
+      <ChevronLeft className="text-gray-60" size={20} />
     </button>
   );
 };

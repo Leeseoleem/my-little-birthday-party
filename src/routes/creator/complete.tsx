@@ -2,9 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import GarlandLayout from "../../components/layout/page/GarlandLayout";
 import CreatorShareSection from "../../features/creator/components/CreatorShareSection";
+import EnvelopeLayout from "../../components/layout/page/EnvelopeLayout";
 
 export const Route = createFileRoute("/creator/complete")({
   staticData: {
+    creatorHeader: {
+      kind: "close",
+    },
     creatorLayout: {
       isFullBleed: true,
     },
@@ -14,9 +18,11 @@ export const Route = createFileRoute("/creator/complete")({
 
 function CreatorCompletePage() {
   return (
-    <GarlandLayout>
-      <div className="h-full min-h-0 overflow-y-auto">
-        <div className="flex flex-1 min-h-full items-center justify-center py-12 md:py-18 lg:py-25">
+    <GarlandLayout hasHeader>
+      <EnvelopeLayout />
+      <div className="fixed inset-0 bg-black/4 backdrop-blur-[2px] z-5 pointer-events-none" />
+      <div className="flex justify-center items-center">
+        <div className="flex h-full py-8 mdh:py-16 lgh:py-25">
           <CreatorShareSection
             info={{
               inviteeName: "이서림",

@@ -13,6 +13,10 @@
 
   /* 말풍선 용 그림자 */
   --shadow-bubble: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* drop-shadow 전용 */
+  --ds-letter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.18));
+  --ds-floating: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 @layer utilities {
@@ -39,5 +43,15 @@
   /* 말풍선 용 그림자 */
   .shadow-bubble {
     box-shadow: var(--shadow-bubble);
+  }
+}
+
+@layer utilities {
+  .drop-shadow-floating {
+    filter: var(--ds-floating);
+  }
+
+  .drop-shadow-letter {
+    filter: var(--ds-letter);
   }
 }

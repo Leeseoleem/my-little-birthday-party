@@ -26,13 +26,9 @@ export default function LetterPaperLayout({
         <div
           className={clsx(
             "absolute inset-0 flex flex-col items-start justify-start",
-            "px-[32px] pt-[80px] pb-[40px]",
-            "md:px-[48px] md:pt-[100px] md:pb-[50px]",
-            "lg:px-[60px] lg:pt-[120px] lg:pb-[60px]"
+            // 이미지(600x850) 대비 비율 패딩: 이미지 크기에 따라 자동 스케일
+            "px-[15%] pt-[24%] pb-[15%]"
           )}
-          style={{
-            aspectRatio: "600/850", // 편지지 이미지의 실제 비율
-          }}
         >
           {children}
         </div>

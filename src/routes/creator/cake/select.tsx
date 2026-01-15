@@ -9,8 +9,8 @@ import CakeSelectSection from "../../../features/creator/components/CakeSelectSe
 export const Route = createFileRoute("/creator/cake/select")({
   staticData: {
     creatorHeader: {
-      value: 0.6,
-      fallbackTo: "/creator/letter",
+      kind: "progress-exit",
+      value: 0.5,
     },
   },
   component: CreatorCakeSelectPage,
@@ -24,12 +24,13 @@ function CreatorCakeSelectPage() {
         title="케이크 선택하기"
         subTitle="마음에 드는 케이크를 골라주세요"
       />
-      <div className="flex flex-1 max-h-full overflow-hidden">
+      <div className="flex flex-1 min-h-0 overflow-hidden">
         <CakeSelectSection
           type={cakeType}
           onTypeChange={(type) => setCakeType(type)}
           buttonProps={{
-            to: "/creator/cake/build",
+            to: "/creator/cake/build/$cakeType",
+            params: { cakeType: cakeType },
           }}
         />
       </div>

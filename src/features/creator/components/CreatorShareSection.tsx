@@ -29,7 +29,9 @@ export default function CreatorShareSection({
         <p className="text-letter-default-responsive text-gray-60">
           이제 남은 건, 전하는 것 뿐이에요
         </p>
-        <CommonLinkButton label="메인으로" to="/creator" {...linkProps} />
+        <div className="w-full flex justify-center">
+          <CommonLinkButton label="메인으로" to="/creator" {...linkProps} />
+        </div>
       </div>
     </InvitationCardFrame>
   );

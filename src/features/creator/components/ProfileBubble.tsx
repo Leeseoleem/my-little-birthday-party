@@ -16,7 +16,7 @@ const ProfileBubble = ({
   return (
     <div className="flex flex-row gap-6">
       <img
-        className="w-[50px] h-[50px] md:w-[64px] md:h-[64px] lg:w-[80px] lg:h-[80px] rounded-full object-cover"
+        className="w-[50px] h-[50px] mdh:w-[64px] mdh:h-[64px] lgh:w-[80px] lgh:h-[80px] rounded-full object-cover"
         src={CHARACTER_PRESET[characterType].src}
         alt={CHARACTER_PRESET[characterType].alt}
       />

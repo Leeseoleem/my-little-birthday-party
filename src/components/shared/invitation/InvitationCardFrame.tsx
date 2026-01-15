@@ -14,10 +14,11 @@ export default function InvitationCardFrame({
   return (
     <div
       className="bg-[url('/assets/textures/paper-crumpled-white.png')]
+          z-10
           bg-no-repeat
           bg-center
-          bg-size-[100%_100%]
-          flex flex-col justify-center items-start pb-6 pt-9 px-8 md:px-12 lg:px-15 gap-6"
+          w-fit h-fit
+          flex flex-col justify-center items-start pb-6 pt-9 px-8 mdh:px-12 lgh:px-15 gap-6"
     >
       <InvitationHeader />
       <div className="w-full h-[1.5px] bg-gray-50" />
@@ -25,7 +26,7 @@ export default function InvitationCardFrame({
       <img
         alt="" // 장식용 이미지이므로 스크린 리더가 건너뛸 수 있게 공백 처리
         src="/assets/decor/invitation-complete.png"
-        className="w-[200px] md:w-[350px] lg:w-[500px]"
+        className="w-[200px] mdh:w-[350px] lgh:w-[500px]"
       />
       <div className="w-full h-[1.5px] bg-gray-50" />
       {/* 하단 영역 */}
