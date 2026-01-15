@@ -1,19 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { useState } from "react";
+import clsx from "clsx";
 
-import {
-  LONG_CANDLE_OPTIONS,
-  SHORT_CANDLE_OPTIONS,
-  SPECIAL_CANDLE_OPTIONS,
-} from "../../../features/creator/data/candleOption.data";
-import type { CakeType } from "../../../features/types/cake.types";
-import { CAKE_MENU } from "../../../features/creator/data/cakeMenu.data";
+import { useBeforeUnloadWarning } from "../../../hooks/useBeforeUnloadWarning";
+import { pageLayout } from "../../../components/shared/styles/pageLayout";
+import { isCakeType } from "../../../features/creator/utils/isCakeType";
 
-import CandleTabSection from "../../../features/creator/components/CandleTabSection";
-import { CandleOptionGroup } from "../../../features/creator/components/CandleOptionGroup";
+import CakeStackWithSlots from "../../../features/creator/components/build/CakeStackWithSlots";
+import CandlePickerSheet from "../../../features/creator/components/build/CandlePickerSheet";
 import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
 import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
+import PageTitle from "../../../components/ui/PageTitle";
+import type { CakeType } from "../../../features/types/cake.types";
 
 export const Route = createFileRoute("/creator/cake/build/$cakeType")({
   staticData: {
@@ -29,44 +27,87 @@ export const Route = createFileRoute("/creator/cake/build/$cakeType")({
 });
 
 function CreatorCakeBuildPage() {
+  const router = useRouter();
+
   // params로 넘어온 케이크 값
   const { cakeType } = Route.useParams();
-  const selectCake: CakeType = cakeType as CakeType;
-  console.log(cakeType);
 
-  const selectCakeMenu = CAKE_MENU.find((m) => {
-    return m.type === selectCake;
-  });
+  if (!isCakeType(cakeType)) {
+    router.navigate({ to: "/creator/cake/select", replace: true });
+  }
 
+  const selectCakeType = cakeType as CakeType;
+
+  // 촛불 선택 영역 관리
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string>("");
 
-  const handleClose = () => {
+  // 현재 편집중인 Slot
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  // 슬롯별 배치 상태 (index -> candleId)
+  const [placedIds, setPlacedIds] = useState<
+    Record<number, string | undefined>
+  >({});
+
+  const handleSlotClick = (index: number) => {
+    setActiveIndex(index);
+    // 여기서 하단 촛불 선택 메뉴 열기
+    setIsOpen(true);
+  };
+
+  const resetCandlePicker = () => {
+    setActiveIndex(null);
+    setSelectedId("");
     setIsOpen(false);
-    setSelectedId(""); // 닫을 때만 초기화
   };
 
-  const handleToggle = () => {
-    setIsOpen((prev) => {
-      const next = !prev;
+  const handlePickCandle = (id: string) => {
+    setSelectedId(id);
 
-      // 닫히는 순간에만 초기화
-      if (prev === true && next === false) {
-        setSelectedId("");
-      }
+    // 어떤 슬롯을 골랐는지 알아야 배치가 가능
+    if (activeIndex === null) return;
 
-      return next;
-    });
+    setPlacedIds((prev) => ({
+      ...prev,
+      [activeIndex]: id,
+    }));
+
+    resetCandlePicker();
   };
+
+  // 촛불 배치 여부
+  const hasAnyValidPlaced = Object.values(placedIds).some(
+    (id): id is string => typeof id === "string" && id.length > 0
+  );
+
+  // 새로고침 제어 조건
+  const shouldWarnOnRefresh = hasAnyValidPlaced;
+
+  useBeforeUnloadWarning({
+    when: shouldWarnOnRefresh,
+  });
+
   return (
-    <div className="relative flex h-full flex-col overflow-hidden">
+    <div
+      className={clsx(
+        pageLayout,
+        "px-4 mdh:px-12 xl:px-25 relative overflow-hidden"
+      )}
+    >
+      <PageTitle
+        title="케이크 꾸미기"
+        subTitle="케이크에 어울리는 초를 골라주세요"
+      />
+
       {/* 메인 콘텐츠 영역 */}
-      <div className="flex-1 flex justify-center items-center bg-amber-200">
-        <img
-          alt={selectCakeMenu?.menuName}
-          src={selectCakeMenu?.imageSrc}
-          className="block h-full min-h-[200px] max-h-[500px] object-contain drop-shadow-md drop-shadow-black/30 select-none"
+      <div className="flex-1 flex justify-center items-center px-4">
+        <CakeStackWithSlots
+          cakeType={selectCakeType}
+          placedIds={placedIds}
+          onSlotClick={handleSlotClick}
         />
+        <img />
       </div>
 
       {/* 하단 버튼(아래 레이어) */}
@@ -74,68 +115,23 @@ function CreatorCakeBuildPage() {
         <div className="absolute inset-x-0 bottom-0 z-10">
           <BottomActionSlot>
             <div className="flex w-full justify-center">
-              <CommonLinkButton label="완성했어요" to="/creator/guests" />
+              <CommonLinkButton
+                isDisabled={!hasAnyValidPlaced}
+                label="완성했어요"
+                to="/creator/guests"
+              />
             </div>
           </BottomActionSlot>
         </div>
       )}
 
-      {/* 하단 패널(위 레이어) */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* 1) 배경(backdrop): CandleTabSection 제외 영역 클릭 시 닫기 */}
-            <motion.button
-              type="button"
-              className="absolute inset-0 z-10 cursor-default bg-black/20 backdrop-blur-xs"
-              aria-label="close overlay"
-              onClick={handleClose}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            />
-
-            {/* 2) 하단 패널 영역 */}
-            <motion.div
-              className="absolute inset-x-0 bottom-0 z-20"
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <CandleTabSection
-                pages={{
-                  long: (
-                    <CandleOptionGroup
-                      options={LONG_CANDLE_OPTIONS}
-                      value={selectedId}
-                      onChange={setSelectedId}
-                    />
-                  ),
-                  short: (
-                    <CandleOptionGroup
-                      options={SHORT_CANDLE_OPTIONS}
-                      value={selectedId}
-                      onChange={setSelectedId}
-                    />
-                  ),
-                  special: (
-                    <CandleOptionGroup
-                      options={SPECIAL_CANDLE_OPTIONS}
-                      value={selectedId}
-                      onChange={setSelectedId}
-                    />
-                  ),
-                }}
-              />
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* 하단 패널 영역 */}
+      <CandlePickerSheet
+        isOpen={isOpen}
+        onClickBackdrop={resetCandlePicker}
+        selectedId={selectedId}
+        onPick={handlePickCandle}
+      />
     </div>
   );
 }
