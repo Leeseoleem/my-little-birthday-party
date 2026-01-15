@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import clsx from "clsx";
+import { pageLayout } from "../../components/shared/styles/pageLayout";
+
 // ----- 컴포넌트 -----
 import InvitationCreateCard from "../../features/creator/components/InvitationCreateCard";
 import BottomActionSlot from "../../components/layout/frame/BottomActionSlot";
@@ -29,8 +32,8 @@ function CreatorInfoPage() {
   const isDisabled = !inviteeName.trim() || !inviteeBirthDate.trim();
 
   return (
-    <div className="flex flex-1 flex-col justify-center">
-      <div className="flex-1 flex items-center justify-center">
+    <div className={clsx(pageLayout, "gap-6")}>
+      <div className="flex-1 flex items-center justify-center py-4 mdh:py-3 lgh:py-2">
         <InvitationCreateCard
           nameField={{
             value: inviteeName,
