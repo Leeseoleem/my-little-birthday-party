@@ -17,8 +17,8 @@ export default function CakeStack({ cakeSrc }: { cakeSrc: string }) {
         className="
           absolute
           left-1/2
-          bottom-[15%]      /* 120px → 비율 */
-          w-[72%]           /* 좌우 85px → 비율 */
+          bottom-[15%] 
+          w-[72%]
           -translate-x-1/2
           select-none pointer-events-none
           z-2
