@@ -107,7 +107,6 @@ function CreatorCakeBuildPage() {
           placedIds={placedIds}
           onSlotClick={handleSlotClick}
         />
-        <img />
       </div>
 
       {/* 하단 버튼(아래 레이어) */}
