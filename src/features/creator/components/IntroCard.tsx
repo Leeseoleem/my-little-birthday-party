@@ -14,7 +14,7 @@ const IntroCard = () => {
       <img
         src="/assets/brand/title-logo.png"
         alt="나의 작은 생일 파티"
-        className="h-full min-h-[300px] x-auto"
+        className="h-full min-h-[300px] w-auto"
       />
       <div className="flex w-full justify-center items-center">
         <CommonLinkButton label="시작하기" to="/creator/info" />
