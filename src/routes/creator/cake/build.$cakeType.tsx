@@ -1,4 +1,4 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -23,18 +23,17 @@ export const Route = createFileRoute("/creator/cake/build/$cakeType")({
       value: 0.75,
     },
   },
+  beforeLoad: ({ params }) => {
+    if (!isCakeType(params.cakeType)) {
+      throw redirect({ to: "/creator/cake/select", replace: true });
+    }
+  },
   component: CreatorCakeBuildPage,
 });
 
 function CreatorCakeBuildPage() {
-  const router = useRouter();
-
   // params로 넘어온 케이크 값
   const { cakeType } = Route.useParams();
-
-  if (!isCakeType(cakeType)) {
-    router.navigate({ to: "/creator/cake/select", replace: true });
-  }
 
   const selectCakeType = cakeType as CakeType;
 
