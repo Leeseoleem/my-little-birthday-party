@@ -6,34 +6,52 @@ import { CandleSlot } from "./CandleSlot";
 
 import { CAKE_MENU } from "../../data/cakeMenu.data";
 import { CAKE_CANDLE_POSITIONS } from "../../data/cake.candle-positions";
-import type { CakeType } from "../../../types/cake.types";
+import { PARTY_Z_ORDER, type CakeType } from "../../../types/cake.types";
+
+import { toCircleCenterPoint } from "../../utils/toCircleCenterPoint";
+import { getCandleImageSrcById } from "../../utils/candleOptions";
 
 const BASE_WIDTH = 900; // 좌표계 기준 가로 폭(고정)
+
+type Props = {
+  cakeType: CakeType;
+  className?: string;
+
+  /**
+   * 슬롯별 배치된 촛불 id
+   * - index 기준으로 관리 (현재 onSlotClick이 index 기반이므로)
+   * - 비어있으면 undefined
+   */
+  placedIds: Record<number, string | undefined>;
+
+  /**
+   * 슬롯(또는 촛불)을 클릭하면 호출됨
+   * - 부모는 activeIndex를 잡고, 하단 메뉴를 열면 됨
+   */
+  onSlotClick?: (index: number) => void;
+};
 
 export default function CakeStackWithSlots({
   cakeType,
   className,
+  placedIds,
   onSlotClick,
-}: {
-  cakeType: CakeType;
-  className?: string;
-  onSlotClick?: (index: number) => void; // 필요 없으면 제거해도 됨
-}) {
-  // 1) 렌더 폭을 재기 위한 래퍼 ref
+}: Props) {
+  // 렌더 폭을 재기 위한 래퍼 ref
   const wrapRef = useRef<HTMLDivElement | null>(null);
 
-  // 2) 현재 렌더 폭 / 900 = scale
+  // 현재 렌더 폭 / 900 = scale
   const [scale, setScale] = useState(1);
 
-  // 3) 케이크 이미지 메뉴
+  // 케이크 이미지 메뉴
   const menu = useMemo(() => {
     return CAKE_MENU.find((m) => m.type === cakeType);
   }, [cakeType]);
 
-  // 4) 케이크 타입별 좌표 레이아웃
+  // 케이크 타입별 좌표 레이아웃
   const layout = CAKE_CANDLE_POSITIONS[cakeType];
 
-  // 5) ResizeObserver로 폭 변화 감지 → scale 업데이트
+  // ResizeObserver로 폭 변화 감지 → scale 업데이트
   useLayoutEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
@@ -58,8 +76,10 @@ export default function CakeStackWithSlots({
     return () => ro.disconnect();
   }, []);
 
-  // menu가 없으면 렌더 불가 (cakeType이 유효하면 사실상 발생 안 함)
   if (!menu) return null;
+
+  // single/multiple을 slots 배열로 통일해서 렌더 단순화
+  const slots = layout.kind === "single" ? [layout.slot] : layout.slots;
 
   return (
     <div
@@ -69,27 +89,98 @@ export default function CakeStackWithSlots({
       {/* 판 + 케이크 */}
       <CakeStack cakeSrc={menu.imageSrc} />
 
-      {/* 슬롯 레이어: CakeStack 위에 그대로 덮는다 */}
+      {/* 슬롯/촛불 레이어 */}
       <div className="absolute inset-0 z-10">
-        {layout.kind === "single" && (
-          <CandleSlot
-            left={layout.point.x}
-            top={layout.point.y}
-            scale={scale}
-            onClick={() => onSlotClick?.(0)}
-          />
-        )}
+        {slots.map((slot, index) => {
+          // 원 중심좌표 반환
+          const center = toCircleCenterPoint({ x: slot.x, y: slot.y });
 
-        {layout.kind === "multiple" &&
-          layout.points.map((p, i) => (
+          // 현재 슬롯에 배치된 촛불 id
+          const candleId = placedIds[index];
+
+          // 촛불 이미지 src
+          const candleSrc = candleId ? getCandleImageSrcById(candleId) : null;
+
+          // 각 촛불 별 z-index
+          const zOrder = PARTY_Z_ORDER[slot.key] ?? 0;
+
+          // 배치된 촛불이 있으면 촛불 이미지 표시
+          if (candleSrc) {
+            return (
+              <div
+                key={`candle-${index}`}
+                onClick={() => onSlotClick?.(index)}
+                className="absolute"
+                style={{
+                  // 중심 좌표에 맞춰 배치
+                  left: center.x * scale,
+                  top: center.y * scale,
+
+                  overflow: "visible",
+
+                  // 중심점을 요소의 bottom으로 설정
+                  transform: `translate(-50%, -75%) scale(${scale})`,
+                  // 버튼 기본 스타일 제거
+                  padding: 0,
+                  border: 0,
+                  background: "transparent",
+                  pointerEvents: "none",
+
+                  zIndex: 10 + zOrder,
+                }}
+              >
+                <img
+                  src={candleSrc}
+                  alt=""
+                  draggable={false}
+                  style={{
+                    display: "block",
+
+                    // 모든 촛불의 기준 높이
+                    height: 300,
+                    width: "auto",
+                    objectFit: "contain",
+                    pointerEvents: "none",
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => onSlotClick?.(index)}
+                  style={{
+                    position: "absolute",
+
+                    // 촛불 컨테이너의 바닥 기준 위치에서 위로 300 영역을 덮게
+                    left: "50%",
+                    bottom: 0,
+                    transform: "translateX(-50%)",
+
+                    // 히트박스 크기(원본 기준). 컨테이너 scale이 같이 적용됨.
+                    width: 25,
+                    height: 200,
+
+                    padding: 0,
+                    border: 0,
+                    // background: "transparent",
+                    pointerEvents: "all",
+                    cursor: "pointer",
+                  }}
+                  aria-label={`candle-${index}`}
+                />
+              </div>
+            );
+          }
+
+          // 배치된 촛불이 없거나 src 매핑이 실패하면 슬롯 표시
+          return (
             <CandleSlot
-              key={`${p.x}-${p.y}`}
-              left={p.x}
-              top={p.y}
+              key={`slot-${index}`}
+              left={center.x}
+              top={center.y}
               scale={scale}
-              onClick={() => onSlotClick?.(i)}
+              onClick={() => onSlotClick?.(index)}
             />
-          ))}
+          );
+        })}
       </div>
     </div>
   );
