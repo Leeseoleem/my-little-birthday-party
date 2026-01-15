@@ -10,6 +10,7 @@ const meta: Meta<typeof ActionButtonGroup> = {
     onClickText: fn(),
     buttonProps: {
       label: "버튼 라벨",
+      to: "/",
     },
   },
 };
