@@ -20,8 +20,8 @@ function CreatorCompletePage() {
   return (
     <GarlandLayout hasHeader>
       <EnvelopeLayout />
-      <div className="fixed inset-0 bg-black/4 backdrop-blur-[2px] z-0 pointer-events-none" />
-      <div className="flex-1 flex justify-center items-center">
+      <div className="fixed inset-0 bg-black/4 backdrop-blur-[2px] z-5 pointer-events-none" />
+      <div className="flex justify-center items-center">
         <div className="flex h-full py-8 mdh:py-16 lgh:py-25">
           <CreatorShareSection
             info={{
