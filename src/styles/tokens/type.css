@@ -23,6 +23,7 @@
 
   /* letter line heights */
   --letter-lh: 30px;
+  --letter-lh-md: 20px;
   --letter-lh-bs: 18px;
 }
 

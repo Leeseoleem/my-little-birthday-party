@@ -58,15 +58,17 @@ function CreatorLetterPage() {
         </div>
       )}
       {mode === "write" && (
-        <WriteSection
-          editor={{
-            type: paperType,
-            value: letterText,
-            onChange: setLetterText,
-          }}
-          isDisabled={letterText.length < 5}
-          onClickText={() => setMode("select")}
-        />
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <WriteSection
+            editor={{
+              type: paperType,
+              value: letterText,
+              onChange: setLetterText,
+            }}
+            isDisabled={letterText.length < 5}
+            onClickText={() => setMode("select")}
+          />
+        </div>
       )}
     </div>
   );

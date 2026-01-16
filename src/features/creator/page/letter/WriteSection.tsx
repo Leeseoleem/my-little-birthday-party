@@ -16,8 +16,10 @@ export default function WriteSection({
   isDisabled = false,
 }: WriteSectionProps) {
   return (
-    <>
-      <CreatorLetterEditor {...editor} />
+    <div className="flex flex-col h-full justify-center">
+      <div className="flex-1 min-h-0 h-full overflow-hidden">
+        <CreatorLetterEditor {...editor} />
+      </div>
       <BottomActionSlot>
         <ActionButtonGroup
           onClickText={onClickText}
@@ -28,6 +30,6 @@ export default function WriteSection({
           }}
         />
       </BottomActionSlot>
-    </>
+    </div>
   );
 }
