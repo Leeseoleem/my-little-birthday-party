@@ -2,14 +2,14 @@
 
 /* md (width >= 48rem) + min-height 700 */
 @custom-variant mdh {
-  @media (width >= 48rem) and (height >= 700px) {
+  @media (min-width: 768px) and (min-height: 700px) {
     @slot;
   }
 }
 
 /* lg (width >= 64rem) + min-height 800 */
 @custom-variant lgh {
-  @media (width >= 64rem) and (height >= 800px) {
+  @media (min-width: 1024px) and (min-height: 800px) {
     @slot;
   }
 }
