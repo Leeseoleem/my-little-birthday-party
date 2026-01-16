@@ -30,7 +30,7 @@ const CreatorLetterEditor = ({
   onChange,
 }: CreatorLetterEditorProps) => {
   const areaClass = clsx(
-    "h-full w-full bg-transparent resize-none border-0 focus:outline-none focus:rounded-md text-left whitespace-pre-wrap wrap-break-word",
+    "flex-1 min-h-0 w-full bg-transparent resize-none border-0 focus:outline-none focus:rounded-md text-left whitespace-pre-wrap break-words overflow-auto",
     type === "night" ? "focus-within:bg-white/20" : "focus-within:bg-white/40"
   );
   const textClass = clsx(
