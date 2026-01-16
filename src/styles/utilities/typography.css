@@ -87,13 +87,13 @@
   line-height: var(--lh-sub-title);
 
   /* 태블릿 (md: 768px) */
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (min-height: 700px) {
     font-size: var(--size-title-03);
     line-height: var(--lh-title-03);
   }
 
   /* 데스크탑 (lg: 1024px) */
-  @media (min-width: 1024px) {
+  @media (min-width: 1024px) and (min-height: 800px) {
     font-size: var(--size-title-02);
     line-height: var(--lh-title-02);
   }
@@ -116,18 +116,24 @@
   letter-spacing: var(--tracking-normal);
 }
 
-/* 반응형 text-letter 조합 */
+/* ----- 반응형 text-letter 조합 ----- */
 @utility text-letter-default-responsive {
   font-family: var(--font-letter-system);
   letter-spacing: var(--tracking-normal);
 
   /* 모바일 (기본) */
-  font-size: var(--size-small);
+  font-size: var(--size-caption);
   line-height: var(--letter-lh-bs);
 
-  /* 태블릿 (md: 768px) */
-  @media (min-width: 768px) {
+  /* 태블릿 (mdh: 768px) */
+  @media (min-width: 768px) and (min-height: 700px) {
     font-size: var(--size-small);
+    line-height: var(--letter-lh-md);
+  }
+
+  /* 데스크탑 (lgh: 1024px) */
+  @media (min-width: 1024px) and (min-height: 800px) {
+    font-size: var(--size-body);
     line-height: var(--letter-lh);
   }
 }
@@ -140,9 +146,15 @@
   font-size: var(--size-caption);
   line-height: var(--letter-lh-bs);
 
-  /* 태블릿 (md: 768px) */
-  @media (min-width: 768px) {
+  /* 태블릿 (mdh: 768px) */
+  @media (min-width: 768px) and (min-height: 700px) {
     font-size: var(--size-small);
+    line-height: var(--letter-lh-md);
+  }
+
+  /* 데스크탑 (lgh: 1024px) */
+  @media (min-width: 1024px) and (min-height: 800px) {
+    font-size: var(--size-body);
     line-height: var(--letter-lh);
   }
 }
@@ -155,9 +167,15 @@
   font-size: var(--size-caption);
   line-height: var(--letter-lh-bs);
 
-  /* 태블릿 (md: 768px) */
-  @media (min-width: 768px) {
+  /* 태블릿 (mdh: 768px) */
+  @media (min-width: 768px) and (min-height: 700px) {
     font-size: var(--size-small);
+    line-height: var(--letter-lh-md);
+  }
+
+  /* 데스크탑 (lgh: 1024px) */
+  @media (min-width: 1024px) and (min-height: 800px) {
+    font-size: var(--size-body);
     line-height: var(--letter-lh);
   }
 }
