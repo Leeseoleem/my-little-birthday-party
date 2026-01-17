@@ -1,7 +1,7 @@
-import CarouselLayout from "../../../../components/layout/frame/CarouselLayout";
+import CarouselLayout from "../../../../../components/layout/frame/CarouselLayout";
 
-import type { CarouselItemType } from "../../../../components/layout/frame/CarouselLayout";
-import { LETTER_PAPER_ITEMS } from "../../../types/letterPaper.types";
+import type { CarouselItemType } from "../../../../../components/layout/frame/CarouselLayout";
+import { LETTER_PAPER_ITEMS } from "../../../../types/letterPaper.types";
 
 interface SelectSectionProps<T extends CarouselItemType = CarouselItemType> {
   type: T;

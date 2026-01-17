@@ -1,8 +1,8 @@
 import CreatorLetterEditor, {
   type CreatorLetterEditorProps,
-} from "../../components/CreatorLetterEditor";
-import BottomActionSlot from "../../../../components/layout/frame/BottomActionSlot";
-import ActionButtonGroup from "../../../../components/ui/Button/ActionButtonGroup";
+} from "../../CreatorLetterEditor";
+import BottomActionSlot from "../../../../../components/layout/frame/BottomActionSlot";
+import ActionButtonGroup from "../../../../../components/ui/Button/ActionButtonGroup";
 
 interface WriteSectionProps {
   editor: CreatorLetterEditorProps;
