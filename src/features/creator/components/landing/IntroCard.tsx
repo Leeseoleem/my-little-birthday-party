@@ -1,4 +1,4 @@
-import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
+import CommonLinkButton from "../../../../components/ui/Button/CommonLinkButton";
 
 const IntroCard = () => {
   return (
