@@ -9,7 +9,7 @@ const meta: Meta<typeof CakeSelectSection> = {
   tags: ["autodocs"],
   args: {
     buttonProps: {
-      to: "/creator/cake/build",
+      to: "/",
     },
   },
 };
