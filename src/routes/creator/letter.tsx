@@ -7,11 +7,11 @@ import { useBeforeUnloadWarning } from "../../hooks/useBeforeUnloadWarning";
 import PageTitle from "../../components/ui/PageTitle";
 
 // --- type: select 모드 컴포넌트 ---
-import SelectSection from "../../features/creator/page/letter/SelectSection";
+import SelectSection from "../../features/creator/components/letter/sections/SelectSection";
 
 // --- type: write 모드 컴포넌트 ---
 import { type LetterPaperType } from "../../features/types/letterPaper.types";
-import WriteSection from "../../features/creator/page/letter/WriteSection";
+import WriteSection from "../../features/creator/components/letter/sections/WriteSection";
 
 // --- style ---
 import { pageLayout } from "../../components/shared/styles/pageLayout";

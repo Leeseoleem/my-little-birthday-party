@@ -4,7 +4,7 @@ import CarouselLayout, {
 
 import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
 
-import CakeMenuCard from "./CakeMenuCard";
+import CakeMenuCard from "./letter/CakeMenuCard";
 import type { CakeType } from "../../types/cake.types";
 import { CAKE_MENU } from "../data/cakeMenu.data";
 
