@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { pageLayout } from "../../components/shared/styles/pageLayout";
 
 // ----- 컴포넌트 -----
-import InvitationCreateCard from "../../features/creator/components/InvitationCreateCard";
+import InvitationCreateCard from "../../features/creator/components/info/InvitationCreateCard";
 import BottomActionSlot from "../../components/layout/frame/BottomActionSlot";
 import NoticeFrame from "../../components/layout/page/NoticeFrame";
 
