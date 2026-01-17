@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import GarlandLayout from "../../components/layout/page/GarlandLayout";
-import CreatorShareSection from "../../features/creator/components/CreatorShareSection";
+import CreatorShareSection from "../../features/creator/components/complete/CreatorShareSection";
 import EnvelopeLayout from "../../components/layout/page/EnvelopeLayout";
 
 export const Route = createFileRoute("/creator/complete")({

@@ -1,13 +1,13 @@
 import type { LinkProps } from "@tanstack/react-router";
 
 // 컴포넌트
-import InvitationCardFrame from "../../../components/shared/invitation/InvitationCardFrame";
-import type { InvitationInfoProps } from "../../../components/shared/invitation/InvitationInfo";
-import InvitationGuide from "../../../components/shared/invitation/InvitationGuide";
+import InvitationCardFrame from "../../../../components/shared/invitation/InvitationCardFrame";
+import type { InvitationInfoProps } from "../../../../components/shared/invitation/InvitationInfo";
+import InvitationGuide from "../../../../components/shared/invitation/InvitationGuide";
 import ShareButtons, {
   type ShareButtonsProps,
-} from "../../../components/shared/ShareButtons";
-import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
+} from "../../../../components/shared/ShareButtons";
+import CommonLinkButton from "../../../../components/ui/Button/CommonLinkButton";
 
 type CreatorShareSectionProps = {
   info: InvitationInfoProps;
