@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import CakeMenuCard from "./CakeMenuCard";
 
 const meta: Meta<typeof CakeMenuCard> = {
-  title: "Features/Creator/CakeMenuCard",
+  title: "Features/Creator/Select/CakeMenuCard",
   component: CakeMenuCard,
   tags: ["autodocs"],
 };
