@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import CandleTabSection from "./CandleTabSection";
 
 const meta: Meta<typeof CandleTabSection> = {
-  title: "Features/Creator/CandleTabSection",
+  title: "Features/Creator/Build/CandleTabSection",
   component: CandleTabSection,
   tags: ["autodocs"],
   args: {

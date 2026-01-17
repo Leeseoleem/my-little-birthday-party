@@ -4,7 +4,7 @@ import CakeSelectSection from "./CakeSelectSection";
 import type { CakeType } from "../../../../types/cake.types";
 
 const meta: Meta<typeof CakeSelectSection> = {
-  title: "Features/Creator/CakeSelectSection",
+  title: "Features/Creator/Select/CakeSelectSection",
   component: CakeSelectSection,
   tags: ["autodocs"],
   args: {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import ProfileBubble from "./ProfileBubble";
 
 const meta: Meta<typeof ProfileBubble> = {
-  title: "Features/Creator/ProfileBubble",
+  title: "Features/Creator/Guest/ProfileBubble",
   component: ProfileBubble,
   tags: ["autodocs"],
   argTypes: {

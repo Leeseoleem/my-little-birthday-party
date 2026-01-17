@@ -3,7 +3,7 @@ import { fn } from "storybook/test";
 import CreatorShareSection from "./CreatorShareSection";
 
 const meta: Meta<typeof CreatorShareSection> = {
-  title: "Features/Creator/CreatorShareSection",
+  title: "Features/Creator/Complete/CreatorShareSection",
   component: CreatorShareSection,
   tags: ["autodocs"],
   args: {
