@@ -1,6 +1,6 @@
 import CreatorLetterEditor, {
   type CreatorLetterEditorProps,
-} from "../../CreatorLetterEditor";
+} from "../CreatorLetterEditor";
 import BottomActionSlot from "../../../../../components/layout/frame/BottomActionSlot";
 import ActionButtonGroup from "../../../../../components/ui/Button/ActionButtonGroup";
 
