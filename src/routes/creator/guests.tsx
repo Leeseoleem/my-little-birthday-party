@@ -4,7 +4,7 @@ import { useState } from "react";
 import { pageLayout } from "../../components/shared/styles/pageLayout";
 
 import PageTitle from "../../components/ui/PageTitle";
-import { GuestDialogueSection } from "../../features/creator/components/GuestDialogueSection";
+import { GuestDialogueSection } from "../../features/creator/components/guest/GuestDialogueSection";
 import BottomActionSlot from "../../components/layout/frame/BottomActionSlot";
 import CommonLinkButton from "../../components/ui/Button/CommonLinkButton";
 
@@ -28,7 +28,7 @@ function CreatorGuestSelectPage() {
   const [raccoonLine, setRaccoonLine] = useState(DEFAULT_GUEST_LINES.raccoon);
   const [catLine, setCatLine] = useState(DEFAULT_GUEST_LINES.cat);
   const [hedgehogLine, setHedgehogLine] = useState(
-    DEFAULT_GUEST_LINES.hedgehog
+    DEFAULT_GUEST_LINES.hedgehog,
   );
 
   const isDisabled =
