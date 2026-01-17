@@ -14,15 +14,7 @@ export default function CakeStack({ cakeSrc }: { cakeSrc: string }) {
       <img
         src={cakeSrc}
         alt="cake"
-        className="
-          absolute
-          left-1/2
-          bottom-[15%] 
-          w-[72%]
-          -translate-x-1/2
-          select-none pointer-events-none
-          z-2
-        "
+        className="absolute left-1/2 bottom-[15%] w-[72%] -translate-x-1/2 select-none pointer-events-none z-2"
         draggable={false}
       />
     </div>
