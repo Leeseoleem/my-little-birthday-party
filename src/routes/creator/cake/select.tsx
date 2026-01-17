@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { CakeType } from "../../../features/types/cake.types";
 
 import PageTitle from "../../../components/ui/PageTitle";
-import CakeSelectSection from "../../../features/creator/components/CakeSelectSection";
+import CakeSelectSection from "../../../features/creator/components/cake-select/sections/CakeSelectSection";
 
 export const Route = createFileRoute("/creator/cake/select")({
   staticData: {

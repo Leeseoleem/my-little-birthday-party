@@ -1,7 +1,7 @@
-import MenuBoardLayout from "../../../components/layout/frame/MenuBoardLayout";
+import MenuBoardLayout from "../../../../components/layout/frame/MenuBoardLayout";
 import CommonLinkButton, {
   type CommonLinkButtonProps,
-} from "../../../components/ui/Button/CommonLinkButton";
+} from "../../../../components/ui/Button/CommonLinkButton";
 
 interface CakeMenuCardProps {
   menuContent: MenuContentProps;

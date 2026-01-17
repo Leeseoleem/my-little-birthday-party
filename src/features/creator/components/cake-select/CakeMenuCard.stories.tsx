@@ -17,7 +17,7 @@ export const Default: Story = {
       description: "메뉴 설명이 들어가는 자리입니다.\n여러 줄도 가능합니다.",
     },
     buttonProps: {
-      to: "/creator/cake/build",
+      to: "/",
     },
   },
 };
