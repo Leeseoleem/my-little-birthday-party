@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
 
-import LetterPaperLayout from "../../../components/layout/frame/LetterPaperLayout";
-import type { LetterPaperType } from "../../types/letterPaper.types";
+import LetterPaperLayout from "../../../../components/layout/frame/LetterPaperLayout";
+import type { LetterPaperType } from "../../../types/letterPaper.types";
 
-import { useLimitFeedback } from "../../../hooks/useLimitFeedback";
-import { useImeComposition } from "../../../hooks/useImeComposition";
+import { useLimitFeedback } from "../../../../hooks/useLimitFeedback";
+import { useImeComposition } from "../../../../hooks/useImeComposition";
 
 /**
  * CreatorLetterEditor
@@ -31,12 +31,12 @@ const CreatorLetterEditor = ({
 }: CreatorLetterEditorProps) => {
   const areaClass = clsx(
     "flex-1 min-h-0 w-full bg-transparent resize-none border-0 focus:outline-none focus:rounded-md text-left whitespace-pre-wrap break-words overflow-auto",
-    type === "night" ? "focus-within:bg-white/20" : "focus-within:bg-white/40"
+    type === "night" ? "focus-within:bg-white/20" : "focus-within:bg-white/40",
   );
   const textClass = clsx(
     type === "default" && "text-letter-default-responsive",
     type === "simple" && "text-letter-simple-responsive",
-    type === "night" && "text-letter-night-responsive text-gray-0"
+    type === "night" && "text-letter-night-responsive text-gray-0",
   );
 
   const { controls, triggerLimitFeedback } = useLimitFeedback();

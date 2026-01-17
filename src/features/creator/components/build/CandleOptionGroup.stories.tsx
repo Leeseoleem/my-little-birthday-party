@@ -1,10 +1,10 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { CandleOptionGroup } from "./CandleOptionGroup";
-import { LONG_CANDLE_OPTIONS } from "../data/candleOption.data";
+import { LONG_CANDLE_OPTIONS } from "../../data/candleOption.data";
 
 const meta: Meta<typeof CandleOptionGroup> = {
-  title: "Features/Creator/CandleOptionGroup",
+  title: "Features/Creator/Build/CandleOptionGroup",
   component: CandleOptionGroup,
   tags: ["autodocs"],
   args: {
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof CandleOptionGroup>;
 export const Default: Story = {
   render: (args) => {
     const [selectedId, setSelectedId] = useState<string>(
-      LONG_CANDLE_OPTIONS[0].id
+      LONG_CANDLE_OPTIONS[0].id,
     );
     return (
       <CandleOptionGroup

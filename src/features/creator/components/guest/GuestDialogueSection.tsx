@@ -1,5 +1,5 @@
 import ProfileBubble from "./ProfileBubble";
-import type { CharacterType } from "../../types/character.types";
+import type { CharacterType } from "../../../types/character.types";
 
 // 캐릭터 별 입력창
 export interface GuestDialogueValue {

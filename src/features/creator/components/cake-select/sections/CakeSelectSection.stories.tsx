@@ -1,15 +1,15 @@
 import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import CakeSelectSection from "./CakeSelectSection";
-import type { CakeType } from "../../types/cake.types";
+import type { CakeType } from "../../../../types/cake.types";
 
 const meta: Meta<typeof CakeSelectSection> = {
-  title: "Features/Creator/CakeSelectSection",
+  title: "Features/Creator/Select/CakeSelectSection",
   component: CakeSelectSection,
   tags: ["autodocs"],
   args: {
     buttonProps: {
-      to: "/creator/cake/build",
+      to: "/",
     },
   },
 };

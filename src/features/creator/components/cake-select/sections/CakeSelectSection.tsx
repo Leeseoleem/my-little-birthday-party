@@ -1,14 +1,14 @@
 import CarouselLayout, {
   type CarouselItem,
-} from "../../../components/layout/frame/CarouselLayout";
+} from "../../../../../components/layout/frame/CarouselLayout";
 
-import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
+import BottomActionSlot from "../../../../../components/layout/frame/BottomActionSlot";
 
-import CakeMenuCard from "./CakeMenuCard";
-import type { CakeType } from "../../types/cake.types";
-import { CAKE_MENU } from "../data/cakeMenu.data";
+import CakeMenuCard from "../CakeMenuCard";
+import type { CakeType } from "../../../../types/cake.types";
+import { CAKE_MENU } from "../../../data/cakeMenu.data";
 
-import type { CommonLinkButtonProps } from "../../../components/ui/Button/CommonLinkButton";
+import type { CommonLinkButtonProps } from "../../../../../components/ui/Button/CommonLinkButton";
 
 type CakeSelectProps = {
   type: CakeType; // 현재 선택된 케이크

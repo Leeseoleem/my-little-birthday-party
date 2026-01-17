@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import IntroCard from "./IntroCard";
 
 const meta: Meta<typeof IntroCard> = {
-  title: "Features/Creator/IntroCard",
+  title: "Features/Creator/landing/IntroCard",
   component: IntroCard,
   tags: ["autodocs"],
 };

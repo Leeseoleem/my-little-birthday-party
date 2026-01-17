@@ -1,6 +1,6 @@
-import InputBubble from "../../../components/ui/Bubble/InputBubble";
-import type { CharacterType } from "../../types/character.types";
-import { CHARACTER_PRESET } from "../data/characterProfile.data";
+import InputBubble from "../../../../components/ui/Bubble/InputBubble";
+import type { CharacterType } from "../../../types/character.types";
+import { CHARACTER_PRESET } from "../../data/characterProfile.data";
 
 interface ProfileBubbleProps {
   value: string;
