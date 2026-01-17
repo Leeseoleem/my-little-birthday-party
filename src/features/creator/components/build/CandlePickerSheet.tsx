@@ -1,6 +1,6 @@
 import BottomSheetOverlay from "./BottomSheetOverlay";
-import CandleTabSection from "../CandleTabSection";
-import { CandleOptionGroup } from "../CandleOptionGroup";
+import CandleTabSection from "./CandleTabSection";
+import { CandleOptionGroup } from "./CandleOptionGroup";
 
 import {
   LONG_CANDLE_OPTIONS,

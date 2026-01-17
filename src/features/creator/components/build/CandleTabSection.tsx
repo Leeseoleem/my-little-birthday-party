@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import clsx from "clsx";
 
-import type { CandleType } from "../../types/candle.types";
+import type { CandleType } from "../../../types/candle.types";
 
 export type CandleTabPages = Record<CandleType, React.ReactNode>;
 
@@ -37,7 +37,7 @@ export default function CandleTabSection({ pages }: { pages: CandleTabPages }) {
                 "text-gray-60 text-small mdh:text-body lgh:text-sub-title font-medium",
                 "data-[state=active]:text-gray-80 data-[state=active]:font-bold",
                 "data-[state=active]:bg-gray-0",
-                "outline-none focus-visible:ring-2 focus-visible:ring-gray-40"
+                "outline-none focus-visible:ring-2 focus-visible:ring-gray-40",
               )}
             >
               {tab.label}
