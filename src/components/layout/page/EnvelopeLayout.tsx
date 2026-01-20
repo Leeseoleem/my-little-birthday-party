@@ -10,7 +10,7 @@ export default function EnvelopeLayout() {
         "overflow-hidden",
         // 오브제이므로 인터랙션 차단
         "pointer-events-none select-none",
-        "flex px-4 mdh:px-15"
+        "flex px-4 mdh:px-15",
       )}
     >
       {/* 2) 실제 봉투 이미지 */}
@@ -25,7 +25,7 @@ export default function EnvelopeLayout() {
           // width 기준 + 비율 유지
           "w-full max-w-[800px] h-fit",
           // 세로 절반만 보이게
-          "translate-y-1/3"
+          "translate-y-1/3",
         )}
       />
     </div>

@@ -77,7 +77,7 @@ function CreatorCakeBuildPage() {
 
   // 촛불 배치 여부
   const hasAnyValidPlaced = Object.values(placedIds).some(
-    (id): id is string => typeof id === "string" && id.length > 0
+    (id): id is string => typeof id === "string" && id.length > 0,
   );
 
   // 새로고침 제어 조건
@@ -91,7 +91,7 @@ function CreatorCakeBuildPage() {
     <div
       className={clsx(
         pageLayout,
-        "px-4 mdh:px-12 xl:px-25 relative overflow-hidden"
+        "px-4 mdh:px-12 xl:px-25 relative overflow-hidden",
       )}
     >
       <PageTitle
@@ -112,7 +112,7 @@ function CreatorCakeBuildPage() {
       {!isOpen && (
         <div className="absolute inset-x-0 bottom-0 z-10">
           <BottomActionSlot>
-            <div className="flex w-full justify-center">
+            <div className="flex w-full justify-center px-4">
               <CommonLinkButton
                 isDisabled={!hasAnyValidPlaced}
                 label="완성했어요"

@@ -18,29 +18,35 @@ export default function GarlandLayout({
   children,
 }: GarlandLayoutProps) {
   return (
-    <div className="relative min-h-dvh">
+    <div
+      className={clsx(
+        "relative",
+        hasHeader ? "min-h-[calc(100dvh-3.6rem)]" : "min-h-dvh",
+      )}
+    >
       <div className="pointer-events-none fixed inset-0 z-0">
         {/* viewport에 fixed로 붙어있지만, 내부에서 '가운데 1024px 기준선'을 강제 생성 */}
         <div
           className={clsx(
-            "absolute left-1/2 h-full w-full max-w-[900px] -translate-x-1/2",
-            hasHeader ? "top-14" : "top-0"
+            "absolute left-1/2 h-full w-full max-w-[900px] -translate-x-1/2 top-0",
           )}
         >
           <div
             className={clsx(
               GARLAND_BASE,
               "left-0 bg-top-left",
+              hasHeader ? "top-14" : "top-0",
               GARLAND_SIZE,
-              GARLAND_BG_SIZE
+              GARLAND_BG_SIZE,
             )}
           />
           <div
             className={clsx(
               GARLAND_BASE,
               "right-0 bg-top-right",
+              hasHeader ? "top-14" : "top-0",
               GARLAND_SIZE,
-              GARLAND_BG_SIZE
+              GARLAND_BG_SIZE,
             )}
           />
         </div>
