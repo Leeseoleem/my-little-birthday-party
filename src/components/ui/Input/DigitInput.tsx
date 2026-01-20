@@ -17,7 +17,7 @@ interface DigitInputProp {
 const DigitInput = forwardRef<HTMLInputElement, DigitInputProp>(
   (
     { id, value, onChange, isInvalid = false, onFilled, onBackspaceOnEmpty },
-    ref
+    ref,
   ) => {
     const { controls, triggerLimitFeedback } = useLimitFeedback();
 
@@ -26,10 +26,10 @@ const DigitInput = forwardRef<HTMLInputElement, DigitInputProp>(
         id={id}
         ref={ref}
         className={clsx(
-          "w-15 h-15 text-center border-2 rounded-lg focus:outline-none text-small text-gray-80 placeholder-gray-60",
+          "w-13 h-13 text-center border-2 rounded-lg focus:outline-none text-small text-gray-80 placeholder-gray-60",
           isInvalid
             ? "border-main focus:border-main-active bg-main-disabled"
-            : "border-gray-40 focus:border-gray-60 bg-gray-10"
+            : "border-gray-40 focus:border-gray-60 bg-gray-10",
         )}
         animate={controls}
         placeholder="-"
@@ -67,7 +67,7 @@ const DigitInput = forwardRef<HTMLInputElement, DigitInputProp>(
         }}
       />
     );
-  }
+  },
 );
 
 DigitInput.displayName = "DigitInput";
