@@ -21,7 +21,7 @@ export const Route = createFileRoute("/r/$cardId")({
 
 function ReceiverLayout() {
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className="h-dvh flex flex-col overflow-y-auto">
       {/* TODO(audio):
           - 수신자 플로우(event/letter/party) UI 확정 후,
             이 레이아웃에서 전역 오디오 플레이어를 유지하고
@@ -30,7 +30,7 @@ function ReceiverLayout() {
             src/features/audio/core + receiver + creator */}
       <header className="w-full" />
       {/* Main: 수신자 연출 화면이 많아 레이아웃에서 패딩을 강제하지 않습니다 */}
-      <main className="flex flex-1 w-full">
+      <main className="flex flex-1 flex-col min-h-0">
         <Outlet />
       </main>
       {/* Footer: 풀폭(패딩 없음) - 필요 없으면 비워둠 */}
