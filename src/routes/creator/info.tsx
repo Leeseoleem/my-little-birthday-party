@@ -33,7 +33,7 @@ function CreatorInfoPage() {
 
   return (
     <div className={clsx(pageLayout, "gap-6")}>
-      <div className="flex-1 flex items-center justify-center py-4 mdh:py-3 lgh:py-2">
+      <div className="flex-1 flex items-center justify-center">
         <InvitationCreateCard
           nameField={{
             value: inviteeName,
