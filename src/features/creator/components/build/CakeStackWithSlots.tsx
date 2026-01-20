@@ -93,7 +93,6 @@ export default function CakeStackWithSlots({
       <div className="absolute inset-0 z-10">
         {slots.map((slot, index) => {
           // 원 중심좌표 반환
-          const center = toCircleCenterPoint({ x: slot.x, y: slot.y });
 
           // 현재 슬롯에 배치된 촛불 id
           const candleId = placedIds[index];
@@ -104,29 +103,33 @@ export default function CakeStackWithSlots({
           // 각 촛불 별 z-index
           const zOrder = PARTY_Z_ORDER[slot.key] ?? 0;
 
+          const BASE_CANDLE_HEIGHT = 300;
+          const CANDLE_BOTTOM_OFFSET = 25;
+
+          const candleH = BASE_CANDLE_HEIGHT * scale;
+          // 슬롯 중심이 촛불 바닥에 오도록: 바닥 기준 보정
+          const bottomOffset = CANDLE_BOTTOM_OFFSET * scale;
+
+          const center = toCircleCenterPoint(slot, scale);
+
+          const leftPx = center.x * scale;
+          const topPx = center.y * scale;
+
+          // 촛불 컨테이너 top = (슬롯 중심 y) - (촛불 높이) + (바닥 여백 보정)
+          const candleTop = topPx - candleH + bottomOffset;
+
           // 배치된 촛불이 있으면 촛불 이미지 표시
           if (candleSrc) {
             return (
               <div
                 key={`candle-${index}`}
-                onClick={() => onSlotClick?.(index)}
-                className="absolute"
                 style={{
-                  // 중심 좌표에 맞춰 배치
-                  left: center.x * scale,
-                  top: center.y * scale,
-
-                  overflow: "visible",
-
-                  // 중심점을 요소의 bottom으로 설정
-                  transform: `translate(-50%, -75%) scale(${scale})`,
-                  // 버튼 기본 스타일 제거
-                  padding: 0,
-                  border: 0,
-                  background: "transparent",
-                  pointerEvents: "none",
-
+                  position: "absolute",
+                  left: leftPx,
+                  top: candleTop,
+                  transform: "translateX(-50%)", // Y 변형 제거
                   zIndex: 10 + zOrder,
+                  overflow: "visible",
                 }}
               >
                 <img
@@ -135,9 +138,7 @@ export default function CakeStackWithSlots({
                   draggable={false}
                   style={{
                     display: "block",
-
-                    // 모든 촛불의 기준 높이
-                    height: 300,
+                    height: candleH, // 스케일을 사이즈에 직접 적용
                     width: "auto",
                     objectFit: "contain",
                     pointerEvents: "none",
