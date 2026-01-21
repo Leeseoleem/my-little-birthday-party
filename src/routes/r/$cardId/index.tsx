@@ -1,22 +1,57 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
-import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
-import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
+// 화면 상태 여부
+import type {
+  GateStep,
+  PinState,
+} from "../../../features/receiver/pin/types/gate.types";
+
+import GarlandLayout from "../../../components/layout/page/GarlandLayout";
+
+import {
+  ReceiverPinGateSection,
+  ReceiverInvitationSection,
+} from "../../../features/receiver/pin/sections";
 
 export const Route = createFileRoute("/r/$cardId/")({
   component: ReceiverEntryGatePage,
 });
 
 function ReceiverEntryGatePage() {
+  const [gateStep, setGateStep] = useState<GateStep>("pin");
+  const [pinState, setPinState] = useState<PinState>("idle");
+
+  const handleSubmitPin = (birthDate: string) => {
+    // UI 설계 단계용 더미
+    const isValid = birthDate === "1014";
+
+    if (!isValid) {
+      setPinState("invalid");
+      return;
+    }
+
+    setPinState("valid");
+    setGateStep("invite");
+  };
+
   return (
-    <div className="flex flex-1 flex-col justify-center">
-      <p>진입 분기 컨트롤러(PIN / event / party 라우팅 결정)</p>
-      <BottomActionSlot>
-        <CommonLinkButton
-          label="2. 케이크 등장 + 촛불 끄기 인터랙션으로"
-          to="/r/$cardId/event"
+    <GarlandLayout>
+      {gateStep === "pin" && (
+        <ReceiverPinGateSection
+          pinState={pinState}
+          onSubmit={handleSubmitPin}
         />
-      </BottomActionSlot>
-    </div>
+      )}
+
+      {gateStep === "invite" && (
+        <ReceiverInvitationSection
+          info={{
+            inviteeName: "이서림",
+            inviteeBirthDate: "10-14",
+          }}
+        />
+      )}
+    </GarlandLayout>
   );
 }

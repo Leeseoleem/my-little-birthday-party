@@ -11,7 +11,9 @@ const FieldLabel = ({ label, description, htmlFor }: FieldLabelProps) => {
         {label}
       </label>
       {description ? (
-        <p className="text-caption text-gray-60">{description}</p>
+        <p className="text-caption text-gray-60 whitespace-pre-line">
+          {description}
+        </p>
       ) : null}
     </div>
   );
