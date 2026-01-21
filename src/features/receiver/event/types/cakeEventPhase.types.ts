@@ -50,3 +50,6 @@ export type CakeEventPhase =
    * - 이후 페이지 이동 또는 다음 이벤트로 진행 가능
    */
   | "done";
+
+// 안내 문구 관리 타입
+export type GuideMessageState = "show" | "fadeOut" | "hidden";
