@@ -26,7 +26,7 @@ export default function InvitationCardFrame({
       <img
         alt="" // 장식용 이미지이므로 스크린 리더가 건너뛸 수 있게 공백 처리
         src="/assets/decor/invitation-complete.png"
-        className="w-[200px] mdh:w-[350px] lgh:w-[500px]"
+        className="w-full max-w-[300px] mdh:max-w-[350px] lgh:max-w-[500px]"
       />
       <div className="w-full h-[1.5px] bg-gray-50" />
       {/* 하단 영역 */}
