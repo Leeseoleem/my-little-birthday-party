@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import CreatorShareSection from "./CreatorShareSection";
+import InvitationCompleteCard from "./InvitationCompleteCard";
 
-const meta: Meta<typeof CreatorShareSection> = {
-  title: "Features/Creator/Complete/CreatorShareSection",
-  component: CreatorShareSection,
+const meta: Meta<typeof InvitationCompleteCard> = {
+  title: "Features/Creator/Complete/InvitationCompleteCard",
+  component: InvitationCompleteCard,
   tags: ["autodocs"],
   args: {
     info: {

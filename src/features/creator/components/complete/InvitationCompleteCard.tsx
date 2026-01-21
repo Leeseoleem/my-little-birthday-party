@@ -9,16 +9,16 @@ import ShareButtons, {
 } from "../../../../components/shared/ShareButtons";
 import CommonLinkButton from "../../../../components/ui/Button/CommonLinkButton";
 
-type CreatorShareSectionProps = {
+type InvitationCompleteCardProps = {
   info: InvitationInfoProps;
   sns: ShareButtonsProps;
 } & Omit<LinkProps, "to" | "children" | "className">;
 
-export default function CreatorShareSection({
+export default function InvitationCompleteCard({
   info,
   sns,
   ...linkProps
-}: CreatorShareSectionProps) {
+}: InvitationCompleteCardProps) {
   return (
     <InvitationCardFrame info={info}>
       <InvitationGuide variant="creator" />

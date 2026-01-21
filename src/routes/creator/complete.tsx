@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import GarlandLayout from "../../components/layout/page/GarlandLayout";
-import CreatorShareSection from "../../features/creator/components/complete/CreatorShareSection";
+import InvitationCompleteCard from "../../features/creator/components/complete/InvitationCompleteCard";
 import EnvelopeLayout from "../../components/layout/page/EnvelopeLayout";
 
 export const Route = createFileRoute("/creator/complete")({
@@ -23,7 +23,7 @@ function CreatorCompletePage() {
       <div className="fixed inset-0 bg-black/4 z-5 pointer-events-none" />
 
       <div className="flex justify-center py-8 mdh:py-16 lgh:py-25">
-        <CreatorShareSection
+        <InvitationCompleteCard
           info={{
             inviteeName: "이서림",
             inviteeBirthDate: "10-14",
