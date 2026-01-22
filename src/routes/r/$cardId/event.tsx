@@ -81,11 +81,11 @@ function ReceiverEventPage() {
 
   // 촛불 끄기 함수
   const handleCandleBlowOut = () => {
-    setPhase("blown");
+    setIsOn(false);
     if (blowOutTimerRef.current) window.clearTimeout(blowOutTimerRef.current);
     blowOutTimerRef.current = window.setTimeout(() => {
-      setIsOn(false);
-    }, 1500);
+      setPhase("blown");
+    }, 300);
   };
 
   useEffect(() => {
