@@ -110,7 +110,7 @@ export default function CakeStackWithSlots({
           // 슬롯 중심이 촛불 바닥에 오도록: 바닥 기준 보정
           const bottomOffset = CANDLE_BOTTOM_OFFSET * scale;
 
-          const center = toCircleCenterPoint(slot, scale);
+          const center = toCircleCenterPoint(slot);
 
           const leftPx = center.x * scale;
           const topPx = center.y * scale;

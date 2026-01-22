@@ -10,15 +10,13 @@ export type AnchorPoint = { x: number; y: number };
  * @param scale 현재 렌더 스케일
  * @param diameter 원본 기준 원 지름 (기본 25)
  */
-export function toCircleCenterPoint(
-  p: CakeCandlePoint,
-  scale: number,
-  diameter = 25,
-): AnchorPoint {
-  const radius = (diameter / 2) * scale;
 
+const SLOT_DIAMETER = 25;
+const SLOT_RADIUS = SLOT_DIAMETER / 2;
+
+export function toCircleCenterPoint(slot: CakeCandlePoint) {
   return {
-    x: p.x + radius,
-    y: p.y + radius,
+    x: slot.x + SLOT_RADIUS,
+    y: slot.y + SLOT_RADIUS,
   };
 }
