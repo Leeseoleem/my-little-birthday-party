@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 
+import happyBirthdayAudio from "../../../assets/audio/happy-birthday-short.mp3";
+
 import type {
   CakeEventPhase,
   GuideMessageState,
@@ -99,7 +101,7 @@ function ReceiverEventPage() {
   const playedRef = useRef(false);
 
   const { play } = useAudioWithEnded({
-    src: "/src/assets/audio/happy-birthday-short.mp3",
+    src: happyBirthdayAudio,
     loop: false,
     onEnded: () => {
       setPhase("readyToBlow");
