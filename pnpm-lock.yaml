@@ -50,6 +50,9 @@ importers:
       react:
         specifier: ^19.2.0
         version: 19.2.3
+      react-canvas-confetti:
+        specifier: ^2.0.7
+        version: 2.0.7(react@19.2.3)
       react-dom:
         specifier: ^19.2.0
         version: 19.2.3(react@19.2.3)
@@ -87,6 +90,9 @@ importers:
       '@tanstack/router-plugin':
         specifier: ^1.143.11
         version: 1.143.11(@tanstack/react-router@1.143.11(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0))
+      '@types/canvas-confetti':
+        specifier: ^1.9.0
+        version: 1.9.0
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.4
@@ -1136,6 +1142,9 @@ packages:
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
+  '@types/canvas-confetti@1.9.0':
+    resolution: {integrity: sha512-aBGj/dULrimR1XDZLtG9JwxX1b4HPRF6CX9Yfwh3NvstZEm1ZL7RBnel4keCPSqs1ANRu1u2Aoz9R+VmtjYuTg==}
+
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
@@ -1410,6 +1419,9 @@ packages:
 
   caniuse-lite@1.0.30001761:
     resolution: {integrity: sha512-JF9ptu1vP2coz98+5051jZ4PwQgd2ni8A+gYSN7EA7dPKIMf0pDlSUxhdmVOaV3/fYK5uWBkgSXJaRLr4+3A6g==}
+
+  canvas-confetti@1.9.4:
+    resolution: {integrity: sha512-yxQbJkAVrFXWNbTUjPqjF7G+g6pDotOUHGbkZq2NELZUMDpiJ85rIEazVb8GTaAptNW2miJAXbs1BtioA251Pw==}
 
   chai@5.3.3:
     resolution: {integrity: sha512-4zNhdJD/iOjSH0A05ea+Ke6MU5mmpQcbQsSOkgdaUMJ9zTlDTD/GYlwohmIE2u0gaxHYiVHEn1Fw9mZ/ktJWgw==}
@@ -2168,6 +2180,11 @@ packages:
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
+
+  react-canvas-confetti@2.0.7:
+    resolution: {integrity: sha512-DIj44O35TPAwJkUSIZqWdVsgAMHtVf8h7YNmnr3jF3bn5mG+d7Rh9gEcRmdJfYgRzh6K+MAGujwUoIqQyLnMJw==}
+    peerDependencies:
+      react: '*'
 
   react-docgen-typescript@2.4.0:
     resolution: {integrity: sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg==}
@@ -3529,6 +3546,8 @@ snapshots:
     dependencies:
       '@babel/types': 7.28.5
 
+  '@types/canvas-confetti@1.9.0': {}
+
   '@types/chai@5.2.3':
     dependencies:
       '@types/deep-eql': 4.0.2
@@ -3876,6 +3895,8 @@ snapshots:
   callsites@3.1.0: {}
 
   caniuse-lite@1.0.30001761: {}
+
+  canvas-confetti@1.9.4: {}
 
   chai@5.3.3:
     dependencies:
@@ -4549,6 +4570,12 @@ snapshots:
       react-is: 17.0.2
 
   punycode@2.3.1: {}
+
+  react-canvas-confetti@2.0.7(react@19.2.3):
+    dependencies:
+      '@types/canvas-confetti': 1.9.0
+      canvas-confetti: 1.9.4
+      react: 19.2.3
 
   react-docgen-typescript@2.4.0(typescript@5.9.3):
     dependencies:

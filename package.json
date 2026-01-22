@@ -26,6 +26,7 @@
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
+    "react-canvas-confetti": "^2.0.7",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
     "tailwindcss": "^4.1.18"
@@ -40,6 +41,7 @@
     "@tanstack/react-router-devtools": "1.143.11",
     "@tanstack/router-devtools": "^1.143.11",
     "@tanstack/router-plugin": "^1.143.11",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
