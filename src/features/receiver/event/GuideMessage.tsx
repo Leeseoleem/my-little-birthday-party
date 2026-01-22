@@ -9,7 +9,7 @@ const GuideMessage = ({ state }: { state: GuideMessageState }) => {
 
   return (
     <motion.div
-      className="text-sub-title text-gray-0 text-center z-50"
+      className="text-small mdh:text-body lgh:text-sub-title text-gray-0 text-center z-50"
       aria-hidden
       initial={false}
       animate={{ opacity: state === "fadeOut" ? 0 : 1 }}
