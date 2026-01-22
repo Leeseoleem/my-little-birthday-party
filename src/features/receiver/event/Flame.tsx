@@ -17,7 +17,7 @@ const Flame = ({ isOn, size, top }: FlameProps) => {
             key="flame"
             animate={{
               opacity: 1,
-              scale: [1, 1.06, 1], // 천천히 펄스
+              scale: [1, 1.3, 1], // 천천히 펄스
               animation: Infinity,
             }}
             exit={{
