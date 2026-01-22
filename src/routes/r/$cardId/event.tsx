@@ -101,8 +101,39 @@ function ReceiverEventPage() {
     if (phase !== "reveal") return;
     if (playedRef.current) return;
 
-    playedRef.current = true;
-    void play();
+    let cancelled = false;
+
+    const tryPlay = async () => {
+      try {
+        const ok = await play();
+
+        if (cancelled) return;
+
+        // play() 실패 → 즉시 다음 단계
+        if (ok === false) {
+          setTimeout(() => {
+            setPhase("readyToBlow");
+          }, 18000);
+          return;
+        }
+
+        // 재생 성공
+        playedRef.current = true;
+      } catch {
+        if (cancelled) return;
+
+        // 예외 발생도 실패로 간주
+        setTimeout(() => {
+          setPhase("readyToBlow");
+        }, 18000);
+      }
+    };
+
+    void tryPlay();
+
+    return () => {
+      cancelled = true;
+    };
   }, [phase, play]);
 
   // ----- 4. blown 상태 -----
