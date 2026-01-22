@@ -7,7 +7,6 @@ import type {
   CakeEventPhase,
   GuideMessageState,
 } from "../../../features/receiver/event/types/cakeEventPhase.types";
-import { useIntroToReveal } from "../../../features/receiver/event/utils/useIntroToReveal";
 import { cakeDoc } from "../../../mocks/cakeMocks";
 import { useAudioWithEnded } from "../../../hooks/useAudioWithEnded";
 
@@ -78,8 +77,6 @@ function ReceiverEventPage() {
       fadeTimerRef.current = null;
     };
   }, [phase]);
-
-  useIntroToReveal(phase, setPhase);
 
   // 촛불 끄기 함수
   const handleCandleBlowOut = () => {
