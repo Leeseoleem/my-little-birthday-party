@@ -29,9 +29,9 @@ export type OverlayTransition = {
 
 export const OVERLAY_TRANSITION: Record<CakeEventPhase, OverlayTransition> = {
   intro: { durationMs: 0, easing: "linear" },
-  reveal: { durationMs: 1300, easing: "ease-out" },
+  reveal: { durationMs: 18000, easing: "ease-out" },
   readyToBlow: { durationMs: 0, easing: "linear" },
-  blown: { durationMs: 300, easing: "linear" },
+  blown: { durationMs: 100, easing: "linear" },
   done: { durationMs: 0, easing: "linear" },
 } as const;
 
