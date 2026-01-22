@@ -111,6 +111,7 @@ function ReceiverEventPage() {
     if (playedRef.current) return;
 
     let cancelled = false;
+    let fallbackTimerId: number | null = null;
 
     const tryPlay = async () => {
       try {
@@ -118,9 +119,10 @@ function ReceiverEventPage() {
 
         if (cancelled) return;
 
-        // play() 실패 → 즉시 다음 단계
+        // play() 실패 → 폴백 타이머로 다음 단계
         if (ok === false) {
-          setTimeout(() => {
+          fallbackTimerId = window.setTimeout(() => {
+            if (cancelled) return;
             setPhase("readyToBlow");
           }, 18000);
           return;
@@ -131,8 +133,9 @@ function ReceiverEventPage() {
       } catch {
         if (cancelled) return;
 
-        // 예외 발생도 실패로 간주
-        setTimeout(() => {
+        // 예외 발생 → 폴백 타이머
+        fallbackTimerId = window.setTimeout(() => {
+          if (cancelled) return;
           setPhase("readyToBlow");
         }, 18000);
       }
@@ -142,6 +145,7 @@ function ReceiverEventPage() {
 
     return () => {
       cancelled = true;
+      if (fallbackTimerId) window.clearTimeout(fallbackTimerId);
     };
   }, [phase, play]);
 
@@ -229,7 +233,13 @@ function ReceiverEventPage() {
           className="absolute inset-x-0 bottom-0 z-30"
         >
           <BottomActionSlot>
-            <CommonLinkButton label="다음으로" to="/r/$cardId/letter" />
+            <CommonLinkButton
+              label="다음으로"
+              to="/r/$cardId/letter"
+              params={{
+                cardId: "demo",
+              }}
+            />
           </BottomActionSlot>
         </PhaseLayer>
       )}
