@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import type { CakeEventPhase } from "../types/cakeEventPhase.types";
 
-// intro 안내 문구 노출 시간 (4초)
+// intro 안내 문구 노출 시간 (약 15초)
 const INTRO_GUIDE_DURATION_MS = 5700;
 
 /**
  * intro 단계에서만 실행되는 전환 로직
- * - 4초 후 reveal 단계로 이동
+ * - 약 15초 후 reveal 단계로 이동
  * - cleanup을 통해 타이머 누수 방지
  */
 export function useIntroToReveal(
