@@ -1,5 +1,12 @@
 export type CandleType = "long" | "short" | "special";
 
+export type CandleOption = {
+  id: string;
+  type: CandleType;
+  label: string;
+  imageSrc: string;
+};
+
 // 원본 촛불 이미지 기준(높이 830px)
 // flameCenterTopPx: 이미지 상단에서 "불꽃 원 중심"까지 내려온 px
 export const CANDLE_FLAME_META: Record<

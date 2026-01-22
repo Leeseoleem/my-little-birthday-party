@@ -1,11 +1,7 @@
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import clsx from "clsx";
 
-export type CandleOption = {
-  id: string;
-  label: string;
-  imageSrc: string;
-};
+import type { CandleOption } from "../../../types/candle.types";
 
 interface CandleOptionGroupProps {
   options: CandleOption[];
@@ -28,7 +24,7 @@ export function CandleOptionGroup({
       disabled={isDisabled}
       className={clsx(
         "flex flex-row items-stretch justify-around gap-2",
-        "w-full px-4"
+        "w-full px-4",
       )}
     >
       {options.map((opt) => (
@@ -49,7 +45,7 @@ export function CandleOptionGroup({
             // 포커스(키보드 접근성)
             "outline-none focus-visible:ring-2 focus-visible:ring-main",
             // 비활성화
-            "disabled:opacity-50 disabled:pointer-events-none"
+            "disabled:opacity-50 disabled:pointer-events-none",
           )}
         >
           <div className="flex-1 w-full h-full flex items-center justify-center p-3 mdh:p-4 lgh:p-6">
