@@ -4,14 +4,13 @@ import clsx from "clsx";
 import CakeStack from "./CakeStack";
 import { CandleSlot } from "./CandleSlot";
 
+import { BASE_CAKE_IMAGE_WIDTH } from "../../../constant/assetDimensions";
 import { CAKE_MENU } from "../../data/cakeMenu.data";
 import { CAKE_CANDLE_POSITIONS } from "../../data/cake.candle-positions";
 import { PARTY_Z_ORDER, type CakeType } from "../../../types/cake.types";
 
 import { toCircleCenterPoint } from "../../utils/toCircleCenterPoint";
 import { getCandleImageSrcById } from "../../utils/candleOptions";
-
-const BASE_WIDTH = 900; // 좌표계 기준 가로 폭(고정)
 
 type Props = {
   cakeType: CakeType;
@@ -62,7 +61,7 @@ export default function CakeStackWithSlots({
       // 방어 로직: 0이면 계산 불가
       if (width <= 0) return;
 
-      setScale(width / BASE_WIDTH);
+      setScale(width / BASE_CAKE_IMAGE_WIDTH);
     };
 
     updateScale();
@@ -110,7 +109,7 @@ export default function CakeStackWithSlots({
           // 슬롯 중심이 촛불 바닥에 오도록: 바닥 기준 보정
           const bottomOffset = CANDLE_BOTTOM_OFFSET * scale;
 
-          const center = toCircleCenterPoint(slot, scale);
+          const center = toCircleCenterPoint(slot);
 
           const leftPx = center.x * scale;
           const topPx = center.y * scale;

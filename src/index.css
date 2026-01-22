@@ -40,6 +40,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Flame (effect / animation) */
+  --color-flame-0: #ffd79a;
+  --color-flame-30: #ffb74d;
+  --color-flame-60: #ff9f1c;
+  --color-flame-100: #fff1b3;
 }
 
 body {

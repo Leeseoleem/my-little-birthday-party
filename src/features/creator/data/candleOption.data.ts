@@ -1,18 +1,21 @@
-import type { CandleOption } from "../components/CandleOptionGroup";
+import type { CandleOption } from "../../types/candle.types";
 
 export const LONG_CANDLE_OPTIONS: CandleOption[] = [
   {
     id: "long-01",
+    type: "long",
     label: "긴 초 1",
     imageSrc: "/assets/candles/long/candle-long-blue.png",
   },
   {
     id: "long-02",
+    type: "long",
     label: "긴 초 2",
     imageSrc: "/assets/candles/long/candle-long-red.png",
   },
   {
     id: "long-03",
+    type: "long",
     label: "긴 초 3",
     imageSrc: "/assets/candles/long/candle-long-yellow.png",
   },
@@ -21,16 +24,19 @@ export const LONG_CANDLE_OPTIONS: CandleOption[] = [
 export const SHORT_CANDLE_OPTIONS: CandleOption[] = [
   {
     id: "short-01",
+    type: "short",
     label: "짧은 초 1",
     imageSrc: "/assets/candles/short/candle-short-blue.png",
   },
   {
     id: "short-02",
+    type: "short",
     label: "짧은 초 2",
     imageSrc: "/assets/candles/short/candle-short-red.png",
   },
   {
     id: "short-03",
+    type: "short",
     label: "짧은 초 3",
     imageSrc: "/assets/candles/short/candle-short-yellow.png",
   },
@@ -39,11 +45,13 @@ export const SHORT_CANDLE_OPTIONS: CandleOption[] = [
 export const SPECIAL_CANDLE_OPTIONS: CandleOption[] = [
   {
     id: "special-01",
+    type: "special",
     label: "별 모양 초",
     imageSrc: "/assets/candles/special/candle-point-star.png",
   },
   {
     id: "special-02",
+    type: "special",
     label: "하트 모양 초",
     imageSrc: "/assets/candles/special/candle-point-heart.png",
   },

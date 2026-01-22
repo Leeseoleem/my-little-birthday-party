@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import NoticeFrame from "./NoticeFrame";
 
-const meta: Meta<typeof NoticeFrame> = {
+const meta = {
   title: "Components/Layout/NoticeFrame",
   component: NoticeFrame,
   tags: ["autodocs"],
@@ -12,13 +12,14 @@ const meta: Meta<typeof NoticeFrame> = {
       onClick: fn(),
     },
   },
-};
+} satisfies Meta<typeof NoticeFrame>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    type: "link",
     segments: [
       { text: "다음의 텍스트는 " },
       { text: "제 블로그", href: "https://velog.io/@leeseoleem1014" },
@@ -29,7 +30,7 @@ export const Default: Story = {
 
 export const Display: Story = {
   args: {
-    style: "display",
+    type: "link",
     segments: [
       { text: "다음의 텍스트는 " },
       { text: "제 블로그", href: "https://velog.io/@leeseoleem1014" },
