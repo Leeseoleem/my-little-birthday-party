@@ -1,4 +1,4 @@
-import type { CandleOption } from "../components/CandleOptionGroup";
+import type { CandleOption } from "../components/build/CandleOptionGroup";
 
 export const LONG_CANDLE_OPTIONS: CandleOption[] = [
   {
