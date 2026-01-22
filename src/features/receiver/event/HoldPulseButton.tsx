@@ -114,19 +114,26 @@ export default function HoldFillButton({
     [controls, disabled, initialScale, onFilled, duration],
   );
 
-  const endHold = useCallback(async () => {
-    if (disabled) return;
+  const endHold = useCallback(
+    async (e?: React.PointerEvent<HTMLButtonElement>) => {
+      if (disabled) return;
 
-    holdingRef.current = false;
-    setIsHolding(false);
+      holdingRef.current = false;
+      setIsHolding(false);
 
-    controls.stop();
+      if (e && btnRef.current) {
+        btnRef.current.releasePointerCapture?.(e.pointerId);
+      }
 
-    await controls.start({
-      scale: initialScale,
-      transition: { duration: 0.15, ease: "easeOut" },
-    });
-  }, [controls, disabled, initialScale]);
+      controls.stop();
+
+      await controls.start({
+        scale: initialScale,
+        transition: { duration: 0.15, ease: "easeOut" },
+      });
+    },
+    [controls, disabled, initialScale],
+  );
 
   return (
     <button
