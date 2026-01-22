@@ -41,6 +41,7 @@ function ReceiverEventPage() {
 
   const holdTimerRef = useRef<number | null>(null);
   const fadeTimerRef = useRef<number | null>(null);
+  const blowOutTimerRef = useRef<number | null>(null);
 
   // 안내 문구 타이밍 상수
   const INTRO_TEXT_HOLD_MS = 4000; // 문구 유지
@@ -81,10 +82,18 @@ function ReceiverEventPage() {
   // 촛불 끄기 함수
   const handleCandleBlowOut = () => {
     setPhase("blown");
-    setTimeout(() => {
+    if (blowOutTimerRef.current) window.clearTimeout(blowOutTimerRef.current);
+    blowOutTimerRef.current = window.setTimeout(() => {
       setIsOn(false);
     }, 1500);
   };
+
+  useEffect(() => {
+    return () => {
+      if (blowOutTimerRef.current) window.clearTimeout(blowOutTimerRef.current);
+      blowOutTimerRef.current = null;
+    };
+  }, []);
 
   // 오디오 재생 관련
   const playedRef = useRef(false);
