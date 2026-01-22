@@ -105,13 +105,8 @@ function ReceiverEventPage() {
     void play();
   }, [phase, play]);
 
-  useEffect(() => {
-    console.log("[phase]", phase);
-  }, [phase]);
-
   // ----- 4. blown 상태 -----
   const confettiLayerRef = useRef<ConfettiLayerHandle | null>(null);
-  const confettiFiredRef = useRef(false);
 
   useEffect(() => {
     if (phase !== "blown") return;
