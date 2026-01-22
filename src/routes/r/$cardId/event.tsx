@@ -115,16 +115,31 @@ function ReceiverEventPage() {
 
   useEffect(() => {
     if (phase !== "blown") return;
-    if (confettiFiredRef.current) return;
 
-    confettiFiredRef.current = true;
+    let finished = false;
 
-    // onInit이 아주 늦게 들어오는 환경 대비: 다음 프레임에 한 번 호출
-    requestAnimationFrame(() => {
-      void confettiLayerRef.current?.fire().then(() => {
-        setPhase("done"); // 컨페티 끝나면 다음 phase로
-      });
-    });
+    const goDone = () => {
+      if (finished) return;
+      finished = true;
+      setPhase("done");
+    };
+
+    const fireResult = confettiLayerRef.current?.fire();
+
+    // fire()가 Promise를 반환한 경우
+    if (fireResult && typeof fireResult.then === "function") {
+      fireResult
+        .then(() => {
+          goDone();
+        })
+        .catch(() => {
+          // 컨페티 실행 중 에러 → 그래도 done
+          goDone();
+        });
+    } else {
+      // confetti가 준비 안 됐거나 ref가 null
+      goDone();
+    }
   }, [phase]);
 
   return (
