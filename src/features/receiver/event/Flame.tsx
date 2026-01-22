@@ -52,7 +52,7 @@ const Flame = ({ isOn, size, top }: FlameProps) => {
                 transform: "translate(-50%, -50%)",
                 borderRadius: "50%",
                 background:
-                  "radial-gradient(circle, rgba(255,159,28,0.30) 0%, rgba(255,159,28,0.14) 45%, rgba(255,159,28,0.00) 78%)",
+                  "radial-gradient(circle, rgba(255,159,28,0.60) 0%, rgba(255,159,28,0.35) 45%, rgba(255,159,28,0.00) 78%)",
                 filter: "blur(10px)",
               }}
             />
