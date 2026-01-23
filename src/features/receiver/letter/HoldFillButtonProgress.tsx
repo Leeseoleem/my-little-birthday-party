@@ -1,39 +1,40 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { animate, type AnimationPlaybackControls } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
 import HoldFillButtonBase from "../../../components/ui/Bubble/HoldFillButtonBase";
 
-type HoldFillButtonProps = {
-  onFilled?: () => void; // 내부 원이 끝까지 차면 호출
+type HoldFillButtonProgressProps = {
+  onProgressChange?: (progress: number) => void;
+  onFilled?: () => void;
   disabled?: boolean;
-  duration?: number; // 길게 누르는 시간 (초 단위)
+  duration?: number; // 0 → 1까지 걸리는 시간(초)
   className?: string;
 };
 
-export default function HoldFillButton({
+export default function HoldFillButtonProgress({
+  onProgressChange,
   onFilled,
   disabled = false,
   duration = 1.5,
   className,
-}: HoldFillButtonProps) {
+}: HoldFillButtonProgressProps) {
   const [progress, setProgress] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
 
-  // 현재 "누르는 중"인지 동기적으로 판단하기 위한 ref
+  // "지금 누르고 있는 중인가?"를 렌더와 무관하게 판단하기 위한 ref
   const holdingRef = useRef(false);
 
-  // 숫자 애니메이션 컨트롤 핸들(중간에 stop 필요)
+  // framer-motion 숫자 애니메이션 핸들
   const animRef = useRef<AnimationPlaybackControls | null>(null);
 
+  /** 진행 중 애니메이션 중단 */
   const stopAnim = useCallback(() => {
-    if (animRef.current) {
-      animRef.current.stop();
-      animRef.current = null;
-    }
+    animRef.current?.stop();
+    animRef.current = null;
   }, []);
 
-  // disabled가 켜지면 즉시 정리
+  /** disabled 전환 시: 외부 시스템(애니메이션)만 정리 */
   useEffect(() => {
     if (!disabled) return;
 
@@ -41,32 +42,31 @@ export default function HoldFillButton({
     stopAnim();
   }, [disabled, stopAnim]);
 
-  const startHoldSafe = useCallback(
+  /** 길게 누르기 시작 */
+  const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLButtonElement>) => {
       if (disabled) return;
 
-      // 같은 포인터로 드래그/이탈해도 up/cancel을 안정적으로 받기 위함
+      // 버튼 밖으로 나가도 pointerUp을 받기 위해 capture
       e.currentTarget.setPointerCapture?.(e.pointerId);
 
       holdingRef.current = true;
       setIsHolding(true);
 
-      // 이전 애니메이션이 남아있으면 정리
       stopAnim();
-
-      // 시작은 0부터(원하면 "현재 progress"에서 시작하도록 바꿀 수도 있음)
       setProgress(0);
+      onProgressChange?.(0);
 
-      // 0 -> 1 까지 duration 동안 선형 증가
+      // progress: 0 → 1
       animRef.current = animate(0, 1, {
         duration,
         ease: "linear",
-        onUpdate: (latest) => {
-          // React state는 0~1 범위로만 유지
-          setProgress(latest);
+        onUpdate: (v) => {
+          setProgress(v);
+          onProgressChange?.(v);
         },
         onComplete: () => {
-          // 완료 시점에 아직 누르는 중이면 성공 처리
+          // 끝까지 도달했는데 아직 누르는 중이면 성공
           if (!holdingRef.current) return;
 
           holdingRef.current = false;
@@ -75,47 +75,53 @@ export default function HoldFillButton({
         },
       });
     },
-    [disabled, duration, onFilled, stopAnim],
+    [disabled, duration, onFilled, onProgressChange, stopAnim],
   );
 
-  const endHold = useCallback(
+  /** 손을 떼거나 cancel */
+  const handlePointerEnd = useCallback(
     (e?: React.PointerEvent<HTMLButtonElement>) => {
       if (disabled) return;
 
       holdingRef.current = false;
       setIsHolding(false);
 
-      // pointer capture 해제
       if (e) {
         e.currentTarget.releasePointerCapture?.(e.pointerId);
       }
 
-      // 진행 중 애니메이션 즉시 중단
       stopAnim();
 
-      // 현재 progress에서 0으로 빠르게 복귀(시각적 리셋)
-      // - Base 내부 transform에 transition이 있으니 0.12~0.18s 정도면 충분
+      // 현재 progress → 0으로 빠르게 복귀
       animRef.current = animate(progress, 0, {
         duration: 0.15,
         ease: "easeOut",
-        onUpdate: (latest) => setProgress(latest),
+        onUpdate: (v) => {
+          setProgress(v);
+          onProgressChange?.(v);
+        },
         onComplete: () => {
           animRef.current = null;
         },
       });
     },
-    [disabled, progress, stopAnim],
+    [disabled, progress, onProgressChange, stopAnim],
   );
+
+  // disabled일 때는 UI 표현을 강제로 리셋
+  const uiProgress = disabled ? 0 : progress;
+  const uiIsHolding = disabled ? false : isHolding;
 
   return (
     <HoldFillButtonBase
-      progress={progress}
-      isHolding={isHolding}
+      tone="main"
+      progress={uiProgress}
+      isHolding={uiIsHolding}
       disabled={disabled}
-      ariaLabel="길게 눌러 촛불 끄기"
-      onPointerDown={startHoldSafe}
-      onPointerUp={endHold}
-      onPointerCancel={endHold}
+      ariaLabel="길게 눌러 편지 꺼내기"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={handlePointerEnd}
       className={clsx(className)}
     />
   );
