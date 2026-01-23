@@ -7,17 +7,6 @@ import type { LetterPaperType } from "../../../types/letterPaper.types";
 import { useLimitFeedback } from "../../../../hooks/useLimitFeedback";
 import { useImeComposition } from "../../../../hooks/useImeComposition";
 
-/**
- * CreatorLetterEditor
- *
- * 편지 작성 전용 에디터 컴포넌트
- * - 입력(Form) UX만 책임짐
- *
- * TODO:
- * - Receiver 페이지에서는 이 컴포넌트를 재사용하지 않고
- *   읽기 전용 뷰 컴포넌트(ReceiverLetterContent)를 별도로 구현할 예정
- */
-
 export interface CreatorLetterEditorProps {
   type: LetterPaperType;
   value: string;
