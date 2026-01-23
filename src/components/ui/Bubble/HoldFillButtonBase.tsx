@@ -64,7 +64,7 @@ export default function HoldFillButtonBase({
   // 내부 원 scale 시작값 (innerSize를 maxInnerDiameter에 맞추는 비율)
   const initialFillScale = useMemo(() => {
     if (maxInnerDiameter === 0) return 0;
-    return innerSize / maxInnerDiameter;
+    return Math.min(1, innerSize / maxInnerDiameter);
   }, [innerSize, maxInnerDiameter]);
 
   // progress(0~1) -> 실제 transform scale 값으로 변환
