@@ -20,9 +20,17 @@ export const LETTER_PAPER_PRESET: Record<
 export const LETTER_PAPER_ITEMS: CarouselItem[] = (
   Object.entries(LETTER_PAPER_PRESET) as [
     LetterPaperType,
-    { label: string; imageSrc: string }
+    { label: string; imageSrc: string },
   ][]
 ).map(([type, preset]) => ({
   type, // "default" | "simple" | "night"
   imageSrc: preset.imageSrc,
 }));
+
+/**
+ * DB에 저장되는 편지 데이터 구조
+ */
+export type LetterData = {
+  paperType: LetterPaperType; // "default" | "simple" | "night"
+  content: string; // 실제 편지 내용 (textarea 입력값)
+};
