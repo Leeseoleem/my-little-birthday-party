@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // 기본 컴포넌트
 import { PhaseLayer } from "../../../components/layout/frame/PhaseLayer";
@@ -27,6 +27,10 @@ export const Route = createFileRoute("/r/$cardId/letter")({
   component: ReceiverLetterPage,
 });
 
+// 상수 정의
+const PHASE_TRANSITION_DELAY = 300;
+const BUTTON_ENABLE_DELAY = 10300; // 편지 읽기 애니메이션 완료 시간
+
 function ReceiverLetterPage() {
   const [phase, setPhase] = useState<LetterPhase>("closed");
 
@@ -42,14 +46,29 @@ function ReceiverLetterPage() {
   // --- 4. reading ---
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleFlyComplete = () => {
-    setTimeout(() => {
-      setPhase("reading");
-    }, 300);
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-    setTimeout(() => {
+  useEffect(() => {
+    return () => {
+      timeoutRefs.current.forEach(clearTimeout);
+      timeoutRefs.current = [];
+    };
+  }, []);
+
+  const handleFlyComplete = () => {
+    // 혹시 중복 호출될 수 있으니 기존 타이머 정리(방어)
+    timeoutRefs.current.forEach(clearTimeout);
+    timeoutRefs.current = [];
+
+    const phaseTimer = setTimeout(() => {
+      setPhase("reading");
+    }, PHASE_TRANSITION_DELAY);
+
+    const buttonTimer = setTimeout(() => {
       setIsButtonDisabled(false);
-    }, 10300);
+    }, BUTTON_ENABLE_DELAY);
+
+    timeoutRefs.current.push(phaseTimer, buttonTimer);
   };
 
   return (
