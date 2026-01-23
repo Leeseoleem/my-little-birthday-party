@@ -15,18 +15,18 @@ type HoldFillButtonProps = {
 const SIZE_TOKEN = {
   mobile: {
     size: 80,
-    ringWidth: 3,
-    innerSize: 36,
+    ringWidth: 1,
+    innerSize: 24,
   },
   tablet: {
     size: 100,
-    ringWidth: 4,
-    innerSize: 46,
+    ringWidth: 2,
+    innerSize: 36,
   },
   desktop: {
     size: 120,
-    ringWidth: 4,
-    innerSize: 56,
+    ringWidth: 2,
+    innerSize: 50,
   },
 };
 
