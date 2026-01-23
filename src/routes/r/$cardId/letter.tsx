@@ -93,7 +93,7 @@ function ReceiverLetterPage() {
         )}
         {phase === "reading" && (
           <PhaseLayer
-            layerKey="closed"
+            layerKey="reading"
             className="flex flex-col h-full justify-center"
           >
             {/* 편지 영역: 남은 공간을 먹고, 줄어들 수 있어야 함 */}
