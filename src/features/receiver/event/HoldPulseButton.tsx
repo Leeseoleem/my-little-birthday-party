@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { animate, type AnimationPlaybackControls } from "framer-motion";
 import clsx from "clsx";
+
+import HoldFillButtonBase from "../../../components/ui/Bubble/HoldFillButtonBase";
 
 type HoldFillButtonProps = {
   onFilled?: () => void; // 내부 원이 끝까지 차면 호출
@@ -9,180 +11,112 @@ type HoldFillButtonProps = {
   className?: string;
 };
 
-/**
- * 프로젝트 기준 반응형 사이즈 토큰
- */
-const SIZE_TOKEN = {
-  mobile: {
-    size: 80,
-    ringWidth: 1,
-    innerSize: 24,
-  },
-  tablet: {
-    size: 100,
-    ringWidth: 2,
-    innerSize: 36,
-  },
-  desktop: {
-    size: 120,
-    ringWidth: 2,
-    innerSize: 50,
-  },
-};
-
-// 브레이크포인트 기준
-const BREAKPOINT = {
-  tabletMin: 768,
-  desktopMin: 1024,
-};
-
-/**
- * viewport 폭에 따라 사이즈 토큰 선택
- */
-function useResponsiveSizeToken() {
-  const [width, setWidth] = useState(() =>
-    typeof window === "undefined" ? 0 : window.innerWidth,
-  );
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const onResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", onResize, { passive: true });
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  return useMemo(() => {
-    if (width >= BREAKPOINT.desktopMin) return SIZE_TOKEN.desktop;
-    if (width >= BREAKPOINT.tabletMin) return SIZE_TOKEN.tablet;
-    return SIZE_TOKEN.mobile;
-  }, [width]);
-}
-
 export default function HoldFillButton({
   onFilled,
   disabled = false,
-  duration = 1.5, // 기본값
+  duration = 1.5,
   className,
 }: HoldFillButtonProps) {
-  const controls = useAnimationControls();
+  const [progress, setProgress] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
 
-  const { size, ringWidth, innerSize } = useResponsiveSizeToken();
-
-  const btnRef = useRef<HTMLButtonElement | null>(null);
+  // 현재 "누르는 중"인지 동기적으로 판단하기 위한 ref
   const holdingRef = useRef(false);
 
-  // 내부 원 최대 지름(링 안쪽)
-  const maxInnerDiameter = useMemo(() => {
-    const inset = ringWidth * 2;
-    return Math.max(0, size - inset);
-  }, [size, ringWidth]);
+  // 숫자 애니메이션 컨트롤 핸들(중간에 stop 필요)
+  const animRef = useRef<AnimationPlaybackControls | null>(null);
 
-  // scale 시작값 계산
-  const initialScale = useMemo(() => {
-    if (maxInnerDiameter === 0) return 0;
-    return innerSize / maxInnerDiameter;
-  }, [innerSize, maxInnerDiameter]);
+  const stopAnim = useCallback(() => {
+    if (animRef.current) {
+      animRef.current.stop();
+      animRef.current = null;
+    }
+  }, []);
+
+  // disabled가 켜지면 즉시 정리
+  useEffect(() => {
+    if (!disabled) return;
+
+    holdingRef.current = false;
+    stopAnim();
+  }, [disabled, stopAnim]);
 
   const startHoldSafe = useCallback(
-    async (e: React.PointerEvent<HTMLButtonElement>) => {
+    (e: React.PointerEvent<HTMLButtonElement>) => {
       if (disabled) return;
 
-      btnRef.current?.setPointerCapture?.(e.pointerId);
+      // 같은 포인터로 드래그/이탈해도 up/cancel을 안정적으로 받기 위함
+      e.currentTarget.setPointerCapture?.(e.pointerId);
 
       holdingRef.current = true;
       setIsHolding(true);
 
-      controls.set({ scale: initialScale });
+      // 이전 애니메이션이 남아있으면 정리
+      stopAnim();
 
-      await controls.start({
-        scale: 1,
-        transition: {
-          duration,
-          ease: "linear",
+      // 시작은 0부터(원하면 "현재 progress"에서 시작하도록 바꿀 수도 있음)
+      setProgress(0);
+
+      // 0 -> 1 까지 duration 동안 선형 증가
+      animRef.current = animate(0, 1, {
+        duration,
+        ease: "linear",
+        onUpdate: (latest) => {
+          // React state는 0~1 범위로만 유지
+          setProgress(latest);
+        },
+        onComplete: () => {
+          // 완료 시점에 아직 누르는 중이면 성공 처리
+          if (!holdingRef.current) return;
+
+          holdingRef.current = false;
+          setIsHolding(false);
+          onFilled?.();
         },
       });
-
-      // 끝까지 도달 + 아직 누르는 중이면 완료
-      if (holdingRef.current) {
-        holdingRef.current = false;
-        setIsHolding(false);
-        onFilled?.();
-      }
     },
-    [controls, disabled, initialScale, onFilled, duration],
+    [disabled, duration, onFilled, stopAnim],
   );
 
   const endHold = useCallback(
-    async (e?: React.PointerEvent<HTMLButtonElement>) => {
+    (e?: React.PointerEvent<HTMLButtonElement>) => {
       if (disabled) return;
 
       holdingRef.current = false;
       setIsHolding(false);
 
-      if (e && btnRef.current) {
-        btnRef.current.releasePointerCapture?.(e.pointerId);
+      // pointer capture 해제
+      if (e) {
+        e.currentTarget.releasePointerCapture?.(e.pointerId);
       }
 
-      controls.stop();
+      // 진행 중 애니메이션 즉시 중단
+      stopAnim();
 
-      await controls.start({
-        scale: initialScale,
-        transition: { duration: 0.15, ease: "easeOut" },
+      // 현재 progress에서 0으로 빠르게 복귀(시각적 리셋)
+      // - Base 내부 transform에 transition이 있으니 0.12~0.18s 정도면 충분
+      animRef.current = animate(progress, 0, {
+        duration: 0.15,
+        ease: "easeOut",
+        onUpdate: (latest) => setProgress(latest),
+        onComplete: () => {
+          animRef.current = null;
+        },
       });
     },
-    [controls, disabled, initialScale],
+    [disabled, progress, stopAnim],
   );
 
   return (
-    <button
-      ref={btnRef}
-      type="button"
-      aria-label="길게 눌러 촛불 끄기"
+    <HoldFillButtonBase
+      progress={progress}
+      isHolding={isHolding}
       disabled={disabled}
-      style={{ width: size, height: size, touchAction: "none" }}
+      ariaLabel="길게 눌러 촛불 끄기"
       onPointerDown={startHoldSafe}
       onPointerUp={endHold}
       onPointerCancel={endHold}
-      className={clsx(
-        "relative inline-grid place-items-center select-none",
-        "disabled:opacity-50 disabled:cursor-not-allowed",
-        className,
-      )}
-    >
-      {/* 바깥 링 */}
-      <div
-        className="absolute rounded-full"
-        style={{
-          width: size,
-          height: size,
-          border: `${ringWidth}px solid white`,
-          boxSizing: "border-box",
-        }}
-      />
-
-      {/* 내부 원 */}
-      <motion.div
-        className="rounded-full bg-gray-0 hover:bg-gray-5"
-        style={{
-          width: maxInnerDiameter,
-          height: maxInnerDiameter,
-        }}
-        initial={{ scale: initialScale }}
-        animate={controls}
-      />
-
-      {/* 눌림 강조 */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: size,
-          height: size,
-          opacity: isHolding ? 0.06 : 0,
-          backgroundColor: "white",
-        }}
-      />
-    </button>
+      className={clsx(className)}
+    />
   );
 }
