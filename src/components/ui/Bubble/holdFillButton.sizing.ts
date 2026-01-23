@@ -7,17 +7,17 @@ import { useEffect, useMemo, useState } from "react";
 export const SIZE_TOKEN = {
   mobile: {
     size: 80,
-    ringWidth: 1,
+    ringWidth: 2,
     innerSize: 24,
   },
   tablet: {
     size: 100,
-    ringWidth: 2,
+    ringWidth: 3,
     innerSize: 36,
   },
   desktop: {
     size: 120,
-    ringWidth: 2,
+    ringWidth: 3,
     innerSize: 50,
   },
 } as const;
