@@ -72,7 +72,7 @@ function ReceiverLetterPage() {
   };
 
   return (
-    <div className="flex flex-1 flex-col justify-center px-4">
+    <div className="flex h-full flex-col justify-center px-4">
       <AnimatePresence>
         {phase === "closed" && (
           <PhaseLayer
@@ -113,25 +113,27 @@ function ReceiverLetterPage() {
         {phase === "reading" && (
           <PhaseLayer
             layerKey="reading"
-            className="flex flex-col h-full justify-center"
+            className="flex-1 min-h-0 overflow-hidden"
           >
-            {/* 편지 영역: 남은 공간을 먹고, 줄어들 수 있어야 함 */}
-            <div className="flex-1 min-h-0 h-full overflow-hidden">
-              <ReceiverLetterContent
-                type={LETTER_DUMMY.paperType}
-                content={LETTER_DUMMY.content}
-              />
-            </div>
+            <div className="flex flex-col h-full justify-center">
+              {/* 편지 영역: 남은 공간을 먹고, 줄어들 수 있어야 함 */}
+              <div className="flex-1 min-h-0 h-full overflow-hidden">
+                <ReceiverLetterContent
+                  type={LETTER_DUMMY.paperType}
+                  content={LETTER_DUMMY.content}
+                />
+              </div>
 
-            {/* 버튼 영역: 고정 높이 */}
-            <BottomActionSlot>
-              <CommonLinkButton
-                isDisabled={isButtonDisabled}
-                label="다 읽었어요"
-                to="/r/$cardId/party"
-                params={{ cardId: "demo" }}
-              />
-            </BottomActionSlot>
+              {/* 버튼 영역: 고정 높이 */}
+              <BottomActionSlot>
+                <CommonLinkButton
+                  isDisabled={isButtonDisabled}
+                  label="다 읽었어요"
+                  to="/r/$cardId/party"
+                  params={{ cardId: "demo" }}
+                />
+              </BottomActionSlot>
+            </div>
           </PhaseLayer>
         )}
       </AnimatePresence>
