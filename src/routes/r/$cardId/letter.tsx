@@ -131,6 +131,7 @@ function ReceiverLetterPage() {
                   label="다 읽었어요"
                   to="/r/$cardId/party"
                   params={{ cardId: "demo" }}
+                  replace={true}
                   state={{
                     entry: "first",
                   }}
