@@ -7,7 +7,6 @@
 
 <!-- 프로젝트 상태 -->
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
 <!-- 핵심 기술 스택 -->
@@ -209,27 +208,24 @@ src/
 
 ---
 
-## 🤝 기여하기
-
-프로젝트에 기여하고 싶으시다면:
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 🐛 버그 리포트 & 기능 요청
-
-[Issues](https://github.com/yourusername/my-little-birthday-party/issues) 페이지에서 버그 리포트나 기능 요청을 남겨주세요!
-
----
-
 ## 📝 라이선스
 
-이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+  <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+</a>
+
+이 저작물은 [크리에이티브 커먼즈 저작자표시-비영리-변경금지 4.0 국제 라이선스](http://creativecommons.org/licenses/by-nc-nd/4.0/)에 따라 이용할 수 있습니다.
+
+### 허용
+- ✅ 개인적 학습 및 참고
+- ✅ 출처 표시 후 공유
+
+### 금지
+- ❌ 상업적 이용
+- ❌ 코드 수정 및 재배포
+- ❌ 파생 작품 제작
+
+© 2026 [seoLeem Lee]
 
 ---
 
