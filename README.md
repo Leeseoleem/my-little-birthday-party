@@ -1,73 +1,250 @@
-# React + TypeScript + Vite
+# 🎂 나의 작은 생일 파티
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 생일 메시지를 더 예쁘게 보여주는 서비스가 아니라,  
+> **생일을 축하하는 마음이 자연스럽게 전달되는 경험**을 만드는 서비스입니다.
 
-Currently, two official plugins are available:
+<div align="center">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- 프로젝트 상태 -->
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-## React Compiler
+<!-- 핵심 기술 스택 -->
+![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<!-- 테스트 & 품질 -->
+![Vitest](https://img.shields.io/badge/Vitest-✓-6E9F18?logo=vitest&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-E2E-2EAD33?logo=playwright&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-enabled-4B32C3?logo=eslint&logoColor=white)
 
-## Expanding the ESLint configuration
+</div>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 💡 프로젝트 소개
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+<!--- 프로젝트 소개글 작성 --->
+-추후 작성될 예정입니다
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🎯 프로젝트 목표
+
+<!--- 프로젝트가 추구하는 목표 작성 --->
+-추후 작성될 예정입니다
+
+---
+
+## ✨ 주요 기능
+
+### ✍️ 제작자 경험 (Creator Experience)
+
+#### 🎁 생일 선물을 준비하는 제작 흐름
+
+* 단순한 편지 작성이 아닌, **생일 선물을 만드는 경험**으로 설계된 제작 플로우
+* 단계별 진행을 통해 자연스럽게 메시지를 완성
+
+#### 🎂 케이크 & 파티 연출 구성
+
+* 생일 케이크 위에 **초를 직접 배치**하는 인터랙션
+* 개수 제한이 있는 초 배치로 상징성과 재미 강화
+* 파티에 초대할 **동물 캐릭터 선택**
+* 캐릭터별 기본 대사를 확인하고(확장 시 커스터마이징 가능)
+
+#### ✍️ 생일 편지 작성
+
+* 최종 단계에서 **정성스러운 생일 편지 작성**
+* 파티 연출과 함께 감상될 것을 고려한 콘텐츠 구성
+
+#### 🔗 간편한 전달 & 보안
+
+* 완성 즉시 **고유 링크(URL) 생성**
+* 생일(MMDD)을 활용한 **PIN 인증 방식**
+* 별도의 회원가입 없이 링크 하나로 전달 가능
+
+---
+
+### 🎉 수신자 경험 (Receiver Experience)
+
+#### 🔐 초대 확인
+
+* 전달받은 링크 접속 후 **PIN 입력으로 접근**
+* 인증 성공 시에만 카드 감상 가능
+
+#### 🎶 이벤트형 생일 연출
+
+* 생일 축하 음악과 함께 **케이크 등장 애니메이션**
+* “초를 불어주세요” 안내에 따른 **핵심 인터랙션**
+
+  * 기본: 마우스로 초 끄기
+  * (확장) 마이크 입력을 통한 실제 불기 인터랙션
+
+#### 🎈 파티 감상 공간
+
+* 초를 모두 끄면 **파티 페이지로 전환**
+* 테이블 위에 케이크와 편지가 배치된 연출
+* 선택된 캐릭터들이 춤을 추는 파티 분위기
+
+#### 🖱️ 상호작용 요소
+
+* 캐릭터 클릭 → 캐릭터 대사 확인
+* 케이크 클릭 → 케이크 확대 감상
+* 편지 클릭 → 제작자가 작성한 편지 확인
+
+#### 💾 추억으로 남는 카드
+
+* 이벤트 연출은 **최초 1회만 진행**
+* 이후 재접속 시에는 **바로 파티 페이지로 진입**
+* 언제든 다시 감상 가능한 **기억 저장형 링크**
+
+---
+
+### 🔑 서비스의 핵심 차별점 요약
+
+* 🎁 **메시지가 아닌 ‘경험’을 전달**
+* 🛠️ 제작 과정 자체가 선물 준비의 일부
+* 🎉 수신자는 하나의 이벤트처럼 소비
+* 🔒 PIN 기반으로 개인적인 메시지 보호
+* 🔗 링크 하나로 전달·재방문 가능
+
+---
+
+## 🛠️ 기술 스택
+
+### Frontend Core
+- **React 18.3** + **TypeScript 5.6** - 타입 안전한 컴포넌트 기반 개발
+- **Vite 6.0** - 빠른 개발 환경 및 빌드
+- **TanStack Router** - 타입 안전 라우팅 + 파일 기반 라우트 구조
+
+### Styling & UI
+- **Tailwind CSS v4** - 디자인 토큰 기반 일관된 스타일링
+- **Framer Motion** - 페이지 전환 및 연출 중심 애니메이션
+- **Lucide Icons** - 가볍고 일관된 아이콘 시스템
+- **clsx** - 조건부 className 조합
+
+### UI Components & Interactions
+- **Embla Carousel** - 카드·케이크 선택 캐러셀 UI
+- **Floating UI** - 팝오버 등 위치 기반 UI
+- **react-canvas-confetti** - 축하 컨페티 효과
+
+### Development & Testing
+- **Storybook** - 컴포넌트 단위 개발 및 문서화
+- **Vitest** - Vite 기반 단위 테스트
+- **Playwright** - E2E 테스트
+- **ESLint** - 코드 품질 관리
+
+---
+
+## 🚀 시작하기
+
+### 필요 조건
+```bash
+Node.js >= 18.0.0
+npm >= 9.0.0
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 설치 및 실행
+```bash
+# 저장소 클론
+git clone https://github.com/yourusername/my-little-birthday-party.git
+cd my-little-birthday-party
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 의존성 설치
+npm install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 개발 서버 실행
+npm run dev
+
+# 브라우저에서 http://localhost:5173 접속
 ```
+
+## 📖 서비스 플로우
+
+### 제작자 페이지 플로우: creator page flow
+
+C1: 랜딩 / 시작하기
+C2: 기본 정보 입력 (수신자 이름 + 생일(PIN))
+C3: 편지 작성
+C4: 케이크 선택
+C5: 케이크 제작 (초 배치)
+C6: 게스트 대사 작성
+C7: 초대 카드 생성
+
+### 수신자 페이지 플로우: receiver page flow
+
+R1: 진입 분기(PIN / event / party) - 초대 확인
+R2: 케이크 등장 + 촛불 끄기 
+R3: 편지 감상
+R4: 최종 파티: 추후 재접속 시 R1 -> 해당 페이지로 이동
+
+---
+
+## 📸 스크린샷
+
+### 메시지 제작 화면
+<!-- 실제 스크린샷으로 교체하세요 -->
+
+### 수신자 경험 화면
+<!-- 실제 스크린샷으로 교체하세요 -->
+
+---
+
+## 📁 프로젝트 구조
+```
+my-little-birthday-party/
+src/
+├─ routes/            # TanStack Router 기반 라우트 정의
+│  ├─ creator/        # 제작자 플로우
+│  └─ r/              # 수신자 플로우
+├─ components/        # 공통 UI 컴포넌트
+├─ features/          # 도메인/기능 단위 로직
+├─ hooks/             # 공통 커스텀 훅
+├─ lib/               # 외부 SDK, 설정 래퍼
+├─ styles/            # 디자인 토큰 및 전역 스타일
+├─ assets/            # 폰트, 이미지, 사운드 리소스
+└─ types/             # 전역 타입 정의
+```
+
+---
+
+## 🤝 기여하기
+
+프로젝트에 기여하고 싶으시다면:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 🐛 버그 리포트 & 기능 요청
+
+[Issues](https://github.com/yourusername/my-little-birthday-party/issues) 페이지에서 버그 리포트나 기능 요청을 남겨주세요!
+
+---
+
+## 📝 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+
+---
+
+## 📞 연락처
+
+프로젝트 관련 문의: leeseorim0029@gmail.com
+
+프로젝트 링크: [https://github.com/yourusername/my-little-birthday-party](https://github.com/Leeseoleem/my-little-birthday-party)
+
+---
+
+<div align="center">
+
+**⭐ 이 프로젝트가 마음에 드셨다면 Star를 눌러주세요! ⭐**
+
+Made with ❤️ by [seoLeem Lee]
+
+</div>
