@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import type { GuideMessageState } from "./types/cakeEventPhase.types";
 
-const GuideMessage = ({ state }: { state: GuideMessageState }) => {
-  // hidden이면 렌더링 하지 않음
+interface GuideMessageProps {
+  state: GuideMessageState;
+  children: React.ReactNode;
+}
+
+const GuideMessage = ({ state, children }: GuideMessageProps) => {
   if (state === "hidden") return null;
 
   const fadeOutDurationSec = 0.4;
@@ -19,9 +23,7 @@ const GuideMessage = ({ state }: { state: GuideMessageState }) => {
           : { duration: 0 }
       }
     >
-      🎧 잠시 후 음악이 재생됩니다.
-      <br />
-      이어폰을 착용하면 더 깊이 즐길 수 있어요.
+      {children}
     </motion.div>
   );
 };
