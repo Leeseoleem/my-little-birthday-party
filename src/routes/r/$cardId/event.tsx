@@ -211,7 +211,10 @@ function ReceiverEventPage() {
       {/* 안내 문구: 오버레이 위 (정중앙 고정) */}
       {phase === "intro" && (
         <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <GuideMessage state={guideState} />
+          <GuideMessage state={guideState}>
+            🎧 잠시 후 음악이 재생됩니다. <br /> 이어폰을 착용하면 더 깊이 즐길
+            수 있어요.
+          </GuideMessage>
         </div>
       )}
       <AnimatePresence>
