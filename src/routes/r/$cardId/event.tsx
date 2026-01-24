@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
 import happyBirthdayAudio from "../../../assets/audio/happy-birthday-short.mp3";
@@ -213,35 +214,36 @@ function ReceiverEventPage() {
           <GuideMessage state={guideState} />
         </div>
       )}
+      <AnimatePresence>
+        {/* 촛불 끄기 버튼 */}
+        {phase === "readyToBlow" && (
+          <PhaseLayer
+            layerKey="readyToBlow"
+            className="absolute inset-0 top-1 z-20 flex flex-col gap-8 items-center justify-center"
+          >
+            <HoldPulseButton onFilled={handleCandleBlowOut} />
+            <GuideBubble message="가운데를 꾹 눌러 촛불을 꺼주세요" />
+          </PhaseLayer>
+        )}
 
-      {/* 촛불 끄기 버튼 */}
-      {phase === "readyToBlow" && (
-        <PhaseLayer
-          layerKey="readyToBlow"
-          className="absolute inset-0 top-1 z-20 flex flex-col gap-8 items-center justify-center"
-        >
-          <HoldPulseButton onFilled={handleCandleBlowOut} />
-          <GuideBubble message="가운데를 꾹 눌러 촛불을 꺼주세요" />
-        </PhaseLayer>
-      )}
-
-      {/* 하단 버튼: 최상단 */}
-      {phase === "done" && (
-        <PhaseLayer
-          layerKey="done"
-          className="absolute inset-x-0 bottom-0 z-30"
-        >
-          <BottomActionSlot>
-            <CommonLinkButton
-              label="다음으로"
-              to="/r/$cardId/letter"
-              params={{
-                cardId: "demo",
-              }}
-            />
-          </BottomActionSlot>
-        </PhaseLayer>
-      )}
+        {/* 하단 버튼: 최상단 */}
+        {phase === "done" && (
+          <PhaseLayer
+            layerKey="done"
+            className="absolute inset-x-0 bottom-0 z-30"
+          >
+            <BottomActionSlot>
+              <CommonLinkButton
+                label="다음으로"
+                to="/r/$cardId/letter"
+                params={{
+                  cardId: "demo",
+                }}
+              />
+            </BottomActionSlot>
+          </PhaseLayer>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

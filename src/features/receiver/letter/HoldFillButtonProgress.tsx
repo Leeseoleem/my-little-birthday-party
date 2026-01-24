@@ -16,7 +16,7 @@ export default function HoldFillButtonProgress({
   onProgressChange,
   onFilled,
   disabled = false,
-  duration = 1.5,
+  duration = 3.0,
   className,
 }: HoldFillButtonProgressProps) {
   const [progress, setProgress] = useState(0);

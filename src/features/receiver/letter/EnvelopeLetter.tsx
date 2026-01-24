@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import type { Transition, Easing } from "framer-motion";
+import type { Transition } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
@@ -19,32 +19,13 @@ interface EnvelopeLetterProps {
 }
 
 /**
- * 0~1 progress를 "초반 느림 → 중간 보통 → 후반 매우 빠름"으로 재매핑
- * - 버튼에서 들어오는 progress는 선형이므로, 여기서만 연출용 곡선을 적용한다.
+ * 0~1을 "매우 느림 → 점점 빨라짐"으로 재매핑
+ * - power가 클수록 초반이 더 느리고, 후반이 더 급해진다.
+ * - power=3: 기본 cubic, power=4~6: 매우 느림→빠름 느낌 강함
  */
-function easeSlowMidFast(p: number) {
-  const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
-  const t = clamp01(p);
-
-  const a = 0.35; // 초반 느림 구간 끝
-  const b = 0.75; // 중간 보통 구간 끝
-
-  const easeInCubic = (x: number) => x * x * x;
-  const linear = (x: number) => x;
-  const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
-
-  if (t <= a) {
-    const u = t / a;
-    return 0.35 * easeInCubic(u);
-  }
-
-  if (t <= b) {
-    const u = (t - a) / (b - a);
-    return 0.35 + (0.75 - 0.35) * linear(u);
-  }
-
-  const u = (t - b) / (1 - b);
-  return 0.75 + (1 - 0.75) * easeOutCubic(u);
+function easeSlowToFast(p: number, power = 3) {
+  const t = Math.max(0, Math.min(1, p));
+  return Math.pow(t, power);
 }
 
 const EnvelopeLetter = ({
@@ -108,7 +89,7 @@ const EnvelopeLetter = ({
   const pulledBottom = slot.height * 0.9;
 
   // 연출용 progress 곡선 적용
-  const easedProgress = useMemo(() => easeSlowMidFast(progress), [progress]);
+  const easedProgress = useMemo(() => easeSlowToFast(progress), [progress]);
 
   // idle 상태에서 편지 상승/복귀
   const idleBottom = startBottom + (pulledBottom - startBottom) * easedProgress;
@@ -118,20 +99,24 @@ const EnvelopeLetter = ({
     if (mode !== "fly") return undefined;
 
     return {
-      y: [0, -20 * scale, -160 * scale, -1100 * scale],
-      opacity: [1, 1, 0.9, 0],
+      y: [0, -1100 * scale],
+      opacity: [1, 0],
     };
   }, [mode, scale]);
 
-  const EASE_SLOW: Easing = [0.12, 0.0, 0.2, 1.0];
-  const EASE_MID: Easing = [0.12, 0.0, 0.2, 1.0];
-  const EASE_FAST_IN: Easing = [0.6, 0.0, 0.9, 0.2];
-
   const flyTransition: Transition = {
-    duration: 0.65,
-    times: [0, 0.35, 0.72, 1.0],
-    ease: [EASE_SLOW, EASE_MID, EASE_FAST_IN],
+    duration: 0.7,
+    ease: [0.12, 0.0, 0.2, 1.0],
   };
+
+  const envelopeOpacity = useMemo(() => {
+    if (mode !== "fly") return undefined;
+    return {
+      opacity: 0, // 흐려지며 사라짐
+      y: -18 * scale, // 아주 살짝만 들림 (날아가는 느낌 방지)
+      scale: 0.985, // 살짝 축소
+    };
+  }, [mode, scale]);
 
   // 봉투 입구 라인: 이 아래는 포켓(앞면)이 덮어야 함
   const openingY = slot.top + 120 * scale;
@@ -142,7 +127,12 @@ const EnvelopeLetter = ({
   const letterClipHeight = CLIP_TOP_PADDING + openingY;
 
   return (
-    <div ref={wrapRef} className="relative w-full max-w-[520px]">
+    <motion.div
+      ref={wrapRef}
+      className="relative w-full max-w-[520px]"
+      animate={envelopeOpacity}
+      transition={flyTransition}
+    >
       {/* 1) 봉투(뒤/배경) */}
       <img
         src="/assets/envelopes/letter-envelope-open.png"
@@ -150,7 +140,6 @@ const EnvelopeLetter = ({
         draggable={false}
         className="block w-full h-auto pointer-events-none select-none"
       />
-
       {/* 2) 편지 레이어: 봉투 위(z-10) */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <div
@@ -192,7 +181,6 @@ const EnvelopeLetter = ({
           </div>
         </div>
       </div>
-
       {/* 3) 봉투(앞/포켓): openingY 아래만 남겨 덮기 */}
       <img
         src="/assets/envelopes/letter-envelope-open.png"
@@ -203,7 +191,6 @@ const EnvelopeLetter = ({
           clipPath: `inset(${openingY}px 0px 0px 0px)`,
         }}
       />
-
       {/* debug: openingY 라인 표시 */}
       {debug && (
         <div
@@ -215,7 +202,7 @@ const EnvelopeLetter = ({
           }}
         />
       )}
-    </div>
+    </motion.div>
   );
 };
 

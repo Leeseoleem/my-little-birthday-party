@@ -13,7 +13,7 @@ const ReceiverLetterContent = ({
   content,
 }: ReceiverLetterContentProps) => {
   const areaClass = clsx(
-    "flex-1 min-h-0 h-full bg-transparent resize-none border-0 text-left whitespace-pre-wrap break-words overflow-auto",
+    "flex-1 min-h-0 bg-transparent text-left whitespace-pre-wrap break-words overflow-auto",
   );
   const textClass = clsx(
     type === "default" && "text-letter-default-responsive",
