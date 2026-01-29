@@ -26,7 +26,7 @@ type TooltipButtonProps = NativeButtonProps & {
 
 export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
   function TooltipButton(
-    { tooltip, tooltipClassName, children, ...buttonProps },
+    { tooltip, tooltipClassName, children, type = "button", ...buttonProps },
     forwardedRef,
   ) {
     const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +56,7 @@ export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
 
     const { setReference, setFloating } = refs;
 
-    const referenceProps = getReferenceProps(buttonProps);
+    const referenceProps = getReferenceProps({ type, ...buttonProps });
 
     // 동작 줄이기 설정 여부 확인
     const reduceMotion = useReducedMotion();
