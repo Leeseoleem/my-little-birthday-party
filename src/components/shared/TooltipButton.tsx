@@ -12,7 +12,14 @@ import {
 } from "@floating-ui/react";
 import { useState, forwardRef } from "react";
 
-type TooltipButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+import { motion, useReducedMotion } from "framer-motion";
+
+type NativeButtonProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"
+>;
+
+type TooltipButtonProps = NativeButtonProps & {
   tooltip: React.ReactNode;
   tooltipClassName?: string;
 };
@@ -49,9 +56,14 @@ export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
 
     const { setReference, setFloating } = refs;
 
+    const referenceProps = getReferenceProps(buttonProps);
+
+    // 동작 줄이기 설정 여부 확인
+    const reduceMotion = useReducedMotion();
+
     return (
       <>
-        <button
+        <motion.button
           // Floating UI 기준 요소 등록
           ref={(node) => {
             setReference(node);
@@ -62,10 +74,13 @@ export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
           // hover/focus/dismiss 등 이벤트/aria props 주입
           {...getReferenceProps(buttonProps)}
           // 나머지 버튼 props (className/style/onClick/aria-label 등)
-          {...buttonProps}
+
+          {...referenceProps}
+          whileHover={reduceMotion ? undefined : { scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
         >
           {children}
-        </button>
+        </motion.button>
 
         {isOpen && (
           <div

@@ -48,7 +48,7 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
               search: { returnTo: "party" },
             })
           }
-          className="absolute z-10 bg-transparent active:scale-[0.96] duration-150 ease-out"
+          className="absolute z-10 bg-transparent"
           style={{
             left: pxToPercentX(125), // 15.625%
             bottom: pxToPercentY(350), // 74.468%
@@ -71,7 +71,7 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
               search: { returnTo: "party" },
             })
           }
-          className="absolute z-10 bg-transparent active:scale-[0.96] duration-150 ease-out"
+          className="absolute z-10 bg-transparent"
           style={{
             right: pxToPercentX(100),
             bottom: pxToPercentY(370),
