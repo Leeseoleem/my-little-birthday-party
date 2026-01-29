@@ -2,6 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
+// --- 페이지 분기 관련 ---
+import {
+  validateReturnToPartySearch,
+  type ReturnToPartySearch,
+} from "../../../utils/returnToParty";
+
 // --- 음악 재생 관련 ----
 import happyBirthdayAudio from "../../../assets/audio/happy-birthday-short.mp3";
 import { useAutoPlay } from "../../../hooks/useAutoPlay";
@@ -33,9 +39,19 @@ import clsx from "clsx";
 
 export const Route = createFileRoute("/r/$cardId/event")({
   component: ReceiverEventPage,
+  validateSearch: (search): ReturnToPartySearch => {
+    return validateReturnToPartySearch(search);
+  },
 });
 
 function ReceiverEventPage() {
+  // ----- 페이지 이동 분기 -----
+  const { cardId } = Route.useParams();
+  const search = Route.useSearch();
+
+  const nextTo =
+    search.returnTo === "party" ? "/r/$cardId/party" : "/r/$cardId/letter";
+
   const [phase, setPhase] = useState<CakeEventPhase>("intro");
 
   // ----- 1. intro 상태 -----
@@ -191,9 +207,9 @@ function ReceiverEventPage() {
             <BottomActionSlot>
               <CommonLinkButton
                 label="다음으로"
-                to="/r/$cardId/letter"
+                to={nextTo}
                 params={{
-                  cardId: "demo",
+                  cardId,
                 }}
               />
             </BottomActionSlot>
