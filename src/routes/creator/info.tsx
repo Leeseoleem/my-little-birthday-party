@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 import clsx from "clsx";
 import { pageLayout } from "../../components/shared/styles/pageLayout";
@@ -9,7 +9,6 @@ import BottomActionSlot from "../../components/layout/frame/BottomActionSlot";
 import NoticeFrame from "../../components/layout/page/NoticeFrame";
 
 // ----- 유틸 -----
-import { openInNewTab } from "../../utils/openInNewTab";
 import { ensureAnonSession } from "../../lib/auth/ensureAnonSession";
 import {
   createCardDraft,
@@ -30,6 +29,8 @@ export const Route = createFileRoute("/creator/info")({
 });
 
 function CreatorInfoPage() {
+  const navigate = useNavigate();
+
   const [inviteeName, setInviteeName] = useState("");
   const [inviteeBirthDate, setInviteeBirthDate] = useState("");
 
@@ -48,8 +49,11 @@ function CreatorInfoPage() {
       await ensureAnonSession();
 
       const { cardId } = await createCardDraft(input);
-      const url = `/creator/letter?cardId=${encodeURIComponent(cardId)}`;
-      openInNewTab(url);
+      navigate({
+        to: "/creator/letter",
+        search: { cardId },
+        replace: true,
+      });
     } catch (error: unknown) {
       const message =
         error instanceof Error
