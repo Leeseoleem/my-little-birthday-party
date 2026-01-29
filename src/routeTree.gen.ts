@@ -15,7 +15,6 @@ import { Route as RIndexRouteImport } from './routes/r/index'
 import { Route as CreatorIndexRouteImport } from './routes/creator/index'
 import { Route as CreatorLetterRouteImport } from './routes/creator/letter'
 import { Route as CreatorInfoRouteImport } from './routes/creator/info'
-import { Route as CreatorGuestsRouteImport } from './routes/creator/guests'
 import { Route as CreatorCompleteRouteImport } from './routes/creator/complete'
 import { Route as RCardIdRouteRouteImport } from './routes/r/$cardId/route'
 import { Route as RCardIdIndexRouteImport } from './routes/r/$cardId/index'
@@ -53,11 +52,6 @@ const CreatorLetterRoute = CreatorLetterRouteImport.update({
 const CreatorInfoRoute = CreatorInfoRouteImport.update({
   id: '/info',
   path: '/info',
-  getParentRoute: () => CreatorRouteRoute,
-} as any)
-const CreatorGuestsRoute = CreatorGuestsRouteImport.update({
-  id: '/guests',
-  path: '/guests',
   getParentRoute: () => CreatorRouteRoute,
 } as any)
 const CreatorCompleteRoute = CreatorCompleteRouteImport.update({
@@ -107,7 +101,6 @@ export interface FileRoutesByFullPath {
   '/creator': typeof CreatorRouteRouteWithChildren
   '/r/$cardId': typeof RCardIdRouteRouteWithChildren
   '/creator/complete': typeof CreatorCompleteRoute
-  '/creator/guests': typeof CreatorGuestsRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
   '/creator/': typeof CreatorIndexRoute
@@ -122,7 +115,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/creator/complete': typeof CreatorCompleteRoute
-  '/creator/guests': typeof CreatorGuestsRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
   '/creator': typeof CreatorIndexRoute
@@ -140,7 +132,6 @@ export interface FileRoutesById {
   '/creator': typeof CreatorRouteRouteWithChildren
   '/r/$cardId': typeof RCardIdRouteRouteWithChildren
   '/creator/complete': typeof CreatorCompleteRoute
-  '/creator/guests': typeof CreatorGuestsRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
   '/creator/': typeof CreatorIndexRoute
@@ -159,7 +150,6 @@ export interface FileRouteTypes {
     | '/creator'
     | '/r/$cardId'
     | '/creator/complete'
-    | '/creator/guests'
     | '/creator/info'
     | '/creator/letter'
     | '/creator/'
@@ -174,7 +164,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/creator/complete'
-    | '/creator/guests'
     | '/creator/info'
     | '/creator/letter'
     | '/creator'
@@ -191,7 +180,6 @@ export interface FileRouteTypes {
     | '/creator'
     | '/r/$cardId'
     | '/creator/complete'
-    | '/creator/guests'
     | '/creator/info'
     | '/creator/letter'
     | '/creator/'
@@ -255,13 +243,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreatorInfoRouteImport
       parentRoute: typeof CreatorRouteRoute
     }
-    '/creator/guests': {
-      id: '/creator/guests'
-      path: '/guests'
-      fullPath: '/creator/guests'
-      preLoaderRoute: typeof CreatorGuestsRouteImport
-      parentRoute: typeof CreatorRouteRoute
-    }
     '/creator/complete': {
       id: '/creator/complete'
       path: '/complete'
@@ -323,7 +304,6 @@ declare module '@tanstack/react-router' {
 
 interface CreatorRouteRouteChildren {
   CreatorCompleteRoute: typeof CreatorCompleteRoute
-  CreatorGuestsRoute: typeof CreatorGuestsRoute
   CreatorInfoRoute: typeof CreatorInfoRoute
   CreatorLetterRoute: typeof CreatorLetterRoute
   CreatorIndexRoute: typeof CreatorIndexRoute
@@ -333,7 +313,6 @@ interface CreatorRouteRouteChildren {
 
 const CreatorRouteRouteChildren: CreatorRouteRouteChildren = {
   CreatorCompleteRoute: CreatorCompleteRoute,
-  CreatorGuestsRoute: CreatorGuestsRoute,
   CreatorInfoRoute: CreatorInfoRoute,
   CreatorLetterRoute: CreatorLetterRoute,
   CreatorIndexRoute: CreatorIndexRoute,

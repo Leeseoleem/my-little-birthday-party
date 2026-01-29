@@ -116,7 +116,7 @@ function CreatorCakeBuildPage() {
               <CommonLinkButton
                 isDisabled={!hasAnyValidPlaced}
                 label="완성했어요"
-                to="/creator/guests"
+                to="/creator/complete"
               />
             </div>
           </BottomActionSlot>
