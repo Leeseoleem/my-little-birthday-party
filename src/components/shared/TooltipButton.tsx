@@ -1,0 +1,90 @@
+import {
+  useFloating,
+  autoUpdate,
+  offset,
+  flip,
+  shift,
+  useHover,
+  useFocus,
+  useDismiss,
+  useRole,
+  useInteractions,
+} from "@floating-ui/react";
+import { useState, forwardRef } from "react";
+
+type TooltipButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  tooltip: React.ReactNode;
+  tooltipClassName?: string;
+};
+
+export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
+  function TooltipButton(
+    { tooltip, tooltipClassName, children, ...buttonProps },
+    forwardedRef,
+  ) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const { refs, floatingStyles, context } = useFloating({
+      open: isOpen,
+      onOpenChange: setIsOpen,
+      placement: "bottom",
+      middleware: [offset(8), flip(), shift()],
+      whileElementsMounted: autoUpdate,
+    });
+
+    const hover = useHover(context, {
+      move: false,
+      delay: { open: 0, close: 0 }, // 즉시 열고 닫기
+    });
+    const focus = useFocus(context);
+    const dismiss = useDismiss(context);
+    const role = useRole(context, { role: "tooltip" });
+
+    const { getReferenceProps, getFloatingProps } = useInteractions([
+      hover,
+      focus,
+      dismiss,
+      role,
+    ]);
+
+    const { setReference, setFloating } = refs;
+
+    return (
+      <>
+        <button
+          // Floating UI 기준 요소 등록
+          ref={(node) => {
+            setReference(node);
+            // 외부에서 ref도 받고 싶다면 함께 연결
+            if (typeof forwardedRef === "function") forwardedRef(node);
+            else if (forwardedRef) forwardedRef.current = node;
+          }}
+          // hover/focus/dismiss 등 이벤트/aria props 주입
+          {...getReferenceProps(buttonProps)}
+          // 나머지 버튼 props (className/style/onClick/aria-label 등)
+          {...buttonProps}
+        >
+          {children}
+        </button>
+
+        {isOpen && (
+          <div
+            ref={setFloating}
+            style={floatingStyles}
+            {...getFloatingProps()}
+            className={
+              tooltipClassName ??
+              `
+                pointer-events-none
+                rounded-md bg-black/70 px-3 py-1.5
+                text-xs text-white whitespace-nowrap
+              `
+            }
+          >
+            {tooltip}
+          </div>
+        )}
+      </>
+    );
+  },
+);
