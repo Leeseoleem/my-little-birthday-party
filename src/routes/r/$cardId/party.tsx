@@ -89,7 +89,6 @@ function ReceiverPartyPage() {
     <div className="relative flex flex-1 overflow-hidden bg-gray-90">
       {/* 컨페티 */}
       <ConfettiLayer ref={confettiLayerRef} />
-      <AppHeader />
       {/* ----- 인트로 오버레이 ----- */}
       <AnimatePresence>
         {showIntro && <IntroSection duration={INTRO_FADE_SEC} />}
