@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -9,9 +9,13 @@ import { isCakeType } from "../../../features/creator/utils/isCakeType";
 import CakeStackWithSlots from "../../../features/creator/components/build/CakeStackWithSlots";
 import CandlePickerSheet from "../../../features/creator/components/build/CandlePickerSheet";
 import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
-import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
+import CommonButton from "../../../components/ui/Button/Button";
 import PageTitle from "../../../components/ui/PageTitle";
+
 import type { CakeType } from "../../../features/types/cake.types";
+import type { PlacedCandlesBySlot } from "../../../features/types/cake-doc.types"; // 경로 조정
+import { saveCakeDoc } from "../../../lib/api/saveCakeDoc";
+import { handleCardError } from "../../../errors/handleCardError"; // 경로 조정
 
 export const Route = createFileRoute("/creator/cake/build/$cakeType")({
   staticData: {
@@ -23,40 +27,45 @@ export const Route = createFileRoute("/creator/cake/build/$cakeType")({
       value: 0.75,
     },
   },
-  beforeLoad: ({ params }) => {
+  validateSearch: (search) => {
+    return {
+      cardId: typeof search.cardId === "string" ? search.cardId : undefined,
+    };
+  },
+  beforeLoad: ({ params, search }) => {
     if (!isCakeType(params.cakeType)) {
-      throw redirect({ to: "/creator/cake/select", replace: true });
+      throw redirect({ to: "/creator/cake/select", search, replace: true });
     }
   },
+
   component: CreatorCakeBuildPage,
 });
 
 function CreatorCakeBuildPage() {
-  // params로 넘어온 케이크 값
   const { cakeType } = Route.useParams();
+  const { cardId } = Route.useSearch();
 
   const selectCakeType = cakeType as CakeType;
 
-  // 촛불 선택 영역 관리
+  const navigate = useNavigate();
+
+  // 촛불 선택 패널
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string>("");
 
-  // 현재 편집중인 Slot
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  // 현재 편집중인 SlotKey
+  const [activeSlotKey, setActiveSlotKey] = useState<string | null>(null);
 
-  // 슬롯별 배치 상태 (index -> candleId)
-  const [placedIds, setPlacedIds] = useState<
-    Record<number, string | undefined>
-  >({});
+  // 슬롯별 배치 상태 (slotKey -> candleId|null) : DB와 동일 구조
+  const [placedBySlot, setPlacedBySlot] = useState<PlacedCandlesBySlot>({});
 
-  const handleSlotClick = (index: number) => {
-    setActiveIndex(index);
-    // 여기서 하단 촛불 선택 메뉴 열기
+  const handleSlotClick = (slotKey: string) => {
+    setActiveSlotKey(slotKey);
     setIsOpen(true);
   };
 
   const resetCandlePicker = () => {
-    setActiveIndex(null);
+    setActiveSlotKey(null);
     setSelectedId("");
     setIsOpen(false);
   };
@@ -64,28 +73,45 @@ function CreatorCakeBuildPage() {
   const handlePickCandle = (id: string) => {
     setSelectedId(id);
 
-    // 어떤 슬롯을 골랐는지 알아야 배치가 가능
-    if (activeIndex === null) return;
+    if (!activeSlotKey) return;
 
-    setPlacedIds((prev) => ({
+    setPlacedBySlot((prev) => ({
       ...prev,
-      [activeIndex]: id,
+      [activeSlotKey]: id,
     }));
 
     resetCandlePicker();
   };
 
-  // 촛불 배치 여부
-  const hasAnyValidPlaced = Object.values(placedIds).some(
+  // 촛불 배치 여부(하나라도 유효하면 true)
+  const hasAnyValidPlaced = Object.values(placedBySlot).some(
     (id): id is string => typeof id === "string" && id.length > 0,
   );
 
-  // 새로고침 제어 조건
-  const shouldWarnOnRefresh = hasAnyValidPlaced;
-
   useBeforeUnloadWarning({
-    when: shouldWarnOnRefresh,
+    when: hasAnyValidPlaced,
   });
+
+  const onComplete = async () => {
+    try {
+      await saveCakeDoc(cardId, {
+        cakeType: selectCakeType,
+        placedCandlesBySlot: placedBySlot,
+      });
+
+      if (!cardId) return;
+
+      navigate({
+        to: "/creator/complete",
+        search: { cardId },
+        replace: true,
+      });
+    } catch (err) {
+      const handled = handleCardError(err, navigate);
+      if (handled) return;
+      alert("저장 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div
@@ -99,31 +125,28 @@ function CreatorCakeBuildPage() {
         subTitle="케이크에 어울리는 초를 골라주세요"
       />
 
-      {/* 메인 콘텐츠 영역 */}
       <div className="flex-1 flex justify-center items-center px-4">
         <CakeStackWithSlots
           cakeType={selectCakeType}
-          placedIds={placedIds}
+          placedBySlot={placedBySlot}
           onSlotClick={handleSlotClick}
         />
       </div>
 
-      {/* 하단 버튼(아래 레이어) */}
       {!isOpen && (
         <div className="absolute inset-x-0 bottom-0 z-10">
           <BottomActionSlot>
             <div className="flex w-full justify-center px-4">
-              <CommonLinkButton
+              <CommonButton
                 isDisabled={!hasAnyValidPlaced}
                 label="완성했어요"
-                to="/creator/complete"
+                onClick={onComplete}
               />
             </div>
           </BottomActionSlot>
         </div>
       )}
 
-      {/* 하단 패널 영역 */}
       <CandlePickerSheet
         isOpen={isOpen}
         onClickBackdrop={resetCandlePicker}
