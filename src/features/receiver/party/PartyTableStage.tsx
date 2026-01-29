@@ -7,6 +7,8 @@ import CakeStack from "../../creator/components/build/CakeStack";
 import type { CakeType } from "../../types/cake.types";
 import { CAKE_MENU } from "../../creator/data/cakeMenu.data";
 
+import { TooltipButton } from "../../../components/shared/TooltipButton";
+
 type PartyTableStageProps = {
   cakeType: CakeType;
 };
@@ -35,7 +37,8 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
         />
 
         {/* CakeStack */}
-        <button
+        <TooltipButton
+          tooltip="케이크를 눌러 케이크 이벤트 페이지로 이동"
           type="button"
           aria-label="케이크 이벤트 페이지로 이동"
           onClick={() =>
@@ -45,7 +48,7 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
               search: { returnTo: "party" },
             })
           }
-          className="absolute z-10 bg-transparent"
+          className="absolute z-10 bg-transparent active:scale-[0.96] duration-150 ease-out"
           style={{
             left: pxToPercentX(125), // 15.625%
             bottom: pxToPercentY(350), // 74.468%
@@ -54,10 +57,11 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
           }}
         >
           <CakeStack cakeSrc={menu?.imageSrc} />
-        </button>
+        </TooltipButton>
 
         {/* Letter Envelope */}
-        <button
+        <TooltipButton
+          tooltip="편지지를 눌러 편지 이벤트 페이지로 이동"
           type="button"
           aria-label="편지 이벤트 페이지로 이동"
           onClick={() =>
@@ -67,7 +71,7 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
               search: { returnTo: "party" },
             })
           }
-          className="absolute z-10 bg-transparent"
+          className="absolute z-10 bg-transparent active:scale-[0.96] duration-150 ease-out"
           style={{
             right: pxToPercentX(100),
             bottom: pxToPercentY(370),
@@ -82,7 +86,7 @@ export default function PartyTableStage({ cakeType }: PartyTableStageProps) {
                    select-none pointer-events-none z-1"
             draggable={false}
           />
-        </button>
+        </TooltipButton>
       </div>
     </div>
   );
