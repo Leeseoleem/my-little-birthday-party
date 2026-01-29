@@ -1,6 +1,9 @@
 import type { LetterPaperType } from "../features/types/letterPaper.types";
 import type { CreatorLastStep } from "../features/types/creatorFlowStep.types";
 
+import type { CakeType } from "../features/types/cake.types";
+import type { PlacedCandlesBySlot } from "../features/types/cake-doc.types";
+
 export type CardStatus = "draft" | "published";
 
 /**
@@ -19,7 +22,8 @@ export type CardRow = {
   letter: string | null; // text nullable
 
   // cake
-  candles: unknown | null; // jsonb nullable (추후 구체화)
+  cake_type: CakeType | null; // text nullable (draft 단계에서 비어있을 수 있음)
+  candles: PlacedCandlesBySlot | null; // jsonb nullable
 
   // flow/state
   status: CardStatus; // NOT NULL DEFAULT 'draft'
