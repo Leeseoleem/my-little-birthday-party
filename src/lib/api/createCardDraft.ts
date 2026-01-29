@@ -1,13 +1,11 @@
 import { supabase } from "../supabase";
+import type { CardRow } from "../../types/cards.types";
 
-export type CreateCardDraftInput = {
-  inviteeName: string;
-  inviteeBirthDate: string; // "MMDD"
-};
+export type CreateCardDraftInput = Pick<CardRow, "receiver_name" | "pin_birth">;
 
 export async function createCardDraft(input: CreateCardDraftInput) {
-  const name = input.inviteeName.trim();
-  const birth = input.inviteeBirthDate.trim();
+  const name = input.receiver_name;
+  const birth = input.pin_birth.trim();
 
   // 입력 검증 방어용
   if (!name) throw new Error("이름을 입력해 주세요.");

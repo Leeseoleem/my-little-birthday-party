@@ -88,8 +88,8 @@ function CreatorInfoPage() {
             label: isLoading ? "처리 중..." : "시작하기",
             onClick: () => {
               void handleNext({
-                inviteeName: inviteeName,
-                inviteeBirthDate: inviteeBirthDate,
+                receiver_name: inviteeName,
+                pin_birth: inviteeBirthDate,
               });
             },
           }}
