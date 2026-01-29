@@ -13,10 +13,17 @@ export const Route = createFileRoute("/creator/cake/select")({
       value: 0.5,
     },
   },
+  validateSearch: (search) => {
+    return {
+      cardId: typeof search.cardId === "string" ? search.cardId : undefined,
+    };
+  },
   component: CreatorCakeSelectPage,
 });
 
 function CreatorCakeSelectPage() {
+  const { cardId } = Route.useSearch();
+
   const [cakeType, setCakeType] = useState<CakeType>("party");
   return (
     <div className="flex flex-col h-full pt-4">
@@ -31,6 +38,8 @@ function CreatorCakeSelectPage() {
           buttonProps={{
             to: "/creator/cake/build/$cakeType",
             params: { cakeType: cakeType },
+            search: { cardId },
+            replace: true,
           }}
         />
       </div>
