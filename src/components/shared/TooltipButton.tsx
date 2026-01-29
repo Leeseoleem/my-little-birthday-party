@@ -71,10 +71,6 @@ export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
             if (typeof forwardedRef === "function") forwardedRef(node);
             else if (forwardedRef) forwardedRef.current = node;
           }}
-          // hover/focus/dismiss 등 이벤트/aria props 주입
-          {...getReferenceProps(buttonProps)}
-          // 나머지 버튼 props (className/style/onClick/aria-label 등)
-
           {...referenceProps}
           whileHover={reduceMotion ? undefined : { scale: 1.05 }}
           whileTap={{ scale: 0.96 }}
