@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 // --- 페이지 분기 관련 ---
 import {
@@ -112,10 +112,14 @@ function ReceiverEventPage() {
     };
   }, []);
 
+  const handleAudioEnded = useCallback(() => {
+    setPhase("readyToBlow");
+  }, []);
+
   useAutoPlay({
     src: happyBirthdayAudio,
     shouldPlay: phase === "reveal",
-    onEnded: () => setPhase("readyToBlow"),
+    onEnded: handleAudioEnded,
   });
 
   // ----- 4. blown 상태 -----
