@@ -1,5 +1,6 @@
 import { supabase } from "../supabase";
 import type { CardRow } from "../../types/cards.types";
+import type { CreatorLastStep } from "../../features/types/creatorFlowStep.types";
 
 export type CreateCardDraftInput = Pick<CardRow, "receiver_name" | "pin_birth">;
 
@@ -18,6 +19,7 @@ export async function createCardDraft(input: CreateCardDraftInput) {
     pin_birth: birth,
     status: "draft",
     is_completed: false,
+    last_step: "c2_info" satisfies CreatorLastStep,
   };
 
   const { data, error } = await supabase
