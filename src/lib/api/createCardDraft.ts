@@ -1,10 +1,13 @@
 import { supabase } from "../supabase";
 import type { CardRow } from "../../types/cards.types";
+import type { CardIdResult } from "../../types/cardResult.types";
 import type { CreatorLastStep } from "../../features/types/creatorFlowStep.types";
 
 export type CreateCardDraftInput = Pick<CardRow, "receiver_name" | "pin_birth">;
 
-export async function createCardDraft(input: CreateCardDraftInput) {
+export async function createCardDraft(
+  input: CreateCardDraftInput,
+): Promise<CardIdResult> {
   const name = input.receiver_name;
   const birth = input.pin_birth.trim();
 
@@ -30,5 +33,5 @@ export async function createCardDraft(input: CreateCardDraftInput) {
 
   if (error) throw error;
 
-  return { cardId: data.id as string };
+  return { cardId: data.id as CardRow["id"] };
 }
