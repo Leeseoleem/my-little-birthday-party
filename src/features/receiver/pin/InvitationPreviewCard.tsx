@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useParams } from "@tanstack/react-router";
 
 import InvitationCardFrame from "../../../components/shared/invitation/InvitationCardFrame";
 import type { InvitationInfoProps } from "../../../components/shared/invitation/InvitationInfo";
@@ -15,6 +15,8 @@ export default function InvitationPreviewCard({
   const navigate = useNavigate();
   const { unlock } = useAudioUnlock();
 
+  const { cardId } = useParams({ from: "/r/$cardId/" });
+
   const handleEnter = async () => {
     // 사용자 제스처(버튼 클릭) 안에서 언락 시도
     // 성공/실패와 무관하게 다음 화면으로 이동하도록 구성
@@ -22,7 +24,7 @@ export default function InvitationPreviewCard({
 
     navigate({
       to: "/r/$cardId/event",
-      params: { cardId: "demo" },
+      params: { cardId },
       replace: true,
     });
   };

@@ -28,9 +28,11 @@ export const LETTER_PAPER_ITEMS: CarouselItem[] = (
 }));
 
 /**
- * DB에 저장되는 편지 데이터 구조
+ * DB에 저장되는 letter 데이터
+ * - paperType: 사용자가 고른 편지지 타입(식별자)
+ * - content: 사용자가 작성한 편지 내용
  */
-export type LetterData = {
-  paperType: LetterPaperType; // "default" | "simple" | "night"
-  content: string; // 실제 편지 내용 (textarea 입력값)
+export type LetterDoc = {
+  paperType: LetterPaperType;
+  content: string;
 };

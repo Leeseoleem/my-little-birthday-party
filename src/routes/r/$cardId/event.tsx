@@ -1,15 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
+// --- 페이지 분기 관련 ---
+import {
+  validateReturnToPartySearch,
+  type ReturnToPartySearch,
+} from "../../../utils/returnToParty";
+
+// --- 음악 재생 관련 ----
 import happyBirthdayAudio from "../../../assets/audio/happy-birthday-short.mp3";
+import { useAutoPlay } from "../../../hooks/useAutoPlay";
 
 import type {
   CakeEventPhase,
   GuideMessageState,
 } from "../../../features/receiver/event/types/cakeEventPhase.types";
 import { cakeDoc } from "../../../mocks/cakeMocks";
-import { useAudioWithEnded } from "../../../hooks/useAudioWithEnded";
 
 import { PhaseLayer } from "../../../components/layout/frame/PhaseLayer";
 import OverlayLayer from "../../../features/receiver/event/OverlayLayer";
@@ -32,9 +39,19 @@ import clsx from "clsx";
 
 export const Route = createFileRoute("/r/$cardId/event")({
   component: ReceiverEventPage,
+  validateSearch: (search): ReturnToPartySearch => {
+    return validateReturnToPartySearch(search);
+  },
 });
 
 function ReceiverEventPage() {
+  // ----- 페이지 이동 분기 -----
+  const { cardId } = Route.useParams();
+  const search = Route.useSearch();
+
+  const nextTo =
+    search.returnTo === "party" ? "/r/$cardId/party" : "/r/$cardId/letter";
+
   const [phase, setPhase] = useState<CakeEventPhase>("intro");
 
   // ----- 1. intro 상태 -----
@@ -95,59 +112,15 @@ function ReceiverEventPage() {
     };
   }, []);
 
-  // 오디오 재생 관련
-  const playedRef = useRef(false);
+  const handleAudioEnded = useCallback(() => {
+    setPhase("readyToBlow");
+  }, []);
 
-  const { play } = useAudioWithEnded({
+  useAutoPlay({
     src: happyBirthdayAudio,
-    loop: false,
-    onEnded: () => {
-      setPhase("readyToBlow");
-    },
+    shouldPlay: phase === "reveal",
+    onEnded: handleAudioEnded,
   });
-
-  useEffect(() => {
-    if (phase !== "reveal") return;
-    if (playedRef.current) return;
-
-    let cancelled = false;
-    let fallbackTimerId: number | null = null;
-
-    const tryPlay = async () => {
-      try {
-        const ok = await play();
-
-        if (cancelled) return;
-
-        // play() 실패 → 폴백 타이머로 다음 단계
-        if (ok === false) {
-          fallbackTimerId = window.setTimeout(() => {
-            if (cancelled) return;
-            setPhase("readyToBlow");
-          }, 18000);
-          return;
-        }
-
-        // 재생 성공
-        playedRef.current = true;
-      } catch {
-        if (cancelled) return;
-
-        // 예외 발생 → 폴백 타이머
-        fallbackTimerId = window.setTimeout(() => {
-          if (cancelled) return;
-          setPhase("readyToBlow");
-        }, 18000);
-      }
-    };
-
-    void tryPlay();
-
-    return () => {
-      cancelled = true;
-      if (fallbackTimerId) window.clearTimeout(fallbackTimerId);
-    };
-  }, [phase, play]);
 
   // ----- 4. blown 상태 -----
   const confettiLayerRef = useRef<ConfettiLayerHandle | null>(null);
@@ -211,7 +184,10 @@ function ReceiverEventPage() {
       {/* 안내 문구: 오버레이 위 (정중앙 고정) */}
       {phase === "intro" && (
         <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <GuideMessage state={guideState} />
+          <GuideMessage state={guideState}>
+            🎧 잠시 후 음악이 재생됩니다. <br /> 이어폰을 착용하면 더 깊이 즐길
+            수 있어요.
+          </GuideMessage>
         </div>
       )}
       <AnimatePresence>
@@ -235,9 +211,9 @@ function ReceiverEventPage() {
             <BottomActionSlot>
               <CommonLinkButton
                 label="다음으로"
-                to="/r/$cardId/letter"
+                to={nextTo}
                 params={{
-                  cardId: "demo",
+                  cardId,
                 }}
               />
             </BottomActionSlot>

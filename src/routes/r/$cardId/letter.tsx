@@ -2,6 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
+// --- 페이지 분기 관련 ---
+import {
+  validateReturnToPartySearch,
+  type ReturnToPartySearch,
+} from "../../../utils/returnToParty";
+
 // 기본 컴포넌트
 import { PhaseLayer } from "../../../components/layout/frame/PhaseLayer";
 
@@ -25,6 +31,9 @@ import { LETTER_DUMMY } from "../../../mocks/letterMocks";
 
 export const Route = createFileRoute("/r/$cardId/letter")({
   component: ReceiverLetterPage,
+  validateSearch: (search): ReturnToPartySearch => {
+    return validateReturnToPartySearch(search);
+  },
 });
 
 // 상수 정의
@@ -32,6 +41,13 @@ const PHASE_TRANSITION_DELAY = 300;
 const BUTTON_ENABLE_DELAY = 10300; // 편지 읽기 애니메이션 완료 시간
 
 function ReceiverLetterPage() {
+  // ----- 페이지 이동 분기 -----
+  const { cardId } = Route.useParams();
+  const search = Route.useSearch();
+
+  // party에서 왔는지 여부
+  const cameFromParty = search.returnTo === "party";
+
   const [phase, setPhase] = useState<LetterPhase>("closed");
 
   // --- 1. closed ---
@@ -130,7 +146,15 @@ function ReceiverLetterPage() {
                   isDisabled={isButtonDisabled}
                   label="다 읽었어요"
                   to="/r/$cardId/party"
-                  params={{ cardId: "demo" }}
+                  params={{ cardId }}
+                  replace={true}
+                  {...(!cameFromParty
+                    ? {
+                        state: {
+                          entry: "first",
+                        },
+                      }
+                    : {})}
                 />
               </BottomActionSlot>
             </div>

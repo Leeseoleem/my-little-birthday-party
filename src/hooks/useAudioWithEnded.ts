@@ -117,5 +117,6 @@ export function useAudioWithEnded({
     audio.volume = Math.max(0, Math.min(1, v));
   }, []);
 
-  return { play, pause, stop, setVol };
+  // audioRef 자체를 반환 (useAutoPlay에서 .current로 접근)
+  return { play, pause, stop, setVol, audioRef };
 }
