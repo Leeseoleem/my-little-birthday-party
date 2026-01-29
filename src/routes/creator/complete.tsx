@@ -1,5 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import clsx from "clsx";
+
+import { completeCard } from "../../lib/api/completeCard";
+import { handleCardError } from "../../errors/handleCardError";
+
+import { copyShareLink } from "../../features/creator/utils/copyShareLink";
 
 import GarlandLayout from "../../components/layout/page/GarlandLayout";
 import InvitationCompleteCard from "../../features/creator/components/complete/InvitationCompleteCard";
@@ -15,10 +21,30 @@ export const Route = createFileRoute("/creator/complete")({
       isFullBleed: true,
     },
   },
+  validateSearch: (search) => {
+    return {
+      cardId: typeof search.cardId === "string" ? search.cardId : undefined,
+    };
+  },
   component: CreatorCompletePage,
 });
 
 function CreatorCompletePage() {
+  const navigate = useNavigate();
+  const { cardId } = Route.useSearch();
+
+  useEffect(() => {
+    void (async () => {
+      try {
+        await completeCard(cardId);
+      } catch (err) {
+        const handled = handleCardError(err, navigate);
+        if (handled) return;
+        alert("저장 중 오류가 발생했습니다.");
+      }
+    })();
+  }, [cardId, navigate]);
+
   return (
     <GarlandLayout hasHeader>
       <div className={clsx(receiverPageLayout, "px-4")}>
@@ -37,8 +63,13 @@ function CreatorCompletePage() {
               onShareMail: () => {
                 // TODO:  mailto 생성 로직
               },
-              onCopyLink: () => {
-                // TODO: navigator.clipboard.writeText(url)
+              onCopyLink: async () => {
+                try {
+                  await copyShareLink(cardId);
+                  alert("링크가 복사되었습니다");
+                } catch {
+                  alert("링크 복사에 실패했습니다");
+                }
               },
             }}
           />
