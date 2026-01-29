@@ -73,7 +73,7 @@ export const TooltipButton = forwardRef<HTMLButtonElement, TooltipButtonProps>(
           }}
           {...referenceProps}
           whileHover={reduceMotion ? undefined : { scale: 1.05 }}
-          whileTap={{ scale: 0.96 }}
+          whileTap={reduceMotion ? undefined : { scale: 0.96 }}
         >
           {children}
         </motion.button>
