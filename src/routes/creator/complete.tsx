@@ -1,11 +1,9 @@
-import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import clsx from "clsx";
 
 import { getCardInviteInfo } from "../../lib/api/getCardInviteInfo";
 import { formatPinBirth } from "../../utils/formatPinBirth";
 import { completeCard } from "../../lib/api/completeCard";
-import { handleCardError } from "../../errors/handleCardError";
 
 import { copyShareLink } from "../../features/creator/utils/copyShareLink";
 
@@ -48,20 +46,7 @@ export const Route = createFileRoute("/creator/complete")({
 });
 
 function CreatorCompletePage() {
-  const navigate = useNavigate();
   const { cardId, invite } = Route.useLoaderData();
-
-  useEffect(() => {
-    void (async () => {
-      try {
-        await completeCard(cardId);
-      } catch (err) {
-        const handled = handleCardError(err, navigate);
-        if (handled) return;
-        alert("저장 중 오류가 발생했습니다.");
-      }
-    })();
-  }, [cardId, navigate]);
 
   return (
     <GarlandLayout hasHeader>
