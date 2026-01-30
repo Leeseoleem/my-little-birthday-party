@@ -1,7 +1,10 @@
 import { supabase } from "../supabase";
 
-export async function ensureAnonSession() {
-  // session 조회
+// 동시 호출(레이스 컨디션) 방지용 in-flight Promise 캐시
+let inFlight: ReturnType<typeof ensureAnonSessionInner> | null = null;
+
+async function ensureAnonSessionInner() {
+  // 현재 session 조회
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();
 
@@ -21,4 +24,15 @@ export async function ensureAnonSession() {
   }
 
   return data.user;
+}
+
+export async function ensureAnonSession() {
+  if (!inFlight) {
+    inFlight = ensureAnonSessionInner().finally(() => {
+      // 성공/실패와 무관하게 다음 호출을 위해 캐시를 비웁니다.
+      inFlight = null;
+    });
+  }
+
+  return inFlight;
 }
