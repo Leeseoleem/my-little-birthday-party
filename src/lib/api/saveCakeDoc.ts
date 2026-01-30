@@ -55,6 +55,14 @@ export async function saveCakeDoc(
     throw new Error("촛불이 배치되지 않았습니다.");
   }
 
+  const placedCount = Object.values(doc.placedCandlesBySlot).filter(
+    (v) => v !== null,
+  ).length;
+
+  if (placedCount === 0) {
+    throw new Error("촛불이 배치되지 않았습니다.");
+  }
+
   // 슬롯 개수 규칙(앱 레벨 1차 방어)
   validateSlotCount(doc.cakeType, doc.placedCandlesBySlot);
 
@@ -76,7 +84,6 @@ export async function saveCakeDoc(
 
   if (!data || data.length === 0) {
     // 존재하지 않거나, RLS/권한 문제로 업데이트 대상 row가 "보이지/허용되지" 않아 0건일 수도 있음
-    // 보안적으로는 둘 다 "NOT FOUND"로 뭉개는 게 안전한 편
     throw new Error(CARD_ERROR.CARD_ID_MISSING);
   }
 
