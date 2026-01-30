@@ -1,4 +1,5 @@
 import { getShareUrl } from "../../../utils/getShareUrl";
+import { CARD_ERROR } from "../../../errors/cardErrorCodes";
 
 /**
  * 카드 공유 링크를 클립보드에 복사합니다.
@@ -7,7 +8,11 @@ import { getShareUrl } from "../../../utils/getShareUrl";
  */
 export async function copyShareLink(cardId: string | undefined): Promise<void> {
   if (!cardId) {
-    throw new Error("copyShareLink: cardId가 없습니다.");
+    throw new Error(CARD_ERROR.CARD_ID_MISSING);
+  }
+
+  if (!navigator.clipboard?.writeText) {
+    throw new Error("Clipboard API를 사용할 수 없습니다.");
   }
 
   try {
