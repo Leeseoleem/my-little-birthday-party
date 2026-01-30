@@ -59,28 +59,49 @@ function CreatorCakeBuildPage() {
   // 슬롯별 배치 상태 (slotKey -> candleId|null) : DB와 동일 구조
   const [placedBySlot, setPlacedBySlot] = useState<PlacedCandlesBySlot>({});
 
+  // 시트 닫기: 선택/취소 후 모두 닫히게
+  const closeCandlePicker = () => {
+    setIsOpen(false);
+    setActiveSlotKey(null);
+    setSelectedId("");
+  };
+
+  // 슬롯 클릭: 현재 슬롯에 배치된 촛불을 미리 선택 상태로 세팅 후 시트 오픈
   const handleSlotClick = (slotKey: string) => {
     setActiveSlotKey(slotKey);
+
+    const current = placedBySlot[slotKey] ?? null;
+    setSelectedId(typeof current === "string" ? current : "");
+
     setIsOpen(true);
   };
 
-  const resetCandlePicker = () => {
-    setActiveSlotKey(null);
-    setSelectedId("");
-    setIsOpen(false);
-  };
-
+  // 촛불 클릭: 같은 거면 null(취소), 다른 거면 id(선택). 둘 다 시트 닫힘.
   const handlePickCandle = (id: string) => {
-    setSelectedId(id);
-
     if (!activeSlotKey) return;
 
-    setPlacedBySlot((prev) => ({
-      ...prev,
-      [activeSlotKey]: id,
-    }));
+    setPlacedBySlot((prev) => {
+      const current = prev[activeSlotKey] ?? null;
 
-    resetCandlePicker();
+      // 같은 촛불을 다시 누르면: 슬롯 키 자체를 제거(배치 취소)
+      if (current === id) {
+        const next = { ...prev };
+        delete next[activeSlotKey];
+        return next;
+      }
+
+      // 다른 촛불을 누르면: 해당 슬롯에 촛불 id 저장
+      return {
+        ...prev,
+        [activeSlotKey]: id,
+      };
+    });
+
+    // 시트가 닫히기 전에 선택 상태도 즉시 반영
+    setSelectedId("");
+
+    // 선택 / 취소 모두 시트 닫기
+    closeCandlePicker();
   };
 
   // 촛불 배치 여부(하나라도 유효하면 true)
@@ -149,7 +170,7 @@ function CreatorCakeBuildPage() {
 
       <CandlePickerSheet
         isOpen={isOpen}
-        onClickBackdrop={resetCandlePicker}
+        onClickBackdrop={closeCandlePicker}
         selectedId={selectedId}
         onPick={handlePickCandle}
       />
