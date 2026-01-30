@@ -42,6 +42,28 @@ export const Route = createFileRoute("/creator/complete")({
 
     return { cardId, invite };
   },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+
+    const { invite } = loaderData;
+
+    const title = `${invite.receiverName}님을 위한 생일 파티 초대장 🎉`;
+    const description = `${invite.receiverName}님을 특별한 생일 파티에 초대했어요.`;
+
+    return {
+      title,
+      meta: [
+        { name: "description", content: description },
+
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+      ],
+    };
+  },
+
   component: CreatorCompletePage,
 });
 
