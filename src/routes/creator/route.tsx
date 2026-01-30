@@ -24,7 +24,7 @@ function CreatorLayout() {
 
   const layoutClass = clsx(
     "flex flex-1 flex-col min-h-0",
-    !LayoutMeta && "px-4 mdh:px-12 xl:px-25"
+    !LayoutMeta && "px-4 mdh:px-12 xl:px-25",
   );
 
   // 2. 헤더 메타 데이터를 설치한 라우트
