@@ -1,4 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useState } from "react";
 import clsx from "clsx";
 
 import { getCardInviteInfo } from "../../lib/api/getCardInviteInfo";
@@ -6,6 +7,7 @@ import { formatPinBirth } from "../../utils/formatPinBirth";
 import { completeCard } from "../../lib/api/completeCard";
 
 import { copyShareLink } from "../../features/creator/utils/copyShareLink";
+import { shareKakao } from "../../lib/share/shareKakao";
 
 import GarlandLayout from "../../components/layout/page/GarlandLayout";
 import InvitationCompleteCard from "../../features/creator/components/complete/InvitationCompleteCard";
@@ -70,6 +72,39 @@ export const Route = createFileRoute("/creator/complete")({
 function CreatorCompletePage() {
   const { cardId, invite } = Route.useLoaderData();
 
+  // ===== 링크 복사하기 =====
+  async function handleCopyLink() {
+    try {
+      await copyShareLink(cardId);
+      alert("링크를 복사했습니다.");
+    } catch (err) {
+      console.error("[copyShareLink] failed:", err);
+      alert("링크 복사에 실패했습니다.");
+    }
+  }
+
+  // ===== 카카오톡 공유하기 =====
+  const [isSharing, setIsSharing] = useState(false);
+
+  async function handleShareKakao() {
+    if (isSharing) return;
+
+    try {
+      setIsSharing(true);
+
+      await shareKakao(cardId, {
+        receiverName: invite.receiverName,
+      });
+
+      // 성공 토스트가 있으면 여기서 띄우면 됨(현재는 생략)
+    } catch (err) {
+      console.error("[shareKakao] failed:", err);
+      alert("카카오톡 공유에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setIsSharing(false);
+    }
+  }
+
   return (
     <GarlandLayout hasHeader>
       <div className={clsx(receiverPageLayout, "px-4")}>
@@ -82,20 +117,8 @@ function CreatorCompletePage() {
               inviteeBirthDate: formatPinBirth(invite.pinBirth),
             }}
             sns={{
-              onShareKakao: () => {
-                // TODO: Kakao SDK 연동 로직
-              },
-              onShareMail: () => {
-                // TODO:  mailto 생성 로직
-              },
-              onCopyLink: async () => {
-                try {
-                  await copyShareLink(cardId);
-                  alert("링크가 복사되었습니다");
-                } catch {
-                  alert("링크 복사에 실패했습니다");
-                }
-              },
+              onShareKakao: handleShareKakao,
+              onCopyLink: handleCopyLink,
             }}
           />
         </div>
