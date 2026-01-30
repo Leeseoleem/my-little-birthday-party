@@ -9,5 +9,5 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     {/* 화면 시작점: RouterProvider */}
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
