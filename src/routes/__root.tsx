@@ -7,7 +7,23 @@ import { SITE } from "../components/seo/seo.constants";
 
 export const Route = createRootRoute({
   head: () => {
-    const origin = getSiteOrigin();
+    let origin: string | null = null;
+
+    try {
+      origin = getSiteOrigin();
+    } catch (e) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn("[metadata] failed to resolve site origin", e);
+      }
+    }
+
+    if (!origin) {
+      return {
+        title: SITE.defaultTitle,
+        meta: [{ name: "description", content: SITE.defaultDescription }],
+      };
+    }
+
     const url = origin;
 
     const title = SITE.defaultTitle;
