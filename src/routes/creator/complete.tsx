@@ -2,9 +2,9 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import clsx from "clsx";
 
-import { getCardInviteInfo } from "../../lib/api/getCardInviteInfo";
+import { getCardInviteInfo } from "../../lib/api/creator/getCardInviteInfo";
 import { formatPinBirth } from "../../utils/formatPinBirth";
-import { completeCard } from "../../lib/api/completeCard";
+import { completeCard } from "../../lib/api/creator/completeCard";
 
 import { copyShareLink } from "../../features/creator/utils/copyShareLink";
 import { shareKakao } from "../../lib/share/shareKakao";

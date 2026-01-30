@@ -1,8 +1,8 @@
-import { supabase } from "../supabase";
-import type { CardRow } from "../../types/cards.types";
-import type { CardIdResult } from "../../types/cardResult.types";
-import { CARD_ERROR } from "../../errors/cardErrorCodes";
-import type { CreatorLastStep } from "../../features/types/creatorFlowStep.types";
+import { supabase } from "../../supabase";
+import type { CardRow } from "../../../types/cards.types";
+import type { CardIdResult } from "../../../types/cardResult.types";
+import { CARD_ERROR } from "../../../errors/cardErrorCodes";
+import type { CreatorLastStep } from "../../../features/types/creatorFlowStep.types";
 
 type CompleteCardPayload = Pick<
   CardRow,

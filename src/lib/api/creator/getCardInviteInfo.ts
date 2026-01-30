@@ -1,5 +1,5 @@
-import { supabase } from "../supabase";
-import { CARD_ERROR } from "../../errors/cardErrorCodes";
+import { supabase } from "../../supabase";
+import { CARD_ERROR } from "../../../errors/cardErrorCodes";
 
 type GetCardInviteInfoResult = {
   receiverName: string;

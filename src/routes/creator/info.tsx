@@ -13,7 +13,7 @@ import { ensureAnonSession } from "../../lib/auth/ensureAnonSession";
 import {
   createCardDraft,
   type CreateCardDraftInput,
-} from "../../lib/api/createCardDraft";
+} from "../../lib/api/creator/createCardDraft";
 
 // ----- 데이터 -----
 import { segments } from "../../features/creator/data/segments.data";

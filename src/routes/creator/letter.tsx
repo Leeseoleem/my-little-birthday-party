@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useBeforeUnloadWarning } from "../../hooks/useBeforeUnloadWarning";
 
 // --- doc 관련 ---
-import { saveLetterDoc } from "../../lib/api/saveLetterDoc";
+import { saveLetterDoc } from "../../lib/api/creator/saveLetterDoc";
 import { handleCardError } from "../../errors/handleCardError";
 import type { LetterDoc } from "../../features/types/letterPaper.types";
 
