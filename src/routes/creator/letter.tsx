@@ -1,7 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { useBeforeUnloadWarning } from "../../hooks/useBeforeUnloadWarning";
+
+// --- doc 관련 ---
+import { saveLetterDoc } from "../../lib/api/saveLetterDoc";
+import { handleCardError } from "../../errors/handleCardError";
+import type { LetterDoc } from "../../features/types/letterPaper.types";
 
 // --- 기본 컴포넌트 ---
 import PageTitle from "../../components/ui/PageTitle";
@@ -23,6 +28,11 @@ export const Route = createFileRoute("/creator/letter")({
       value: 0.25,
     },
   },
+  validateSearch: (search) => {
+    return {
+      cardId: typeof search.cardId === "string" ? search.cardId : undefined,
+    };
+  },
   component: CreatorLetterPage,
 });
 
@@ -30,6 +40,9 @@ export const Route = createFileRoute("/creator/letter")({
 type LetterMode = "select" | "write";
 
 function CreatorLetterPage() {
+  const navigate = useNavigate();
+  const { cardId } = Route.useSearch();
+
   const [mode, setMode] = useState<LetterMode>("select");
 
   const [paperType, setPaperType] = useState<LetterPaperType>("default");
@@ -41,6 +54,23 @@ function CreatorLetterPage() {
   useBeforeUnloadWarning({
     when: shouldWarnOnRefresh,
   });
+
+  const onSave = async (doc: LetterDoc) => {
+    try {
+      await saveLetterDoc(cardId, doc); // cardId는 바깥 scope
+      if (!cardId) return;
+
+      navigate({
+        to: "/creator/cake/select",
+        search: { cardId },
+        replace: true,
+      });
+    } catch (err) {
+      const handled = handleCardError(err, navigate);
+      if (handled) return;
+      alert("저장 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div className={pageLayout}>
@@ -65,8 +95,17 @@ function CreatorLetterPage() {
               value: letterText,
               onChange: setLetterText,
             }}
-            isDisabled={letterText.length < 5}
             onClickText={() => setMode("select")}
+            buttonProps={{
+              label: "작성 완료하기",
+              isDisabled: letterText.trim().length < 5,
+              onClick: () => {
+                void onSave({
+                  paperType: paperType,
+                  content: letterText,
+                });
+              },
+            }}
           />
         </div>
       )}

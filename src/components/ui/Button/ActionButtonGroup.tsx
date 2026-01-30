@@ -1,11 +1,9 @@
-import CommonLinkButton, {
-  type CommonLinkButtonProps,
-} from "./CommonLinkButton";
+import CommonButton, { type CommonButtonProps } from "./Button";
 
 interface ActionButtonGroupProp {
   textLabel?: string;
   onClickText: () => void;
-  buttonProps: CommonLinkButtonProps;
+  buttonProps: CommonButtonProps;
 }
 
 const ActionButtonGroup = ({
@@ -20,7 +18,7 @@ const ActionButtonGroup = ({
           {textLabel}
         </p>
       </button>
-      <CommonLinkButton {...buttonProps} />
+      <CommonButton {...buttonProps} />
     </div>
   );
 };

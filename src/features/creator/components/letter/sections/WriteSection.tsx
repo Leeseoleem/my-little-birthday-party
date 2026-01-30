@@ -3,17 +3,17 @@ import CreatorLetterEditor, {
 } from "../CreatorLetterEditor";
 import BottomActionSlot from "../../../../../components/layout/frame/BottomActionSlot";
 import ActionButtonGroup from "../../../../../components/ui/Button/ActionButtonGroup";
-
+import type { CommonButtonProps } from "../../../../../components/ui/Button/Button";
 interface WriteSectionProps {
   editor: CreatorLetterEditorProps;
   onClickText: () => void;
-  isDisabled?: boolean;
+  buttonProps: CommonButtonProps;
 }
 
 export default function WriteSection({
   editor,
   onClickText,
-  isDisabled = false,
+  buttonProps,
 }: WriteSectionProps) {
   return (
     <div className="flex flex-col h-full justify-center">
@@ -23,11 +23,7 @@ export default function WriteSection({
       <BottomActionSlot>
         <ActionButtonGroup
           onClickText={onClickText}
-          buttonProps={{
-            isDisabled: isDisabled,
-            label: "작성 완료하기",
-            to: "/creator/cake/select",
-          }}
+          buttonProps={buttonProps}
         />
       </BottomActionSlot>
     </div>

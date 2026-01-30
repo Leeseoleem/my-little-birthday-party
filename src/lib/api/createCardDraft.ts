@@ -1,0 +1,38 @@
+import { supabase } from "../supabase";
+import type { CardRow } from "../../types/cards.types";
+import type { CardIdResult } from "../../types/cardResult.types";
+import type { CreatorLastStep } from "../../features/types/creatorFlowStep.types";
+
+export type CreateCardDraftInput = Pick<CardRow, "receiver_name" | "pin_birth">;
+
+export async function createCardDraft(
+  input: CreateCardDraftInput,
+): Promise<CardIdResult> {
+  const name = input.receiver_name;
+  const birth = input.pin_birth.trim();
+
+  // 입력 검증 방어용
+  if (!name) throw new Error("이름을 입력해 주세요.");
+  if (!/^\d{4}$/.test(birth)) {
+    throw new Error("생년월일은 숫자 4자리(MMDD)로 입력해 주세요.");
+  }
+
+  const payload = {
+    receiver_name: name,
+    pin_birth: birth,
+    status: "draft",
+    is_completed: false,
+    last_step: "c2_info" satisfies CreatorLastStep,
+  };
+
+  const { data, error } = await supabase
+    .from("cards")
+    .insert(payload)
+    .select("id")
+    .single();
+
+  if (error) throw error;
+  if (!data) throw new Error("초대장 만들기에 실패했어요.\n다시 시도해주세요.");
+
+  return { cardId: data.id as CardRow["id"] };
+}
