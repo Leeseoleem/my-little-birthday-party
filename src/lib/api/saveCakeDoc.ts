@@ -64,13 +64,20 @@ export async function saveCakeDoc(
     last_step: lastStep,
   };
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("cards")
     .update(payload)
-    .eq("id", cardId);
+    .eq("id", cardId)
+    .select("id");
 
   if (error) {
     throw new Error(`saveCakeDoc: ${error.message}`);
+  }
+
+  if (!data || data.length === 0) {
+    // 존재하지 않거나, RLS/권한 문제로 업데이트 대상 row가 "보이지/허용되지" 않아 0건일 수도 있음
+    // 보안적으로는 둘 다 "NOT FOUND"로 뭉개는 게 안전한 편
+    throw new Error(CARD_ERROR.CARD_ID_MISSING);
   }
 
   return { cardId };

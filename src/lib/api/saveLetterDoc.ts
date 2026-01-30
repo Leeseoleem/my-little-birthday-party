@@ -39,13 +39,18 @@ export async function saveLetterDoc(
     last_step: lastStep,
   };
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("cards")
     .update(payload)
-    .eq("id", cardId);
+    .eq("id", cardId)
+    .select("id");
 
   if (error) {
     throw new Error(`saveLetterDoc: ${error.message}`);
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error(CARD_ERROR.CARD_ID_MISSING);
   }
 
   return { cardId };
