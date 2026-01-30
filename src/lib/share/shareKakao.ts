@@ -17,6 +17,10 @@ export async function shareKakao(
   cardId: string | undefined,
   options?: ShareKakaoOptions,
 ): Promise<void> {
+  if (typeof window === "undefined") {
+    throw new Error("브라우저 환경에서만 공유할 수 있습니다.");
+  }
+
   if (!cardId) {
     throw new Error(CARD_ERROR.CARD_ID_MISSING);
   }

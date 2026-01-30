@@ -69,6 +69,9 @@ function loadKakaoSdk(): Promise<void> {
  * - Kakao.init() 단 한 번만 실행
  */
 export async function ensureKakaoInitialized(): Promise<void> {
+  if (typeof window === "undefined") {
+    throw new Error("브라우저 환경에서만 Kakao SDK를 초기화할 수 있습니다.");
+  }
   const jsKey = (
     import.meta.env.VITE_KAKAO_JS_KEY as string | undefined
   )?.trim();
