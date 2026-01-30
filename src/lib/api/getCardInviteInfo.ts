@@ -1,4 +1,5 @@
 import { supabase } from "../supabase";
+import { CARD_ERROR } from "../../errors/cardErrorCodes";
 
 type GetCardInviteInfoResult = {
   receiverName: string;
@@ -8,6 +9,9 @@ type GetCardInviteInfoResult = {
 export async function getCardInviteInfo(
   cardId: string,
 ): Promise<GetCardInviteInfoResult> {
+  if (!cardId) {
+    throw new Error(CARD_ERROR.CARD_ID_MISSING);
+  }
   // cards 테이블에서 초대할 사람의 정보 컬럼을 반환
   const { data, error } = await supabase
     .from("cards")
