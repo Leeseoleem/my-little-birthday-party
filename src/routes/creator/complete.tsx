@@ -1,7 +1,9 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { useEffect } from "react";
 import clsx from "clsx";
 
+import { getCardInviteInfo } from "../../lib/api/getCardInviteInfo";
+import { formatPinBirth } from "../../utils/formatPinBirth";
 import { completeCard } from "../../lib/api/completeCard";
 import { handleCardError } from "../../errors/handleCardError";
 
@@ -26,12 +28,28 @@ export const Route = createFileRoute("/creator/complete")({
       cardId: typeof search.cardId === "string" ? search.cardId : undefined,
     };
   },
+  loaderDeps: ({ search }) => ({
+    cardId: search.cardId,
+  }),
+  loader: async ({ deps }) => {
+    const { cardId } = deps;
+
+    if (!cardId) {
+      // loader 안에서는 navigate 대신 redirect를 throw 합니다.
+      throw redirect({ to: "/creator" });
+    }
+
+    await completeCard(cardId);
+    const invite = await getCardInviteInfo(cardId);
+
+    return { cardId, invite };
+  },
   component: CreatorCompletePage,
 });
 
 function CreatorCompletePage() {
   const navigate = useNavigate();
-  const { cardId } = Route.useSearch();
+  const { cardId, invite } = Route.useLoaderData();
 
   useEffect(() => {
     void (async () => {
@@ -53,8 +71,8 @@ function CreatorCompletePage() {
         <div className="flex my-auto justify-center py-8 mdh:py-16 lgh:py-25">
           <InvitationCompleteCard
             info={{
-              inviteeName: "이서림",
-              inviteeBirthDate: "10-14",
+              inviteeName: invite.receiverName,
+              inviteeBirthDate: formatPinBirth(invite.pinBirth),
             }}
             sns={{
               onShareKakao: () => {
