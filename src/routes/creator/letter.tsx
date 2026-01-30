@@ -98,7 +98,7 @@ function CreatorLetterPage() {
             onClickText={() => setMode("select")}
             buttonProps={{
               label: "작성 완료하기",
-              isDisabled: letterText.length < 5,
+              isDisabled: letterText.trim().length < 5,
               onClick: () => {
                 void onSave({
                   paperType: paperType,
