@@ -19,8 +19,7 @@ export function CandleOptionGroup({
   return (
     <RadioGroup.Root
       aria-label="초 옵션 선택"
-      value={value}
-      onValueChange={onChange}
+      value={value ?? ""}
       disabled={isDisabled}
       className={clsx(
         "flex flex-row items-stretch justify-around gap-2",
@@ -31,6 +30,7 @@ export function CandleOptionGroup({
         <RadioGroup.Item
           key={opt.id}
           value={opt.id}
+          onClick={() => onChange(opt.id)}
           className={clsx(
             // 아이템 기본 레이아웃
             "relative overflow-hidden rounded-lg bg-gray-10",
