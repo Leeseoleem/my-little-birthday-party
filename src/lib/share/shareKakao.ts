@@ -1,6 +1,7 @@
 import { ensureKakaoInitialized } from "./kakao";
 
 import { toAbsoluteUrl } from "../../components/seo/seo.utils";
+import { getSiteOrigin } from "../../utils/getSiteOrigin";
 import { getShareUrl } from "../../utils/getShareUrl";
 import { CARD_ERROR } from "../../errors/cardErrorCodes";
 
@@ -37,7 +38,8 @@ export async function shareKakao(
   const description =
     options?.description?.trim() ?? "초대받은 링크를 열어 파티를 즐겨주세요.";
 
-  const imageUrl = toAbsoluteUrl(DEFAULT_OG_IMAGE_PATH, shareUrl);
+  const origin = getSiteOrigin();
+  const imageUrl = toAbsoluteUrl(DEFAULT_OG_IMAGE_PATH, origin);
 
   window.Kakao.Share.sendDefault({
     objectType: "feed",
