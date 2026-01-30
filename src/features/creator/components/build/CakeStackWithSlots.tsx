@@ -104,47 +104,57 @@ export default function CakeStackWithSlots({
           const candleTop = topPx - candleH + bottomOffset;
 
           if (candleSrc) {
+            const HIT_W = 25;
+            const HIT_H = 200;
+
+            const hitW = HIT_W * scale;
+            const hitH = HIT_H * scale;
+
             return (
-              <div
-                key={`candle-${slotKey}`}
-                style={{
-                  position: "absolute",
-                  left: leftPx,
-                  top: candleTop,
-                  transform: "translateX(-50%)",
-                  zIndex: 10 + zOrder,
-                  overflow: "visible",
-                }}
-              >
-                <img
-                  src={candleSrc}
-                  alt=""
-                  draggable={false}
+              <div key={`candle-${slotKey}`}>
+                <div
                   style={{
-                    display: "block",
-                    height: candleH,
-                    width: "auto",
-                    objectFit: "contain",
-                    pointerEvents: "none",
+                    position: "absolute",
+                    left: leftPx,
+                    top: candleTop,
+                    transform: "translateX(-50%)",
+                    zIndex: 10 + zOrder,
+                    overflow: "visible",
+                    pointerEvents: "none", // 이미지는 클릭 막고
                   }}
-                />
+                >
+                  <img
+                    src={candleSrc}
+                    alt=""
+                    draggable={false}
+                    style={{
+                      display: "block",
+                      height: candleH,
+                      width: "auto",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
 
                 <button
                   type="button"
                   onClick={() => onSlotClick?.(slotKey)}
+                  aria-label={`candle-${slotKey}`}
                   style={{
                     position: "absolute",
-                    left: "50%",
-                    bottom: 0,
-                    transform: "translateX(-50%)",
-                    width: 25,
-                    height: 200,
+                    left: leftPx,
+                    top: topPx, // 슬롯 중심(y) 기준
+                    transform: "translate(-50%, -100%)", // 위로 세워진 촛불 방향으로 히트박스 올림
+                    width: hitW,
+                    height: hitH,
                     padding: 0,
                     border: 0,
-                    pointerEvents: "all",
+                    background: "transparent",
                     cursor: "pointer",
+                    zIndex: 20 + zOrder, // 이미지보다 위
+                    // 모바일 터치 안정화(선택)
+                    touchAction: "manipulation",
                   }}
-                  aria-label={`candle-${slotKey}`}
                 />
               </div>
             );
