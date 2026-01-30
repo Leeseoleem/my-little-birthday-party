@@ -11,7 +11,7 @@ export async function copyShareLink(cardId: string | undefined): Promise<void> {
     throw new Error(CARD_ERROR.CARD_ID_MISSING);
   }
 
-  if (!navigator.clipboard?.writeText) {
+  if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
     throw new Error("Clipboard API를 사용할 수 없습니다.");
   }
 
