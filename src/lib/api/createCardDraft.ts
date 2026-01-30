@@ -32,6 +32,7 @@ export async function createCardDraft(
     .single();
 
   if (error) throw error;
+  if (!data) throw new Error("초대장 만들기에 실패했어요.\n다시 시도해주세요.");
 
   return { cardId: data.id as CardRow["id"] };
 }
