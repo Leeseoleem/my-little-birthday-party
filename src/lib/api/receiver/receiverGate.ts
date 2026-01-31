@@ -90,6 +90,4 @@ export async function verifyPinAndGetInviteInfo(
 
   if (!row) return { ok: false, invitee_name: null, invitee_birth_mmdd: null };
   return row as VerifyPinResult;
-
-  return row as VerifyPinResult;
 }
