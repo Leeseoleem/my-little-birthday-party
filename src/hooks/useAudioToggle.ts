@@ -43,7 +43,6 @@ export function useAudioToggle({
 
     const handleCanPlay = () => {
       setIsReady(true);
-      console.log("[useAudioToggle] audio ready");
     };
 
     const handleEnded = () => {
@@ -76,13 +75,11 @@ export function useAudioToggle({
 
     // 언락 안 됐으면 먼저 unlock
     if (!isUnlocked) {
-      console.log("[useAudioToggle] unlocking...");
       const success = await unlock();
       if (!success) {
         console.warn("[useAudioToggle] unlock failed");
         return;
       }
-      console.log("[useAudioToggle] unlock success");
     }
 
     // 재생 중이면 일시정지
@@ -95,22 +92,9 @@ export function useAudioToggle({
 
     // 재생
     try {
-      console.log("[useAudioToggle] playing", {
-        currentTime: audio.currentTime,
-        volume: audio.volume,
-        paused: audio.paused,
-        src: audio.src,
-      });
-
       audio.currentTime = 0;
       await audio.play();
       setIsPlaying(true);
-
-      console.log("[useAudioToggle] play success", {
-        currentTime: audio.currentTime,
-        volume: audio.volume,
-        paused: audio.paused,
-      });
     } catch (err) {
       console.error("[useAudioToggle] play failed", err);
       setIsPlaying(false);
