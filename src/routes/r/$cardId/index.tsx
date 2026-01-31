@@ -59,20 +59,24 @@ function ReceiverEntryGatePage() {
 
   const handleSubmitPin = async (birthDate: string) => {
     setPinState("idle");
+    try {
+      const result = await verifyPinAndGetInviteInfo(cardId, birthDate);
 
-    const result = await verifyPinAndGetInviteInfo(cardId, birthDate);
+      if (!result || !result.ok) {
+        setPinState("invalid");
+        return;
+      }
 
-    if (!result || !result.ok) {
+      setPinState("valid");
+      setInviteInfo({
+        inviteeName: result.invitee_name ?? receiverName ?? "친구",
+        inviteeBirthDate: result.invitee_birth_mmdd ?? "",
+      });
+      setGateStep("invite");
+    } catch (error) {
+      console.error("PIN 검증 실패:", error);
       setPinState("invalid");
-      return;
     }
-
-    setPinState("valid");
-    setInviteInfo({
-      inviteeName: result.invitee_name ?? receiverName ?? "친구",
-      inviteeBirthDate: result.invitee_birth_mmdd ?? "",
-    });
-    setGateStep("invite");
   };
 
   return (
