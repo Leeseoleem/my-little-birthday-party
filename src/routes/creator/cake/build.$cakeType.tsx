@@ -14,7 +14,7 @@ import PageTitle from "../../../components/ui/PageTitle";
 
 import type { CakeType } from "../../../features/types/cake.types";
 import type { PlacedCandlesBySlot } from "../../../features/types/cake-doc.types"; // 경로 조정
-import { saveCakeDoc } from "../../../lib/api/saveCakeDoc";
+import { saveCakeDoc } from "../../../lib/api/creator/saveCakeDoc";
 import { handleCardError } from "../../../errors/handleCardError"; // 경로 조정
 
 export const Route = createFileRoute("/creator/cake/build/$cakeType")({

@@ -1,7 +1,7 @@
-import { supabase } from "../supabase";
-import type { CardRow } from "../../types/cards.types";
-import type { CardIdResult } from "../../types/cardResult.types";
-import type { CreatorLastStep } from "../../features/types/creatorFlowStep.types";
+import { supabase } from "../../supabase";
+import type { CardRow } from "../../../types/cards.types";
+import type { CardIdResult } from "../../../types/cardResult.types";
+import type { CreatorLastStep } from "../../../features/types/creatorFlowStep.types";
 
 export type CreateCardDraftInput = Pick<CardRow, "receiver_name" | "pin_birth">;
 

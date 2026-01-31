@@ -13,6 +13,7 @@ import { Route as CreatorRouteRouteImport } from './routes/creator/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RIndexRouteImport } from './routes/r/index'
 import { Route as CreatorIndexRouteImport } from './routes/creator/index'
+import { Route as RExpiredRouteImport } from './routes/r/expired'
 import { Route as CreatorLetterRouteImport } from './routes/creator/letter'
 import { Route as CreatorInfoRouteImport } from './routes/creator/info'
 import { Route as CreatorCompleteRouteImport } from './routes/creator/complete'
@@ -43,6 +44,11 @@ const CreatorIndexRoute = CreatorIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => CreatorRouteRoute,
+} as any)
+const RExpiredRoute = RExpiredRouteImport.update({
+  id: '/r/expired',
+  path: '/r/expired',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CreatorLetterRoute = CreatorLetterRouteImport.update({
   id: '/letter',
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/creator/complete': typeof CreatorCompleteRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
+  '/r/expired': typeof RExpiredRoute
   '/creator/': typeof CreatorIndexRoute
   '/r': typeof RIndexRoute
   '/creator/cake/select': typeof CreatorCakeSelectRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/creator/complete': typeof CreatorCompleteRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
+  '/r/expired': typeof RExpiredRoute
   '/creator': typeof CreatorIndexRoute
   '/r': typeof RIndexRoute
   '/creator/cake/select': typeof CreatorCakeSelectRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/creator/complete': typeof CreatorCompleteRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
+  '/r/expired': typeof RExpiredRoute
   '/creator/': typeof CreatorIndexRoute
   '/r/': typeof RIndexRoute
   '/creator/cake/select': typeof CreatorCakeSelectRoute
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/creator/complete'
     | '/creator/info'
     | '/creator/letter'
+    | '/r/expired'
     | '/creator/'
     | '/r'
     | '/creator/cake/select'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/creator/complete'
     | '/creator/info'
     | '/creator/letter'
+    | '/r/expired'
     | '/creator'
     | '/r'
     | '/creator/cake/select'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/creator/complete'
     | '/creator/info'
     | '/creator/letter'
+    | '/r/expired'
     | '/creator/'
     | '/r/'
     | '/creator/cake/select'
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreatorRouteRoute: typeof CreatorRouteRouteWithChildren
   RCardIdRouteRoute: typeof RCardIdRouteRouteWithChildren
+  RExpiredRoute: typeof RExpiredRoute
   RIndexRoute: typeof RIndexRoute
 }
 
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/creator/'
       preLoaderRoute: typeof CreatorIndexRouteImport
       parentRoute: typeof CreatorRouteRoute
+    }
+    '/r/expired': {
+      id: '/r/expired'
+      path: '/r/expired'
+      fullPath: '/r/expired'
+      preLoaderRoute: typeof RExpiredRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/creator/letter': {
       id: '/creator/letter'
@@ -346,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreatorRouteRoute: CreatorRouteRouteWithChildren,
   RCardIdRouteRoute: RCardIdRouteRouteWithChildren,
+  RExpiredRoute: RExpiredRoute,
   RIndexRoute: RIndexRoute,
 }
 export const routeTree = rootRouteImport

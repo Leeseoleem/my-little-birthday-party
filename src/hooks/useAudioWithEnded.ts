@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import { getAudioSingleton } from "../utils/getAudioSingleton";
 
 type UseAudioWithEndedOptions = {
   src: string;
@@ -47,7 +48,7 @@ export function useAudioWithEnded({
   }, [onEnded, onLoop]);
 
   useEffect(() => {
-    const audio = new Audio(src);
+    const audio = getAudioSingleton();
     audio.preload = preload;
 
     // "진짜 loop"는 ended가 안정적으로 안 잡히는 경우가 있어서,
@@ -56,10 +57,10 @@ export function useAudioWithEnded({
     audio.volume = volume;
 
     const handleEnded = async () => {
-      // 1) 끝났을 때 로직
+      //  끝났을 때 로직
       onEndedRef.current?.();
 
-      // 2) 무한 반복이 필요하면 수동으로 다시 재생
+      // 무한 반복이 필요하면 수동으로 다시 재생
       if (loop) {
         onLoopRef.current?.();
 
@@ -78,8 +79,6 @@ export function useAudioWithEnded({
 
     return () => {
       audio.removeEventListener("ended", handleEnded);
-      audio.pause();
-      audio.currentTime = 0;
       audioRef.current = null;
     };
   }, [src, loop, volume, preload]);

@@ -1,10 +1,8 @@
-// src/hooks/useAudioUnlock.ts
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import silenceSrc from "../assets/audio/silence.mp3";
+import { getAudioSingleton } from "../utils/getAudioSingleton";
 
 export function useAudioUnlock(storageKey = "mlbp_audio_unlocked") {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
   const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
     return sessionStorage.getItem(storageKey) === "1";
@@ -14,20 +12,19 @@ export function useAudioUnlock(storageKey = "mlbp_audio_unlocked") {
     if (isUnlocked) return true;
 
     try {
-      // HTMLAudioElement로 "실제로 play()"를 한 번 시도
-      const audio = audioRef.current ?? new Audio(silenceSrc);
-      audioRef.current = audio;
+      const audio = getAudioSingleton();
 
+      // 언락용 무음 오디오 주입
+      audio.src = silenceSrc;
       audio.preload = "auto";
+      audio.load();
 
-      // 사용자는 소리를 못 듣게 0으로 두고 잠깐 재생
       const prevVol = audio.volume;
       audio.volume = 0;
       audio.currentTime = 0;
 
       await audio.play();
 
-      // 바로 정지(언락 목적)
       audio.pause();
       audio.currentTime = 0;
       audio.volume = prevVol;
@@ -36,8 +33,7 @@ export function useAudioUnlock(storageKey = "mlbp_audio_unlocked") {
       setIsUnlocked(true);
 
       return true;
-    } catch (e) {
-      console.log(e);
+    } catch {
       return false;
     }
   }, [isUnlocked, storageKey]);
