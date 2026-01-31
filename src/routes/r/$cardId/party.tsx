@@ -11,11 +11,11 @@ import { AnimatePresence } from "framer-motion";
 import { markCardOpened } from "../../../lib/api/receiver/markCardOpened";
 import { getCakePartyData } from "../../../lib/api/receiver/getCakePartyData";
 
-// --- 헤더 관련 ---
+// --- 헤더 및 음악 관련 ---
 import { AppHeader } from "../../../components/ui/Header";
 import { MusicButton } from "../../../components/ui/Header/MusicButton";
 import happyBirthday from "../../../assets/audio/happy-birthday-story.mp3";
-import { useAutoPlay } from "../../../hooks/useAutoPlay";
+import { useAudioToggle } from "../../../hooks/useAudioToggle";
 
 // --- 레이아웃 관련 ---
 import IntroSection from "../../../features/receiver/party/sections/IntroSection";
@@ -62,8 +62,8 @@ export const Route = createFileRoute("/r/$cardId/party")({
 function ReceiverPartyPage() {
   const navigate = useNavigate();
 
+  // --- 서버에서 받아온 값 ---
   const { cardId } = Route.useParams();
-
   const { cakeType } = Route.useLoaderData();
 
   // 라우팅 state 읽기
@@ -75,23 +75,31 @@ function ReceiverPartyPage() {
 
   const [showIntro, setShowIntro] = useState(() => hasIntro);
 
-  // 사용자 토글(나중에 버튼으로 제어)
-  const [isBgmEnabled, setIsBgmEnabled] = useState(true);
-  const [shouldPlayBgm, setShouldPlayBgm] = useState(() => !hasIntro);
+  const { isPlaying, isUnlocked, toggle, play } = useAudioToggle({
+    src: happyBirthday,
+    loop: true, // 무한 반복
+    volume: 0.6,
+  });
 
-  // 1) 인트로는 지정 시간 뒤에 사라짐
+  useEffect(() => {
+    if (!showIntro && isUnlocked) {
+      // 인트로가 끝나고 이미 unlock됐으면 자동 재생
+      void play();
+    }
+  }, [showIntro, isUnlocked, play]);
+
+  // 인트로 타이머
   useEffect(() => {
     if (!showIntro) return;
 
     const t = window.setTimeout(() => {
       setShowIntro(false);
-      setShouldPlayBgm(true);
     }, INTRO_VISIBLE_MS);
 
     return () => window.clearTimeout(t);
   }, [showIntro]);
 
-  // 2) 새로고침 재노출 방지를 위해 state는 즉시 삭제
+  // state 초기화
   useEffect(() => {
     if (!showIntro) return;
 
@@ -103,14 +111,7 @@ function ReceiverPartyPage() {
     });
   }, [showIntro, navigate, cardId]);
 
-  useAutoPlay({
-    src: happyBirthday,
-    shouldPlay: shouldPlayBgm && isBgmEnabled,
-    playOnce: false,
-  });
-
-  // 3) party 도달 시 opened_at 업데이트 (부작용이므로 컴포넌트에서 실행)
-  // StrictMode에서 effect가 2번 실행될 수 있으니 ref로 1회만 실행
+  // opened_at 업데이트
   const openedOnceRef = useRef(false);
 
   useEffect(() => {
@@ -143,12 +144,7 @@ function ReceiverPartyPage() {
       {/* ----- 파티 본문 레이어 ----- */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center">
         <AppHeader
-          right={
-            <MusicButton
-              isPlaying={isBgmEnabled}
-              onToggle={() => setIsBgmEnabled(!isBgmEnabled)}
-            />
-          }
+          right={<MusicButton isPlaying={isPlaying} onToggle={toggle} />}
         />
         <GarlandLayout hasHeader>
           <BalloonsBackdrop />

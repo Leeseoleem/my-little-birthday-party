@@ -14,6 +14,7 @@ import {
 
 // --- 음악 재생 관련 ----
 import happyBirthdayAudio from "../../../assets/audio/happy-birthday-short.mp3";
+import { useAudioUnlock } from "../../../hooks/useAudioUnlock";
 import { useAutoPlay } from "../../../hooks/useAutoPlay";
 
 import type {
@@ -39,6 +40,7 @@ import ConfettiLayer, {
 import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
 import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
 import clsx from "clsx";
+import CommonButton from "../../../components/ui/Button/Button";
 
 export const Route = createFileRoute("/r/$cardId/event")({
   component: ReceiverEventPage,
@@ -82,43 +84,53 @@ function ReceiverEventPage() {
   // 안내 문구 상태
   const [guideState, setGuideState] = useState<GuideMessageState>("show");
 
-  const holdTimerRef = useRef<number | null>(null);
   const fadeTimerRef = useRef<number | null>(null);
   const blowOutTimerRef = useRef<number | null>(null);
 
   // 안내 문구 타이밍 상수
-  const INTRO_TEXT_HOLD_MS = 4000; // 문구 유지
   const INTRO_TEXT_FADE_MS = 400; // 문구가 사라지는(페이드아웃) 시간
 
   // ----- 2. reveal 상태 -----
   const [isOn, setIsOn] = useState<boolean>(true);
 
-  useEffect(() => {
-    // intro가 아니면 문구는 숨김 처리
+  const { unlock } = useAudioUnlock();
+
+  const handleStartEvent = async () => {
+    // intro에서만 동작하도록 가드
     if (phase !== "intro") return;
 
-    // 만약을 위한 타이머 정리
-    if (holdTimerRef.current) window.clearTimeout(holdTimerRef.current);
-    if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+    // 이미 fadeOut 진행 중이면 중복 실행 방지
+    if (guideState !== "show") return;
 
-    // fadeout 시작
-    holdTimerRef.current = window.setTimeout(() => {
-      setGuideState("fadeOut");
+    // fadeOut 시작
+    setGuideState("fadeOut");
 
-      fadeTimerRef.current = window.setTimeout(() => {
-        setGuideState("hidden");
-        setPhase("reveal");
-      }, INTRO_TEXT_FADE_MS);
-    }, INTRO_TEXT_HOLD_MS);
+    // 오디오 unlock 시도 (사용자 클릭 이벤트 안에서 실행되어야 함)
+    const ok = await unlock();
 
-    // cleanup: phase 변경/언마운트 시 타이머 정리
-    return () => {
-      if (holdTimerRef.current) window.clearTimeout(holdTimerRef.current);
-      if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
-      holdTimerRef.current = null;
+    // unlock 실패 시
+    if (!ok) {
+      setGuideState("show"); // 롤백
+      // 필요하면 안내 UI/토스트로 대체
+      alert(
+        "브라우저 설정으로 인해 음악 재생이 제한될 수 있어요. 다시 한 번 눌러주세요.",
+      );
+      return;
+    }
+
+    // 기존 타이머 정리
+    if (fadeTimerRef.current) {
+      window.clearTimeout(fadeTimerRef.current);
       fadeTimerRef.current = null;
-    };
-  }, [phase]);
+    }
+
+    // fadeOut 애니메이션 종료 후 hidden + reveal로 전환
+    fadeTimerRef.current = window.setTimeout(() => {
+      setGuideState("hidden");
+      setPhase("reveal");
+      fadeTimerRef.current = null;
+    }, INTRO_TEXT_FADE_MS);
+  };
 
   // 촛불 끄기 함수
   const handleCandleBlowOut = () => {
@@ -133,6 +145,8 @@ function ReceiverEventPage() {
     return () => {
       if (blowOutTimerRef.current) window.clearTimeout(blowOutTimerRef.current);
       blowOutTimerRef.current = null;
+      if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+      fadeTimerRef.current = null;
     };
   }, []);
 
@@ -207,13 +221,25 @@ function ReceiverEventPage() {
 
       {/* 안내 문구: 오버레이 위 (정중앙 고정) */}
       {phase === "intro" && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
-          <GuideMessage state={guideState}>
-            🎧 잠시 후 음악이 재생됩니다. <br /> 이어폰을 착용하면 더 깊이 즐길
-            수 있어요.
-          </GuideMessage>
+        <div className="absolute inset-0 z-20">
+          {/* 중앙 가이드 메시지 */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <GuideMessage state={guideState}>
+              🎧 아래 버튼을 누르면
+              <br />
+              음악과 함께 이벤트가 시작돼요.
+              <br />
+              이어폰을 착용하면 더 몰입해서 즐길 수 있어요.
+            </GuideMessage>
+          </div>
+
+          {/* 하단 버튼 */}
+          <div className="absolute inset-0 flex items-end justify-center pb-4 px-4">
+            <CommonButton label="확인했어요" onClick={handleStartEvent} />
+          </div>
         </div>
       )}
+
       <AnimatePresence>
         {/* 촛불 끄기 버튼 */}
         {phase === "readyToBlow" && (

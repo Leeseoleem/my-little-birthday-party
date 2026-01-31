@@ -4,14 +4,24 @@ import type { CreatorHeaderMeta } from "../../../types/route-meta";
 interface renderHeaderProps {
   meta?: CreatorHeaderMeta;
   onExitToMain: () => void;
+
+  onClose?: () => void;
 }
 
-export const renderHeader = ({ meta, onExitToMain }: renderHeaderProps) => {
+export const renderHeader = ({
+  meta,
+  onExitToMain,
+  onClose,
+}: renderHeaderProps) => {
   if (!meta) return null;
 
   switch (meta.kind) {
     case "close":
-      return <AppHeader right={<CloseButton {...meta.headerProps} />} />;
+      return (
+        <AppHeader
+          right={<CloseButton {...meta.headerProps} onClick={onClose} />}
+        />
+      );
     case "back":
       return <AppHeader left={<BackButton {...meta.headerProps} />} />;
     case "progress-exit":

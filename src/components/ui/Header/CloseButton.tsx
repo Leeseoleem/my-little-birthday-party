@@ -4,22 +4,14 @@ import { buttonContainer, buttonBg } from "./button.styles";
 
 export interface CloseButtonProps {
   ariaLabel?: string;
-  onClose?: () => void; // 필요하면 외부에서 추가 동작 가능
+  onClick?: () => void;
 }
 
-export function CloseButton({ ariaLabel = "닫기", onClose }: CloseButtonProps) {
-  const handleClose = () => {
-    // 현재 창 닫기
-    window.close();
-
-    // onClick 함수 작성 시 여기서 호출
-    onClose?.();
-  };
-
+export function CloseButton({ ariaLabel = "닫기", onClick }: CloseButtonProps) {
   return (
     <button
       type="button"
-      onClick={handleClose}
+      onClick={onClick}
       aria-label={ariaLabel}
       className={clsx(buttonContainer, buttonBg)}
     >

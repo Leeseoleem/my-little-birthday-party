@@ -1,6 +1,6 @@
+// hooks/useAudioUnlock.ts
 import { useCallback, useState } from "react";
 import silenceSrc from "../assets/audio/silence.mp3";
-import { getAudioSingleton } from "../utils/getAudioSingleton";
 
 export function useAudioUnlock(storageKey = "mlbp_audio_unlocked") {
   const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
@@ -12,28 +12,23 @@ export function useAudioUnlock(storageKey = "mlbp_audio_unlocked") {
     if (isUnlocked) return true;
 
     try {
-      const audio = getAudioSingleton();
+      // 임시 Audio 인스턴스 생성
+      const tempAudio = new Audio();
 
-      // 언락용 무음 오디오 주입
-      audio.src = silenceSrc;
-      audio.preload = "auto";
-      audio.load();
+      tempAudio.src = silenceSrc;
+      tempAudio.preload = "auto";
+      tempAudio.volume = 0;
+      tempAudio.currentTime = 0;
 
-      const prevVol = audio.volume;
-      audio.volume = 0;
-      audio.currentTime = 0;
-
-      await audio.play();
-
-      audio.pause();
-      audio.currentTime = 0;
-      audio.volume = prevVol;
+      await tempAudio.play();
+      tempAudio.pause();
 
       sessionStorage.setItem(storageKey, "1");
       setIsUnlocked(true);
 
       return true;
-    } catch {
+    } catch (err) {
+      console.error("[useAudioUnlock] failed", err);
       return false;
     }
   }, [isUnlocked, storageKey]);
