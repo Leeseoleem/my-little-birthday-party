@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import PinCardLayout from "../../../components/layout/frame/PinCardLayout";
-import { BirthDateFormField } from "../../../components/form";
+import { BirthDateFormField } from "../../../components/Form";
 import type { BirthDateInputProps } from "../../../components/ui/Input/BirthDateInput";
 
 type InvitationConfirmCardProps = {

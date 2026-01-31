@@ -1,6 +1,6 @@
 import PinCardLayout from "../../../../components/layout/frame/PinCardLayout";
 
-import { TextFormField, BirthDateFormField } from "../../../../components/form";
+import { TextFormField, BirthDateFormField } from "../../../../components/Form";
 import type { TextInputProps } from "../../../../components/ui/Input/TextInput";
 import type { BirthDateInputProps } from "../../../../components/ui/Input/BirthDateInput";
 
