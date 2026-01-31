@@ -3,14 +3,12 @@
 > 생일 메시지를 더 예쁘게 보여주는 서비스가 아니라,  
 > **생일을 축하하는 마음이 자연스럽게 전달되는 경험**을 만드는 서비스입니다.
 
-🔗 **Live Demo**  
-https://my-little-birthday-party.vercel.app
-
 <div align="center">
 
 <!-- 프로젝트 상태 -->
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
+[![Live Site](https://img.shields.io/badge/Live-Demo-green)](https://my-little-birthday-party.vercel.app)
 
 <!-- 핵심 기술 스택 -->
 ![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)
