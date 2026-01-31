@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -46,8 +46,18 @@ export const Route = createFileRoute("/r/$cardId/event")({
     return validateReturnToPartySearch(search);
   },
   loader: async ({ params }) => {
-    const receiverCakeDoc = await getReceiverCakeDoc(params.cardId);
-    return { receiverCakeDoc };
+    try {
+      const receiverCakeDoc = await getReceiverCakeDoc(params.cardId);
+      return { receiverCakeDoc };
+    } catch (error) {
+      // 내부 에러는 로그로만 남김
+      console.error("receiver party loader error:", error);
+
+      // 사용자용 에러 페이지로 이동
+      throw redirect({
+        to: "/r/expired",
+      });
+    }
   },
 });
 

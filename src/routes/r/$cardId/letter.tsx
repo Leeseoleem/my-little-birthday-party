@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
@@ -31,9 +31,27 @@ import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
 
 export const Route = createFileRoute("/r/$cardId/letter")({
   loader: async ({ params }) => {
-    const letterDoc = await getReceiverLetterDoc(params.cardId);
-    return { letterDoc };
+    const { cardId } = params;
+
+    try {
+      const letterDoc = await getReceiverLetterDoc(cardId);
+
+      return { letterDoc };
+    } catch (error) {
+      // 개발자 확인용 로그
+      if (error instanceof Error) {
+        console.error("receiver letter loader error:", error.message, error);
+      } else {
+        console.error("receiver letter loader error:", error);
+      }
+
+      // 사용자용 에러 페이지로 리다이렉트
+      throw redirect({
+        to: "/r/expired",
+      });
+    }
   },
+
   component: ReceiverLetterPage,
   validateSearch: (search): ReturnToPartySearch => {
     return validateReturnToPartySearch(search);
