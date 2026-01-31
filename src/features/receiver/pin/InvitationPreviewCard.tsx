@@ -18,8 +18,11 @@ export default function InvitationPreviewCard({
   const { cardId } = useParams({ from: "/r/$cardId/" });
 
   const handleEnter = async () => {
-    // 사용자 제스처(버튼 클릭) 안에서 언락 시도
-    // 성공/실패와 무관하게 다음 화면으로 이동하도록 구성
+    if (!cardId) {
+      navigate({ to: "/r/expired" });
+      return true;
+    }
+
     await unlock();
 
     navigate({
