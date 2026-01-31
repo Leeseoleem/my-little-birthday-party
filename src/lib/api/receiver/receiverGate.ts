@@ -88,11 +88,8 @@ export async function verifyPinAndGetInviteInfo(
 
   const row = Array.isArray(data) ? data[0] : data;
 
-  // 함수가 항상 1 row 반환하도록 만들었으면 row가 존재해야 함.
-  // 다만 안전하게 방어 처리.
-  if (!row) {
-    return { ok: false, invitee_name: null, invitee_birth_mmdd: null };
-  }
+  if (!row) return { ok: false, invitee_name: null, invitee_birth_mmdd: null };
+  return row as VerifyPinResult;
 
   return row as VerifyPinResult;
 }
