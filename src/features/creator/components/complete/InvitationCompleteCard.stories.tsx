@@ -14,7 +14,6 @@ const meta: Meta<typeof InvitationCompleteCard> = {
     sns: {
       onCopyLink: fn(),
       onShareKakao: fn(),
-      onShareMail: fn(),
     },
   },
 };
