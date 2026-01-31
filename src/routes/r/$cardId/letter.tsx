@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
+import { getReceiverLetterDoc } from "../../../lib/api/receiver/getReceiverLetterDoc";
+
 // --- 페이지 분기 관련 ---
 import {
   validateReturnToPartySearch,
@@ -27,9 +29,11 @@ import ReceiverLetterContent from "../../../features/receiver/letter/ReceiverLet
 import BottomActionSlot from "../../../components/layout/frame/BottomActionSlot";
 import CommonLinkButton from "../../../components/ui/Button/CommonLinkButton";
 
-import { LETTER_DUMMY } from "../../../mocks/letterMocks";
-
 export const Route = createFileRoute("/r/$cardId/letter")({
+  loader: async ({ params }) => {
+    const letterDoc = await getReceiverLetterDoc(params.cardId);
+    return { letterDoc };
+  },
   component: ReceiverLetterPage,
   validateSearch: (search): ReturnToPartySearch => {
     return validateReturnToPartySearch(search);
@@ -41,6 +45,8 @@ const PHASE_TRANSITION_DELAY = 300;
 const BUTTON_ENABLE_DELAY = 10300; // 편지 읽기 애니메이션 완료 시간
 
 function ReceiverLetterPage() {
+  const { letterDoc } = Route.useLoaderData();
+
   // ----- 페이지 이동 분기 -----
   const { cardId } = Route.useParams();
   const search = Route.useSearch();
@@ -106,7 +112,7 @@ function ReceiverLetterPage() {
           >
             <div className="relative z-0">
               <EnvelopeLetter
-                letterPaperType="night"
+                letterPaperType={letterDoc.paperType}
                 progress={progress}
                 mode={mode}
                 onFlyComplete={handleFlyComplete}
@@ -135,8 +141,8 @@ function ReceiverLetterPage() {
               {/* 편지 영역: 남은 공간을 먹고, 줄어들 수 있어야 함 */}
               <div className="flex-1 min-h-0 h-full overflow-hidden">
                 <ReceiverLetterContent
-                  type={LETTER_DUMMY.paperType}
-                  content={LETTER_DUMMY.content}
+                  type={letterDoc.paperType}
+                  content={letterDoc.content}
                 />
               </div>
 
