@@ -108,8 +108,9 @@ function ReceiverEventPage() {
     // 오디오 unlock 시도 (사용자 클릭 이벤트 안에서 실행되어야 함)
     const ok = await unlock();
 
-    // unlock 실패 시: phase 진행을 막거나 안내를 띄우는 것이 안전
+    // unlock 실패 시
     if (!ok) {
+      setGuideState("show"); // 롤백
       // 필요하면 안내 UI/토스트로 대체
       alert(
         "브라우저 설정으로 인해 음악 재생이 제한될 수 있어요. 다시 한 번 눌러주세요.",
