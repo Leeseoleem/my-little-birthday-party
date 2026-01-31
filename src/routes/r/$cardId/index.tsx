@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 
 // 화면 상태 여부
@@ -14,24 +14,64 @@ import {
   ReceiverInvitationSection,
 } from "../../../features/receiver/pin/sections";
 
+import type { InvitationInfoProps } from "../../../components/shared/invitation/InvitationInfo";
+import { formatPinBirth } from "../../../utils/formatPinBirth";
+import {
+  getReceiverCardStatus,
+  verifyPinAndGetInviteInfo,
+} from "../../../lib/api/receiver/receiverGate";
+
 export const Route = createFileRoute("/r/$cardId/")({
+  loader: async ({ params }) => {
+    const status = await getReceiverCardStatus(params.cardId);
+
+    if (!status) {
+      throw redirect({
+        to: "/r/expired",
+        search: { reason: "not_found", cardId: params.cardId },
+      });
+    }
+    // 이미 열렸으면 PIN 스킵 → party로
+    if (status.is_opened) {
+      throw redirect({
+        to: "/r/$cardId/party",
+        params: { cardId: params.cardId },
+      });
+    }
+
+    return {
+      receiverName: status.receiver_name,
+    };
+  },
   component: ReceiverEntryGatePage,
 });
 
 function ReceiverEntryGatePage() {
+  const { cardId } = Route.useParams();
+  const { receiverName } = Route.useLoaderData();
+
   const [gateStep, setGateStep] = useState<GateStep>("pin");
   const [pinState, setPinState] = useState<PinState>("idle");
 
-  const handleSubmitPin = (birthDate: string) => {
-    // UI 설계 단계용 더미
-    const isValid = birthDate === "1014";
+  const [inviteInfo, setInviteInfo] = useState<InvitationInfoProps | null>(
+    null,
+  );
 
-    if (!isValid) {
+  const handleSubmitPin = async (birthDate: string) => {
+    setPinState("idle");
+
+    const result = await verifyPinAndGetInviteInfo(cardId, birthDate);
+
+    if (!result || !result.ok) {
       setPinState("invalid");
       return;
     }
 
     setPinState("valid");
+    setInviteInfo({
+      inviteeName: result.invitee_name ?? receiverName ?? "친구",
+      inviteeBirthDate: result.invitee_birth_mmdd ?? "",
+    });
     setGateStep("invite");
   };
 
@@ -47,8 +87,10 @@ function ReceiverEntryGatePage() {
       {gateStep === "invite" && (
         <ReceiverInvitationSection
           info={{
-            inviteeName: "이서림",
-            inviteeBirthDate: "10-14",
+            inviteeName: inviteInfo?.inviteeName ?? receiverName ?? "친구",
+            inviteeBirthDate: formatPinBirth(
+              inviteInfo?.inviteeBirthDate ?? "",
+            ),
           }}
         />
       )}
