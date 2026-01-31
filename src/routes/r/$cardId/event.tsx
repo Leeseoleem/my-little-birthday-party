@@ -145,6 +145,8 @@ function ReceiverEventPage() {
     return () => {
       if (blowOutTimerRef.current) window.clearTimeout(blowOutTimerRef.current);
       blowOutTimerRef.current = null;
+      if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+      fadeTimerRef.current = null;
     };
   }, []);
 
