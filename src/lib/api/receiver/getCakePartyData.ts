@@ -1,9 +1,9 @@
 import { supabase } from "../../../lib/supabase";
 import { CARD_ERROR } from "../../../errors/cardErrorCodes";
+import type { CakeType } from "../../../features/types/cake.types";
 
 export type CakePartyData = {
-  cake_type: string | null; // 예: "cheese"
-  candles: unknown | null; // 예: jsonb (placedCandlesBySlot 등)
+  cake_type: CakeType | null; // 예: "cheese"
 };
 
 export async function getCakePartyData(cardId: string): Promise<CakePartyData> {
@@ -23,6 +23,5 @@ export async function getCakePartyData(cardId: string): Promise<CakePartyData> {
 
   return {
     cake_type: data.cake_type ?? null,
-    candles: data.candles ?? null,
   };
 }
