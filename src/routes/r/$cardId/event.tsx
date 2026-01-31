@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+// --- db 관련 ---
+import { getReceiverCakeDoc } from "../../../lib/api/receiver/getReceiverCakeDoc";
+import type { CakeDoc } from "../../../features/types/cake-doc.types";
+
 // --- 페이지 분기 관련 ---
 import {
   validateReturnToPartySearch,
@@ -16,7 +20,6 @@ import type {
   CakeEventPhase,
   GuideMessageState,
 } from "../../../features/receiver/event/types/cakeEventPhase.types";
-import { cakeDoc } from "../../../mocks/cakeMocks";
 
 import { PhaseLayer } from "../../../components/layout/frame/PhaseLayer";
 import OverlayLayer from "../../../features/receiver/event/OverlayLayer";
@@ -42,12 +45,23 @@ export const Route = createFileRoute("/r/$cardId/event")({
   validateSearch: (search): ReturnToPartySearch => {
     return validateReturnToPartySearch(search);
   },
+  loader: async ({ params }) => {
+    const receiverCakeDoc = await getReceiverCakeDoc(params.cardId);
+    return { receiverCakeDoc };
+  },
 });
 
 function ReceiverEventPage() {
   // ----- 페이지 이동 분기 -----
   const { cardId } = Route.useParams();
   const search = Route.useSearch();
+
+  const { receiverCakeDoc } = Route.useLoaderData();
+
+  const cakeDoc: CakeDoc = {
+    cakeType: receiverCakeDoc.cakeType,
+    placedCandlesBySlot: receiverCakeDoc.candles,
+  };
 
   const nextTo =
     search.returnTo === "party" ? "/r/$cardId/party" : "/r/$cardId/letter";
