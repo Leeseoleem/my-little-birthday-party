@@ -51,7 +51,7 @@ export const Route = createFileRoute("/r/$cardId/event")({
       return { receiverCakeDoc };
     } catch (error) {
       // 내부 에러는 로그로만 남김
-      console.error("receiver party loader error:", error);
+      console.error("receiver event loader error:", error);
 
       // 사용자용 에러 페이지로 이동
       throw redirect({
