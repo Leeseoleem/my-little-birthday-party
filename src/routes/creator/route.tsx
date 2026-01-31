@@ -41,7 +41,11 @@ function CreatorLayout() {
       {/* Header: 풀폭(패딩 없음) */}
       {headerMeta && (
         <header className="sticky top-0 z-50 w-full border-b border-gray-20">
-          {renderHeader({ meta: headerMeta, onExitToMain: handleExitToMain })}
+          {renderHeader({
+            meta: headerMeta,
+            onExitToMain: handleExitToMain,
+            onClose: handleExitToMain,
+          })}
         </header>
       )}
 

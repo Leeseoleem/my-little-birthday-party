@@ -5,15 +5,12 @@ import type { InvitationInfoProps } from "../../../components/shared/invitation/
 import InvitationGuide from "../../../components/shared/invitation/InvitationGuide";
 import CommonButton from "../../../components/ui/Button/Button";
 
-import { useAudioUnlock } from "../../../hooks/useAudioUnlock";
-
 export default function InvitationPreviewCard({
   info,
 }: {
   info: InvitationInfoProps;
 }) {
   const navigate = useNavigate();
-  const { unlock } = useAudioUnlock();
 
   const { cardId } = useParams({ from: "/r/$cardId/" });
 
@@ -22,8 +19,6 @@ export default function InvitationPreviewCard({
       navigate({ to: "/r/expired" });
       return true;
     }
-
-    await unlock();
 
     navigate({
       to: "/r/$cardId/event",
