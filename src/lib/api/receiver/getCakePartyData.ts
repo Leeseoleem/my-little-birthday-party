@@ -7,6 +7,10 @@ export type CakePartyData = {
 };
 
 export async function getCakePartyData(cardId: string): Promise<CakePartyData> {
+  if (!cardId) {
+    throw new Error(CARD_ERROR.CARD_ID_MISSING);
+  }
+
   const { data, error } = await supabase
     .from("cards")
     .select("cake_type, candles")
