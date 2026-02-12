@@ -11,8 +11,8 @@ const HelpButton = ({ label, ...linkProps }: HelpButtonProps) => {
       {...linkProps}
       className="flex flex-row items-center gap-1 cursor-pointer hover:underline active:underline decoration-gray-60"
     >
-      <CircleQuestionMark size={14} color="#6f6f6f" />
-      <p className="text-small text-gray-60">{label}</p>
+      <CircleQuestionMark size={12} color="#a6a099" />
+      <p className="text-caption text-gray-50">{label}</p>
     </Link>
   );
 };
