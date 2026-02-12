@@ -1,4 +1,5 @@
 import CommonLinkButton from "../../../../components/ui/Button/CommonLinkButton";
+import HelpButton from "../../../../components/ui/Button/HelpButton";
 
 const IntroCard = () => {
   return (
@@ -16,8 +17,14 @@ const IntroCard = () => {
         alt="나의 작은 생일 파티"
         className="h-full min-h-[300px] w-auto"
       />
-      <div className="flex w-full justify-center items-center">
-        <CommonLinkButton label="시작하기" to="/creator/info" />
+      <div className="flex flex-col w-full justify-center items-center gap-3">
+        <HelpButton
+          label="어떤 서비스인가요?"
+          to="/guides/interactive-birthday-card"
+        />
+        <div className="flex w-full justify-center items-center">
+          <CommonLinkButton label="시작하기" to="/creator/info" />
+        </div>
       </div>
     </div>
   );
