@@ -32,7 +32,7 @@ export async function markCardOpened(cardId: string) {
   }
 
   // 업데이트된 행이 0개면:
-  // (A) 이미 opened_at이 존재(재접속) 또는 (B) cardId 자체가 없음
+  // 이미 opened_at이 존재(재접속) 또는 cardId 자체가 없음
   if (!data || data.length === 0) {
     const { data: exists, error: existsError } = await supabase
       .from("cards")
