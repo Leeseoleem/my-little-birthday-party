@@ -68,7 +68,6 @@ export function useAudioWithEnded({
       // 재생 전 currentTime 리셋 (처음부터 재생)
       audio.currentTime = 0;
       await audio.play();
-      console.log("[audio] play success");
       return true;
     } catch (e) {
       console.warn("[audio] play blocked", e);
