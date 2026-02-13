@@ -27,7 +27,7 @@ export default function InvitationCompleteCard({
     <ReceiptLayout
       header={{
         title: "초대장",
-        subTitle: "소중한 사람을 위한 작은 생일 파티가 준비됐어요",
+        subTitle: "소중한 사람을 위한 생일 파티가 준비됐어요",
       }}
       footer={
         <div className="flex flex-col w-full gap-6">
