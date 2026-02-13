@@ -35,10 +35,10 @@ _생일 축하 메시지,
 
 <!-- 핵심 기술 스택 -->
 
-![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwind-css&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7.2.4-646CFF?logo=vite&logoColor=white)
 
 <!-- 테스트 & 품질 -->
 
@@ -192,7 +192,7 @@ _말 한 줄이 아니라, 잠깐 머물 수 있는 순간으로 만들고자 �
 
 ---
 
-## � 프로젝트 구조
+## 프로젝트 구조
 
 ```
 src/
@@ -262,7 +262,7 @@ src/
 
 ---
 
-## �🛠️ 기술 스택
+##🛠️ 기술 스택
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/> <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=black"/> <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/>
 
@@ -440,25 +440,6 @@ http://localhost:5173
 ### 수신자 경험 화면
 
 <!-- 실제 스크린샷으로 교체하세요 -->
-
----
-
-## 📁 프로젝트 구조
-
-```
-my-little-birthday-party/
-src/
-├─ routes/            # TanStack Router 기반 라우트 정의
-│  ├─ creator/        # 제작자 플로우
-│  └─ r/              # 수신자 플로우
-├─ components/        # 공통 UI 컴포넌트
-├─ features/          # 도메인/기능 단위 로직
-├─ hooks/             # 공통 커스텀 훅
-├─ lib/               # 외부 SDK, 설정 래퍼
-├─ styles/            # 디자인 토큰 및 전역 스타일
-├─ assets/            # 폰트, 이미지, 사운드 리소스
-└─ types/             # 전역 타입 정의
-```
 
 ---
 
