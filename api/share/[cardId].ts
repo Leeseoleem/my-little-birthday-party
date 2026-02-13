@@ -18,13 +18,23 @@ function escapeHtml(input: string) {
  * 요청 헤더 기반 origin 구성 (SITE_ORIGIN 없을 때 fallback)
  * - Vercel 프록시 환경에서 x-forwarded-* 헤더를 우선 사용
  */
-function getOrigin(req: VercelRequest) {
-  const proto =
-    (req.headers["x-forwarded-proto"] as string) ||
-    (req.headers["x-forwarded-protocol"] as string) ||
-    "https";
+const ALLOWED_HOSTS = ["my-little-birthday-party.vercel.app"];
 
-  const host = (req.headers["x-forwarded-host"] as string) || req.headers.host;
+function getOrigin(req: VercelRequest) {
+  const proto = (req.headers["x-forwarded-proto"] as string) || "https";
+
+  const rawHost =
+    (req.headers["x-forwarded-host"] as string) || req.headers.host || "";
+
+  const host = rawHost.split(":")[0]; // 포트 제거
+
+  const isAllowed = ALLOWED_HOSTS.some(
+    (h) => host === h || host.endsWith(`.${h}`),
+  );
+
+  if (!isAllowed) {
+    return `https://${ALLOWED_HOSTS[0]}`;
+  }
 
   return `${proto}://${host}`;
 }
