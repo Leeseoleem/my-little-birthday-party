@@ -103,8 +103,7 @@ function buildHtml(params: {
   </noscript>
 
   <script>
-    // 히스토리 깔끔하게 replace
-    location.replace(${JSON.stringify(redirectUrl)});
+   location.replace(${JSON.stringify(redirectUrl).replace(/</g, "\\u003c")});
   </script>
 </body>
 </html>`;
