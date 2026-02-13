@@ -110,9 +110,7 @@ function GuidePage() {
                 onClick: handleNext,
               }}
             >
-              <div className="flex-1 min-h-0 overflow-y-auto">
-                {current.content}
-              </div>
+              {current.content}
             </GuideSlideLayout>
           </div>
         </div>
