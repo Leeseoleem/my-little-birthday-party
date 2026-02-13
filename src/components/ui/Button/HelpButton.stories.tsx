@@ -9,17 +9,13 @@ const meta: Meta<typeof HelpButton> = {
     layout: "centered",
   },
   args: {
-    label: "도움말",
-    onClick: () => alert("Help button clicked!"),
+    label: "도움말", // 기본 라벨 텍스트
+    to: "/", // 기본 링크 경로
   },
   argTypes: {
     label: {
       control: "text",
       description: "버튼 라벨 텍스트",
-    },
-    onClick: {
-      action: "clicked",
-      description: "버튼 클릭 시 호출되는 함수",
     },
   },
 };
