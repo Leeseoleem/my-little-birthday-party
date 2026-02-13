@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
+import { getSiteOrigin } from "../../utils/getSiteOrigin";
+
 // === component ===
 import GarlandLayout from "../../components/layout/page/GarlandLayout";
 import EnvelopeLayout from "../../components/layout/page/EnvelopeLayout";
@@ -12,11 +14,10 @@ import { GUIDE_SLIDES } from "../../features/creator/components/guide/guideSlide
 
 export const Route = createFileRoute("/guides/interactive-birthday-card")({
   head: () => {
-    const baseUrl = import.meta.env.VITE_PUBLIC_SITE_URL;
+    const origin = getSiteOrigin();
     const path = "/guides/interactive-birthday-card";
 
-    const canonicalUrl = new URL(path, baseUrl).toString();
-
+    const url = new URL(path, origin).toString();
     const title = "인터랙티브 생일 카드 만드는 법 | 나의 작은 생일 파티";
     const description =
       "케이크를 꾸미고 초를 끄는 이벤트로 편지를 전하는 인터랙티브 생일 카드 제작 흐름을 정리했습니다.";
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/guides/interactive-birthday-card")({
       "@type": "Article",
       headline: title,
       description,
-      mainEntityOfPage: canonicalUrl,
+      mainEntityOfPage: url,
       author: {
         "@type": "Person",
         name: "Leeseoleem",
@@ -54,7 +55,7 @@ export const Route = createFileRoute("/guides/interactive-birthday-card")({
       ],
       links: [
         // 대표 URL 고정
-        { rel: "canonical", href: canonicalUrl },
+        { rel: "canonical", href: url },
       ],
       scripts: [
         {
