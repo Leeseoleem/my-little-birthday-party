@@ -111,7 +111,7 @@ function GuidePage() {
                 onClick: handleNext,
               }}
             >
-              {current.content}
+              {current.content()}
             </GuideSlideLayout>
           </div>
         </div>
