@@ -325,7 +325,7 @@ npm >= 9.0.0
 
 ```bash
 # 저장소 클론
-git clone https://github.com/yourusername/my-little-birthday-party.git
+git clone https://github.com/Leeseoleem/my-little-birthday-party.git
 cd my-little-birthday-party
 
 # 의존성 설치
@@ -470,7 +470,7 @@ http://localhost:5173
 
 프로젝트 관련 문의: leeseorim0029@gmail.com
 
-프로젝트 링크: [https://github.com/yourusername/my-little-birthday-party](https://github.com/Leeseoleem/my-little-birthday-party)
+프로젝트 링크: [https://github.com/Leeseoleem/my-little-birthday-party](https://github.com/Leeseoleem/my-little-birthday-party)
 
 ---
 
