@@ -1,8 +1,28 @@
 {
   "rewrites": [
+    { "source": "/share/:cardId", "destination": "/api/share/:cardId" },
+    { "source": "/:path((?!api/).*)", "destination": "/" }
+  ],
+  "headers": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/r/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/share/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/creator/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/creator",
+      "headers": [{ "key": "X-Robots-Tag", "value": "index, follow" }]
+    },
+    {
+      "source": "/guides/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "index, follow" }]
     }
   ]
 }

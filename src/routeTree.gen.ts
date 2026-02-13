@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as RIndexRouteImport } from './routes/r/index'
 import { Route as CreatorIndexRouteImport } from './routes/creator/index'
 import { Route as RExpiredRouteImport } from './routes/r/expired'
+import { Route as GuidesInteractiveBirthdayCardRouteImport } from './routes/guides/interactive-birthday-card'
 import { Route as CreatorLetterRouteImport } from './routes/creator/letter'
 import { Route as CreatorInfoRouteImport } from './routes/creator/info'
 import { Route as CreatorCompleteRouteImport } from './routes/creator/complete'
@@ -50,6 +51,12 @@ const RExpiredRoute = RExpiredRouteImport.update({
   path: '/r/expired',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesInteractiveBirthdayCardRoute =
+  GuidesInteractiveBirthdayCardRouteImport.update({
+    id: '/guides/interactive-birthday-card',
+    path: '/guides/interactive-birthday-card',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CreatorLetterRoute = CreatorLetterRouteImport.update({
   id: '/letter',
   path: '/letter',
@@ -109,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/creator/complete': typeof CreatorCompleteRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
+  '/guides/interactive-birthday-card': typeof GuidesInteractiveBirthdayCardRoute
   '/r/expired': typeof RExpiredRoute
   '/creator/': typeof CreatorIndexRoute
   '/r': typeof RIndexRoute
@@ -124,6 +132,7 @@ export interface FileRoutesByTo {
   '/creator/complete': typeof CreatorCompleteRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
+  '/guides/interactive-birthday-card': typeof GuidesInteractiveBirthdayCardRoute
   '/r/expired': typeof RExpiredRoute
   '/creator': typeof CreatorIndexRoute
   '/r': typeof RIndexRoute
@@ -142,6 +151,7 @@ export interface FileRoutesById {
   '/creator/complete': typeof CreatorCompleteRoute
   '/creator/info': typeof CreatorInfoRoute
   '/creator/letter': typeof CreatorLetterRoute
+  '/guides/interactive-birthday-card': typeof GuidesInteractiveBirthdayCardRoute
   '/r/expired': typeof RExpiredRoute
   '/creator/': typeof CreatorIndexRoute
   '/r/': typeof RIndexRoute
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/creator/complete'
     | '/creator/info'
     | '/creator/letter'
+    | '/guides/interactive-birthday-card'
     | '/r/expired'
     | '/creator/'
     | '/r'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/creator/complete'
     | '/creator/info'
     | '/creator/letter'
+    | '/guides/interactive-birthday-card'
     | '/r/expired'
     | '/creator'
     | '/r'
@@ -193,6 +205,7 @@ export interface FileRouteTypes {
     | '/creator/complete'
     | '/creator/info'
     | '/creator/letter'
+    | '/guides/interactive-birthday-card'
     | '/r/expired'
     | '/creator/'
     | '/r/'
@@ -208,6 +221,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreatorRouteRoute: typeof CreatorRouteRouteWithChildren
   RCardIdRouteRoute: typeof RCardIdRouteRouteWithChildren
+  GuidesInteractiveBirthdayCardRoute: typeof GuidesInteractiveBirthdayCardRoute
   RExpiredRoute: typeof RExpiredRoute
   RIndexRoute: typeof RIndexRoute
 }
@@ -247,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/r/expired'
       fullPath: '/r/expired'
       preLoaderRoute: typeof RExpiredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/interactive-birthday-card': {
+      id: '/guides/interactive-birthday-card'
+      path: '/guides/interactive-birthday-card'
+      fullPath: '/guides/interactive-birthday-card'
+      preLoaderRoute: typeof GuidesInteractiveBirthdayCardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creator/letter': {
@@ -366,6 +387,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreatorRouteRoute: CreatorRouteRouteWithChildren,
   RCardIdRouteRoute: RCardIdRouteRouteWithChildren,
+  GuidesInteractiveBirthdayCardRoute: GuidesInteractiveBirthdayCardRoute,
   RExpiredRoute: RExpiredRoute,
   RIndexRoute: RIndexRoute,
 }
