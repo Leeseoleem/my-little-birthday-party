@@ -11,19 +11,59 @@ import GuideSlideLayout from "../../features/creator/components/guide/GuideSlide
 import { GUIDE_SLIDES } from "../../features/creator/components/guide/guideSlide.config";
 
 export const Route = createFileRoute("/guides/interactive-birthday-card")({
-  head: () => ({
-    meta: [
-      {
-        title: "나의 작은 생일 파티 | 케이크 이벤트로 생일 카드 만들기",
+  head: () => {
+    const baseUrl = import.meta.env.VITE_PUBLIC_SITE_URL;
+    const path = "/guides/interactive-birthday-card";
+
+    const canonicalUrl = new URL(path, baseUrl).toString();
+
+    const title = "인터랙티브 생일 카드 만드는 법 | 나의 작은 생일 파티";
+    const description =
+      "케이크를 꾸미고 초를 끄는 이벤트로 편지를 전하는 인터랙티브 생일 카드 제작 흐름을 정리했습니다.";
+
+    // JSON-LD (Article) 구성
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title,
+      description,
+      mainEntityOfPage: canonicalUrl,
+      author: {
+        "@type": "Person",
+        name: "Leeseoleem",
       },
-      {
-        name: "description",
-        content:
-          "단순한 축하 메시지가 아닌, 케이크 → 촛불 끄기 → 편지로 이어지는 인터랙티브 생일 카드 제작 방법과 사용자 경험 흐름을 정리했습니다.",
+      publisher: {
+        "@type": "Organization",
+        name: "나의 작은 생일 파티",
       },
-      { property: "og:type", content: "article" },
-    ],
-  }),
+    };
+
+    return {
+      title,
+      meta: [
+        { name: "description", content: description },
+
+        {
+          name: "robots",
+          content:
+            "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+        },
+
+        // 언어/지역 타겟 힌트
+        { name: "language", content: "ko" },
+      ],
+      links: [
+        // 대표 URL 고정
+        { rel: "canonical", href: canonicalUrl },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(jsonLd),
+        },
+      ],
+    };
+  },
 
   component: GuidePage,
 });
