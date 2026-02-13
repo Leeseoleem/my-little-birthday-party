@@ -16,8 +16,7 @@ export default function ReceiptLayout(props: ReceiptLayoutProps) {
       className={clsx(
         "bg-[url('/assets/textures/paper-crumpled-white.png')]",
         "z-10 bg-no-repeat bg-center",
-        // 기본은 내용 기반이 아니라 '컨테이너가 커질 수 있게' 열어두는 편이 좋음
-        "w-fit", // 너비는 유지 (원하면 이것도 외부로 제어 가능)
+        "w-full max-w-[520px]",
         "flex flex-col items-start",
         "pb-6 pt-9 px-8 mdh:px-12 lgh:px-15 gap-6 shadow-floating",
         props.className,
@@ -25,7 +24,7 @@ export default function ReceiptLayout(props: ReceiptLayoutProps) {
     >
       <ReceiptLayoutHeader {...props.header} />
       <div className="w-full h-[1.5px] bg-gray-50" />
-      <div className="flex flex-1">{props.children}</div>
+      <div className="flex-1 min-h-0 w-full">{props.children}</div>
       <div className="w-full h-[1.5px] bg-gray-50" />
       {/* 하단 영역 */}
       <div className="mt-auto flex flex-col w-full">{props.footer}</div>

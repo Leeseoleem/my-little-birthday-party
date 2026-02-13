@@ -42,13 +42,13 @@ export default function GuideSlideLayout({
       }
       className="h-[550px] mdh:h-[600px] lgh:h-[650px]"
     >
-      <div className="flex flex-col w-full justify-center gap-6">
+      <div className="flex flex-col h-full min-h-0 w-full gap-6">
         {bodyTitle && (
           <p className="text-small mdh:text-body lgh:text-sub-title text-gray-80 whitespace-pre-line">
             {bodyTitle}
           </p>
         )}
-        {children}
+        <div className="flex-1 min-h-0 overflow-y-auto">{children}</div>
       </div>
     </ReceiptLayout>
   );
