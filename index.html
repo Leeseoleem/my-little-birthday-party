@@ -53,22 +53,18 @@
       name="twitter:image"
       content="https://my-little-birthday-party.vercel.app/og/og-birthday-card.png"
     />
+
+    <!-- 구조화 데이터 -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "나의 작은 생일 파티",
+        "url": "https://my-little-birthday-party.vercel.app/"
+      }
+    </script>
   </head>
 
-  <!-- 구조화 데이터 -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "나의 작은 생일 파티",
-      "url": "https://my-little-birthday-party.vercel.app/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://my-little-birthday-party.vercel.app/guides/interactive-birthday-card",
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
