@@ -1,10 +1,12 @@
 import type { LinkProps } from "@tanstack/react-router";
 
-// 컴포넌트
+// === components ===
 import ReceiptLayout from "../../../../components/layout/frame/ReceiptLayout";
+// content
 import InvitationInfo, {
   type InvitationInfoProps,
 } from "../../../../components/shared/invitation/InvitationInfo";
+// footer
 import InvitationGuide from "../../../../components/shared/invitation/InvitationGuide";
 import ShareButtons, {
   type ShareButtonsProps,
