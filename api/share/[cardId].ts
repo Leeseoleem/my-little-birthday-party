@@ -21,7 +21,9 @@ function escapeHtml(input: string) {
 const ALLOWED_HOSTS = ["my-little-birthday-party.vercel.app"];
 
 function getOrigin(req: VercelRequest) {
-  const proto = (req.headers["x-forwarded-proto"] as string) || "https";
+  const rawProto = (req.headers["x-forwarded-proto"] as string) || "https";
+  const proto =
+    rawProto === "http" || rawProto === "https" ? rawProto : "https";
 
   const rawHost =
     (req.headers["x-forwarded-host"] as string) || req.headers.host || "";
