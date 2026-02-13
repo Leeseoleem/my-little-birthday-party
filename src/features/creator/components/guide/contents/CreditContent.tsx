@@ -23,6 +23,7 @@ const CreditContent = () => {
       </div>
       <div className="mt-auto flex gap-4 mdh:gap-6 lgh:gap-8">
         <img
+          alt="제작자 프로필"
           src="/assets/brand/profile-icon.png"
           className="h-fit w-25 mdh:w-30 lgh:w-[150px]"
         />
