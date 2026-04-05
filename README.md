@@ -435,11 +435,25 @@ http://localhost:5173
 
 ### 메시지 제작 화면
 
-<!-- 실제 스크린샷으로 교체하세요 -->
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/69b26ef7-8987-4102-bb54-b3d81eacf3d6" height="400" alt="스크린샷 01" />
+  <img src="https://github.com/user-attachments/assets/97c7d78b-35b3-4ca0-bd2c-8124b4d7b3f4" height="400" alt="스크린샷 02" />
+  <img src="https://github.com/user-attachments/assets/077f373b-1c4b-4458-bf14-19349a44f875" height="400" alt="스크린샷 03" />
+  <img src="https://github.com/user-attachments/assets/298b4c82-4940-404b-9d29-8cf9f0d945d3" height="400" alt="스크린샷 04" />
+</p>
 
 ### 수신자 경험 화면
 
-<!-- 실제 스크린샷으로 교체하세요 -->
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2c39949f-5c82-49ce-9c0a-8cd1491649f8" height="500" alt="스크린샷 05" />
+  <img src="https://github.com/user-attachments/assets/c39a8f2b-2b1e-4e17-b732-084708d48319" height="500" alt="스크린샷 06" />
+  <img src="https://github.com/user-attachments/assets/c82235a3-4455-4864-bf84-6a89bf6d6832" height="500" alt="스크린샷 07" />
+  <img src="https://github.com/user-attachments/assets/ebeef2bd-0710-49c6-9ceb-95afd5322abb" height="500" alt="스크린샷 08" />
+  <img src="https://github.com/user-attachments/assets/35d64b2f-f71e-47ac-822d-7fccefef8e40" height="500" alt="스크린샷 09" />
+  <img src="https://github.com/user-attachments/assets/f95f6de2-b591-41cb-9351-83b50c7482c7" height="500" alt="스크린샷 10" />
+  <img src="https://github.com/user-attachments/assets/c532009a-c30f-4537-be7d-3cc29a1bb42e" height="500" alt="스크린샷 11" />
+  <img src="https://github.com/user-attachments/assets/67f83541-8589-4077-8619-d87a0e8392fe" height="500" alt="스크린샷 12" />
+</p>
 
 ---
 
